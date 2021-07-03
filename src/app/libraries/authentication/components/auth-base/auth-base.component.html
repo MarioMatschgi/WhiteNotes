@@ -1,0 +1,222 @@
+<div class="box nostyle">
+  <div class="container">
+    <form class="container">
+      <!-- LOGIN -->
+      <section *ngIf="type == 'login'">
+        <h1 [innerHtml]="local.data.lib.auth.login.title"></h1>
+        <p [innerHtml]="local.data.lib.auth.login.desc"></p>
+      </section>
+
+      <!-- REGISTER -->
+      <section *ngIf="type == 'register'">
+        <h1 [innerHtml]="local.data.lib.auth.register.title"></h1>
+        <p [innerHtml]="local.data.lib.auth.register.desc"></p>
+      </section>
+
+      <!-- VERIFY -->
+      <section *ngIf="type == 'verify'">
+        <h1 [innerHtml]="local.data.lib.auth.verify_email.title"></h1>
+        <p [innerHtml]="local.data.lib.auth.verify_email.desc"></p>
+      </section>
+
+      <!-- RESET -->
+      <section *ngIf="type == 'reset'">
+        <h1 [innerHtml]="local.data.lib.auth.reset_password.title"></h1>
+        <p [innerHtml]="local.data.lib.auth.reset_password.desc"></p>
+      </section>
+
+      <!-- SOCIAL SIGNIN -->
+      <section class="form-group" *ngIf="type != 'verify' && type != 'reset'">
+        <!-- GOOGLE SIGNIN -->
+        <section class="form-group">
+          <button class="signin google" (click)="auth.signIn_google()">
+            <img />
+            <span [innerHtml]="local.data.lib.auth.buttons.login.google"></span>
+          </button>
+        </section>
+      </section>
+    </form>
+
+    <form
+      class="container"
+      (ngSubmit)="submit_email(form_email)"
+      #form_email="ngForm"
+    >
+      <!-- EMAIL SIGNIN -->
+      <section class="form-group">
+        <!-- EMAIL -->
+        <section class="form-group">
+          <label
+            class="required"
+            for="email_email"
+            [innerHtml]="local.data.lib.auth.fields.email.label"
+          ></label>
+          <label
+            [hidden]="email_email.valid || email_email.untouched"
+            class="alert alert-danger"
+            for="email_email"
+            [innerHtml]="local.data.lib.auth.fields.email.error"
+          >
+          </label>
+
+          <input
+            type="text"
+            class="form-control"
+            id="email_email"
+            [placeholder]="local.data.lib.auth.fields.email.placeholder"
+            required
+            [(ngModel)]="email_data.email"
+            name="email_email"
+            #email_email="ngModel"
+          />
+        </section>
+
+        <!-- PASSWORD -->
+        <section class="form-group" *ngIf="type != 'reset'">
+          <label
+            for="email_password"
+            class="required"
+            [innerHtml]="local.data.lib.auth.fields.password.label"
+          ></label>
+          <label
+            [hidden]="email_password.valid || email_password.untouched"
+            class="alert alert-danger"
+            for="email_password"
+            [innerHtml]="local.data.lib.auth.fields.password.error"
+          ></label>
+
+          <input
+            type="password"
+            class="form-control"
+            id="email_password"
+            [placeholder]="local.data.lib.auth.fields.password.placeholder"
+            required
+            [(ngModel)]="email_data.password"
+            name="email_password"
+            #email_password="ngModel"
+          />
+        </section>
+
+        <!-- CONFIRM PASSWORD -->
+        <section class="form-group" *ngIf="type == 'register'">
+          <label
+            for="email_confirm_password"
+            class="required"
+            [innerHtml]="local.data.lib.auth.fields.confirm_password.label"
+          ></label>
+          <label
+            [hidden]="
+              email_confirm_password.valid || email_confirm_password.untouched
+            "
+            class="alert alert-danger"
+            for="email_confirm_password"
+            [innerHtml]="local.data.lib.auth.fields.confirm_password.error"
+          >
+          </label>
+
+          <input
+            type="password"
+            class="form-control"
+            id="email_confirm_password"
+            [placeholder]="
+              local.data.lib.auth.fields.confirm_password.placeholder
+            "
+            required
+            [(ngModel)]="email_data.confirm_password"
+            name="email_confirm_password"
+            #email_confirm_password="ngModel"
+          />
+        </section>
+
+        <!-- EMAIL SIGNIN BUTTON -->
+        <section class="form-group">
+          <label
+            [hidden]="!auth.error"
+            class="alert alert-danger"
+            [innerHtml]="auth.get_localized_error(local.data.lib.auth.errors)"
+          >
+          </label>
+
+          <!-- LOGIN/VERIFY/RESET -->
+          <div
+            *ngIf="type == 'login' || type == 'verify' || type == 'reset'"
+            class="flexbox center equal"
+          >
+            <button
+              class="signin email"
+              *ngIf="type == 'login' || type == 'verify'"
+            >
+              <img />
+              <span
+                [innerHtml]="local.data.lib.auth.buttons.login.email"
+              ></span>
+            </button>
+
+            <button
+              type="button"
+              class="signin email"
+              (click)="router.nav_register()"
+              *ngIf="type == 'login'"
+            >
+              <img />
+              <span
+                [innerHtml]="local.data.lib.auth.buttons.register.email"
+              ></span>
+            </button>
+
+            <button
+              type="button"
+              (click)="router.nav_reset()"
+              *ngIf="type == 'login'"
+            >
+              <span
+                [innerHtml]="local.data.lib.auth.buttons.reset_password.reset"
+              ></span>
+            </button>
+
+            <button
+              type="button"
+              (click)="resend_verification_email()"
+              *ngIf="type == 'verify'"
+            >
+              <p
+                [innerHtml]="local.data.lib.auth.buttons.verify_email.resend"
+              ></p>
+            </button>
+
+            <button
+              type="button"
+              (click)="reset_password(form_email)"
+              *ngIf="type == 'reset'"
+            >
+              <p
+                [innerHtml]="local.data.lib.auth.buttons.reset_password.reset"
+              ></p>
+            </button>
+          </div>
+
+          <!-- REGISTER -->
+          <div *ngIf="type == 'register'" class="flexbox center equal">
+            <button
+              type="button"
+              class="signin email"
+              (click)="router.nav_login()"
+            >
+              <img />
+              <span
+                [innerHtml]="local.data.lib.auth.buttons.login.email"
+              ></span>
+            </button>
+
+            <button class="signin email">
+              <img />
+              <span
+                [innerHtml]="local.data.lib.auth.buttons.register.email"
+              ></span>
+            </button>
+          </div>
+        </section>
+      </section>
+    </form>
+  </div>
+</div>

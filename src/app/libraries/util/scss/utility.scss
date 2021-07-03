@@ -1,0 +1,25 @@
+.clickable {
+  cursor: pointer;
+  transition: transform 0.4s;
+
+  &.hoverable:hover {
+    transform: scale(1.05);
+  }
+}
+
+/* LIST */
+ul.nostyle {
+  padding-left: 0 !important;
+  list-style-type: none;
+}
+
+/* BLUR */
+.blur {
+  backdrop-filter: blur(0.5em);
+}
+
+.spacer {
+  width: 0;
+  height: 0;
+  margin: var(--unit-small);
+}

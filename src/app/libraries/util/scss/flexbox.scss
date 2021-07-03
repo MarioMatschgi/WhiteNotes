@@ -1,0 +1,50 @@
+/* FLEX */
+.flexbox {
+  @include units;
+
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  &:not(.nospace) {
+    margin: calc(0px - var(--unit) / 2) !important;
+  }
+  &.center {
+    justify-content: center;
+  }
+
+  --u: calc(var(--unit) / 2);
+  &:not(.nospace) > * {
+    margin: var(--u) !important;
+  }
+
+  &.column {
+    flex-direction: column;
+  }
+  &.nowrap {
+    flex-wrap: nowrap;
+  }
+  &.resize {
+    > * {
+      flex: 1 1 auto;
+    }
+  }
+  &.equal {
+    > * {
+      flex: 1 1 0%;
+    }
+  }
+}
+.no-stretch {
+  flex-grow: 0 !important;
+  flex-basis: unset !important;
+}
+.flex-spacer {
+  // flex-grow: 1 !important;
+  flex: 1 1 0% !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+.flex-break {
+  flex-basis: 100% !important;
+}

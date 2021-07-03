@@ -1,0 +1,58 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+:root {
+  --font-size-h1: 1.5em;
+  --font-size-h2: 1.25em;
+}
+
+html,
+body {
+  font-size: calc(1em + 0.25vmin);
+  /*  EM are for bottom out (small on small devices) 
+      VH Are for growing with device size (large on large devices)
+    https://bits.theorem.co/css-pro-tips-responsive-font-sizes-and-when-to-use-which-units/
+  */
+
+  color: var(--color-font);
+}
+
+* {
+  font-family: "Poppins", "Roboto", Times, serif;
+  line-height: 1;
+}
+
+::selection {
+  color: var(--color-selection);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: var(--color-font-headline);
+  margin-top: 0;
+}
+h1 {
+  font-size: var(--font-size-h1);
+  font-weight: 700;
+}
+h2 {
+  font-size: var(--font-size-h2);
+  font-weight: 600;
+}
+
+p {
+  margin: 0;
+}
+
+a {
+  cursor: pointer;
+  color: var(--color-accent);
+
+  &.nostyle {
+    text-decoration: none;
+  }
+}

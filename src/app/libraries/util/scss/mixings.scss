@@ -1,0 +1,49 @@
+@mixin units($size: 2) {
+  @if ($size == 0) {
+    --unit: var(--unit-tiny);
+  }
+  @if ($size == 1) {
+    --unit: var(--unit-small);
+  }
+  @if ($size == 2) {
+    --unit: var(--unit-normal);
+  }
+  @if ($size == 3) {
+    --unit: var(--unit-large);
+  }
+
+  &.tiny {
+    --unit: var(--unit-tiny);
+  }
+  &.small {
+    --unit: var(--unit-small);
+  }
+  &.normal {
+    --unit: var(--unit-normal);
+  }
+  &.large {
+    --unit: var(--unit-large);
+  }
+  &.auto {
+    --unit: var(--unit-auto);
+  }
+}
+
+@mixin interactable($size: 2) {
+  @include units($size);
+
+  background: var(--bg-glass);
+  padding: var(--unit);
+  border-radius: var(--unit);
+
+  color: var(--color-font);
+  cursor: pointer;
+
+  transition: box-shadow 0.4s;
+
+  &:focus,
+  &:hover:not(:disabled) {
+    box-shadow: 0 0 0 2px var(--colors-red);
+    outline: none;
+  }
+}

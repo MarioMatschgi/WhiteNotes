@@ -1,0 +1,15 @@
+:root {
+  --tran-background-color: background-color 1s;
+}
+
+/* GENERAL */
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--color-background);
+  transition: background-color 1s;
+}

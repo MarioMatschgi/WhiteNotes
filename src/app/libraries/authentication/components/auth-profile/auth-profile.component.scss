@@ -1,0 +1,31 @@
+pop-popover {
+  .pop_btn {
+    img {
+      width: 1.25em;
+      height: 1.25em;
+
+      border-radius: 50%;
+
+      cursor: pointer;
+    }
+
+    div {
+      margin-bottom: 0;
+    }
+    margin-bottom: 0;
+  }
+
+  .pop_cnt {
+    text-align: center;
+
+    img {
+      width: 3em;
+      height: 3em;
+      border-radius: 25%;
+      cursor: unset;
+    }
+    i {
+      font-size: 3em;
+    }
+  }
+}

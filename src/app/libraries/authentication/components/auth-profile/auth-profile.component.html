@@ -1,0 +1,66 @@
+<div class="profile">
+  <pop-popover [position]="'normal'" [align]="'right'" #pop_profile>
+    <div class="pop_btn">
+      <div
+        *ngIf="auth.loggedIn; else notLoggedIn"
+        (click)="pop_profile.toggle()"
+      >
+        <img
+          *ngIf="auth.userPublicData.photoURL; else noProfileImg"
+          [src]="auth.userPublicData.photoURL"
+          alt="profile"
+        />
+
+        <ng-template #noProfileImg>
+          <i class="fas clickable" aria-hidden="true">&#xf2bd;</i>
+        </ng-template>
+      </div>
+      <ng-template #notLoggedIn>
+        <button
+          class="tiny"
+          (click)="router.nav_login()"
+          [innerHtml]="local.data.lib.auth.buttons.login.login"
+        ></button>
+      </ng-template>
+    </div>
+
+    <div class="pop_cnt container small">
+      <img
+        [src]="auth.userPublicData?.photoURL"
+        alt="profile"
+        *ngIf="auth.userPublicData?.photoURL; else noProfileImg"
+      />
+      <ng-template #noProfileImg>
+        <i class="fas" aria-hidden="true">&#xf2bd;</i>
+      </ng-template>
+      <h3
+        [innerHtml]="
+          auth.displayName_or_email
+            .replaceAll('.', '&shy;.')
+            .replaceAll('@', '&shy;@')
+        "
+      ></h3>
+      <p
+        *ngIf="auth.userPublicData?.displayName"
+        [innerHtml]="
+          auth.userPublicData.email
+            .replaceAll('.', '&shy;.')
+            .replaceAll('@', '&shy;@')
+        "
+      ></p>
+
+      <div class="flexbox small resize">
+        <button
+          (click)="
+            router.nav(RouterUrls.profile_settings); pop_profile.set(false)
+          "
+          [innerHtml]="local.data.profile.settings.buttons.settings"
+        ></button>
+        <button
+          (click)="auth.signOut(); pop_profile.set(false)"
+          [innerHtml]="local.data.lib.auth.buttons.logout.logout"
+        ></button>
+      </div>
+    </div>
+  </pop-popover>
+</div>

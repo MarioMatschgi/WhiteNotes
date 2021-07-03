@@ -1,0 +1,12 @@
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 0.5em; /* for vertical scrollbars */
+  height: 0.5em; /* for horizontal scrollbars */
+}
+::-webkit-scrollbar-track {
+  background: var(--colors-background-secondary);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-font);
+  border-radius: 99999em;
+}

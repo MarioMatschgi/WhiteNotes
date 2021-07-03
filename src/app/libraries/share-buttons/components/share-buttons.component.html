@@ -1,0 +1,62 @@
+<div class="container small">
+  <p [innerHtml]="local.data.lib.share.desc.replaceAll('%nam%', name)"></p>
+
+  <!-- SOCIAL BUTTONS -->
+  <div>
+    <div class="sharebuttons flexbox small">
+      <a
+        class="nostyle sharebutton button"
+        [href]="get_url('email')"
+        target="_blank"
+      >
+        <i class="fas" aria-hidden="true">&#xf0e0;</i>
+      </a>
+
+      <a
+        class="nostyle sharebutton button"
+        [href]="get_url('twitter')"
+        target="_blank"
+      >
+        <i class="fab" aria-hidden="true">&#xf099;</i>
+      </a>
+      <a
+        class="nostyle sharebutton button"
+        [href]="get_url('facebook')"
+        target="_blank"
+      >
+        <i class="fab" aria-hidden="true">&#xf39e;</i>
+      </a>
+      <a
+        class="nostyle sharebutton button"
+        [href]="get_url('tumblr')"
+        target="_blank"
+      >
+        <i class="fab" aria-hidden="true">&#xf173;</i>
+      </a>
+      <!-- <a
+        class="nostyle sharebutton"
+        [href]="get_url('linkedin')"
+        target="_blank"
+      >
+        <i class="fab" aria-hidden="true">&#xf0e1;</i>
+      </a> -->
+      <a
+        class="nostyle sharebutton button"
+        [href]="get_url('pinterest')"
+        target="_blank"
+      >
+        <i class="fab" aria-hidden="true">&#xf231;</i>
+      </a>
+    </div>
+  </div>
+
+  <!-- LINK SECTION -->
+  <div>
+    <div class="linksection flexbox small">
+      <input type="text" [value]="this.url" (click)="copy_link()" readonly />
+      <a class="nostyle sharebutton button" (click)="copy_link()">
+        <i class="fas" aria-hidden="true">&#xf0c1;</i>
+      </a>
+    </div>
+  </div>
+</div>
