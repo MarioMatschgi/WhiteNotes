@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "whitenotes-d32a9": {
+      "hosting": {
+        "whitenotes": [
+          "whitenotes-d32a9"
+        ]
+      }
+    }
+  }
+}

@@ -170,6 +170,10 @@
               "browserTarget": "whitenotes:build:production"
             }
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {}
         }
       }
     }
