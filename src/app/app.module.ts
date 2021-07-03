@@ -10,6 +10,8 @@ import { IonicModule } from '@ionic/angular';
 import { UtilModule } from './libraries/util/util.module';
 import { ThemesModule } from './libraries/themes/themes.module';
 import { WhitenotesModule } from './app/_whitenotes.module';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [AppComponent],
@@ -25,6 +27,12 @@ import { WhitenotesModule } from './app/_whitenotes.module';
     PopoverModule,
     ThemesModule,
     UtilModule,
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: environment.production,
+      // Register the ServiceWorker as soon as the app is stable
+      // or after 30 seconds (whichever comes first).
+      registrationStrategy: 'registerWhenStable:30000'
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent],
