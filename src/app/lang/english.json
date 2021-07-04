@@ -1,0 +1,196 @@
+{
+  "general": {
+    "lang": {
+      "en": "English",
+      "de": "German"
+    },
+    "buttons": {
+      "cancel": "Cancel",
+      "ok": "Ok"
+    }
+  },
+
+  "home": {
+    "recipe": {
+      "title": "Recipes",
+      "desc": "Food is important, food is delicious but cooking food is often scary and difficult.<br>Below are some recipes that might improve your life!"
+    }
+  },
+
+  "recipes": {},
+
+  "recipe": {
+    "fields": {
+      "language": {
+        "label": "Language"
+      },
+      "name": {
+        "label": "Name",
+        "error": "Name is required!",
+        "placeholder": "Name your recipe"
+      },
+      "description": {
+        "label": "Description",
+        "error": "Description is required!",
+        "placeholder": "Describe your recipe"
+      },
+      "ingredients": {
+        "label": "Ingredients",
+        "error": "Ingredients are required!",
+        "placeholder": {
+          "name": "Name",
+          "amount": "Amount",
+          "unit": "Unit"
+        }
+      },
+      "method": {
+        "label": "Method",
+        "error": "Method is required!",
+        "placeholder": "Method for your recipe"
+      },
+      "notes": {
+        "label": "Notes",
+        "placeholder": "Notes for your recipe"
+      }
+    },
+    "buttons": {
+      "add": "Add recipe",
+      "save": "Save recipe",
+      "delete": "Delete recipe"
+    },
+    "view": {
+      "author": "by %author%",
+      "created": "created on<br/>%date%",
+      "edited": "edited on<br/>%date%"
+    },
+    "edit": {
+      "title": "Edit recipe",
+      "desc": "Change the fields to edit recipe"
+    },
+    "delete": {
+      "title": "Delete recipe",
+      "desc": "Are you sure, that you want to delete this recipe:<br/>%recipe%",
+      "confirm": "Are you sure, that you want to delete this recipe:\n%recipe%"
+    },
+    "create": {
+      "title": "Create a new recipe",
+      "desc": "Fill in all required fields to create a new recipe"
+    }
+  },
+
+  "profile": {
+    "settings": {
+      "title": "Settings",
+      "desc": "Below are the settings to customize your experience.",
+      "sections": {
+        "themes": {
+          "title": "Themes",
+          "desc": "Choose your favourite theme."
+        },
+        "lang": {
+          "title": "Language",
+          "desc": "Choose your prefered language."
+        }
+      },
+      "buttons": {
+        "settings": "Settings"
+      }
+    },
+    "creations": {
+      "title": "Creations",
+      "desc": "Below are all recipes that you have created so you can see all your beautiful creations.",
+      "new_recipe": {
+        "title": "Create a new recipe",
+        "desc": "Click here to create a new recipe"
+      }
+    },
+    "stars": {
+      "title": "Stars",
+      "desc": "Below are all recipes that you have given a star."
+    },
+    "bookmarks": {
+      "title": "Bookmarks",
+      "desc": "Below are all recipes that you have bookmarked so you can find your favourites more easily."
+    }
+  },
+
+  "lib": {
+    "auth": {
+      "buttons": {
+        "login": {
+          "login": "Login",
+          "google": "Login with Google",
+          "email": "Login"
+        },
+        "register": {
+          "register": "Register",
+          "email": "Register"
+        },
+        "logout": {
+          "logout": "Logout"
+        },
+        "verify_email": {
+          "resend": "Resend verification"
+        },
+        "reset_password": {
+          "reset": "Reset password"
+        }
+      },
+      "fields": {
+        "email": {
+          "label": "Email",
+          "error": "Email is required!",
+          "placeholder": "Enter your email"
+        },
+        "password": {
+          "label": "Password",
+          "error": "Password is required!",
+          "placeholder": "Enter your password"
+        },
+        "confirm_password": {
+          "label": "Confirm password",
+          "error": "Confirming is required!",
+          "placeholder": "Enter your password"
+        }
+      },
+      "errors": {
+        "auth/user-not-found": "Invalid email or password!",
+        "auth/wrong-password": "Invalid email or password!",
+        "auth/too-many-requests": "The login failed too many times!<br/>Please try again later.",
+        "auth/password-no-match": "The confirmation password must match the password!",
+        "auth/email-already-in-use": "An account with this email already exists!",
+        "auth/not-verified": "Please verify your email adress before logging in!",
+        "auth/too-many-verify-email": "Too many verification emails were sent!<br/>Please try again later."
+      },
+      "login": {
+        "title": "Login",
+        "desc": "To create/edit/delete your own favourite recipes or to bookmark/star recipes you have to log in."
+      },
+      "register": {
+        "title": "Register",
+        "desc": "To create/edit/delete your own favourite recipes or to bookmark/star recipes you have to register."
+      },
+      "verify_email": {
+        "title": "Verify your email",
+        "desc": "Please verify your email to continue",
+        "successfully_sent": "Successfully resent the verification link!"
+      },
+      "reset_password": {
+        "title": "Reset your password",
+        "desc": "Please enter your email",
+        "successfully_sent": "Successfully resent the reset mail!"
+      }
+    },
+    "share": {
+      "desc": "Share this recipe: %nam%",
+      "txt": "Check this recipe out: %url%",
+      "ttl": "Recipe4you | %nam%"
+    }
+  },
+
+  "not_found": {
+    "desc": "Whoooops!<br/>It seems that %what% does not exist!",
+    "general": "the page you are looking for",
+    "recipe": "the recipe you are looking for"
+  }
+}

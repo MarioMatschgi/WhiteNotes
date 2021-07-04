@@ -1,0 +1,20 @@
+/* VARIABLES */
+:root {
+  --colors-red: #eb4d4b;
+  --colors-light-blue: #426696;
+
+  // IF CHANGED CHANGE IN INDEX.html THEME META TAG AND MANIFEST (BACKGROUND + THEME COLOR)
+  --color-background: #6cdbeb;
+  --color-selection: #27ae60;
+
+  --bg-glass: linear-gradient(
+    to left top,
+    rgba(255, 255, 255, 0.1),
+    rgba(255, 255, 255, 0.35)
+  );
+
+  --bs-glass: 0.5em 0.5em 20px rgba(122, 122, 122, 0.2);
+
+  --color-font: var(--colors-light-blue);
+  --color-font-headline: var(--colors-white);
+}

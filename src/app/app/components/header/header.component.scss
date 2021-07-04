@@ -1,0 +1,22 @@
+header {
+  border-top-right-radius: 0;
+  border-top-left-radius: 0;
+
+  padding: var(--unit-normal);
+  padding-top: calc(
+    max(env(safe-area-inset-top), var(--unit-normal) - var(--unit-tiny)) +
+      var(--unit-tiny)
+  );
+  padding-left: calc(
+    max(
+        env(safe-area-inset-left) + var(--unit-tiny),
+        var(--unit-normal) - var(--unit-tiny)
+      ) + var(--unit-tiny)
+  );
+  padding-right: calc(
+    max(
+        env(safe-area-inset-right) + var(--unit-tiny),
+        var(--unit-normal) - var(--unit-tiny)
+      ) + var(--unit-tiny)
+  );
+}

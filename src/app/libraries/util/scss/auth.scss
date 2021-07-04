@@ -1,0 +1,36 @@
+/* SIGNIN BUTTONS */
+button.signin {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  flex-grow: unset;
+  flex-basis: unset;
+
+  * {
+    display: inline-block;
+    flex-grow: 0;
+  }
+  img {
+    height: 1.5em;
+    margin: 0 !important;
+    margin-right: 0.5em !important;
+  }
+
+  &.google {
+    background-color: white;
+    color: #737373;
+    img {
+      content: url("/assets/images/logos/google.svg");
+    }
+  }
+  &.email {
+    background: none;
+    background-color: #34495e;
+    color: #b0b0b0;
+
+    img {
+      content: url("/assets/images/logos/email.svg");
+    }
+  }
+}

@@ -1,0 +1,52 @@
+i {
+  font-style: inherit;
+  vertical-align: middle;
+}
+
+@font-face {
+  font-family: FontAwesome5ProLight;
+  src: url("../../../../../assets/fontawesome/FontAwesome5Pro-Light-300.otf");
+}
+@font-face {
+  font-family: FontAwesome5ProRegular;
+  src: url("../../../../../assets/fontawesome/FontAwesome5Pro-Regular-400.otf");
+}
+@font-face {
+  font-family: FontAwesome5ProSolid;
+  src: url("../../../../../assets/fontawesome/FontAwesome5Pro-Solid-900.otf");
+}
+@font-face {
+  font-family: FontAwesome5ProBrand;
+  src: url("../../../../../assets/fontawesome/FontAwesome5Brands-Regular-400.otf");
+}
+@font-face {
+  font-family: FontAwesome5ProDuo;
+  src: url("../../../../../assets/fontawesome/FontAwesome5Duotone-Solid-900.otf");
+}
+
+.fa-light,
+.fal {
+  font-family: FontAwesome5ProLight;
+}
+
+.fa,
+.fa-regular,
+.far {
+  font-family: FontAwesome5ProRegular;
+  font-size: 1em;
+}
+
+.fa-solid,
+.fas {
+  font-family: FontAwesome5ProSolid;
+}
+
+.fa-brand,
+.fab {
+  font-family: FontAwesome5ProBrand;
+}
+
+.fa-duo,
+.fad {
+  font-family: FontAwesome5ProDuo;
+}
