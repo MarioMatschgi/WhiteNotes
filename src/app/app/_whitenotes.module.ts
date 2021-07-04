@@ -7,8 +7,15 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { AuthenticationModule } from '../libraries/authentication/authentication.module';
 import { IonicModule } from '@ionic/angular';
 import { UtilModule } from '../libraries/util/util.module';
+import { HomeComponent } from './components/home/home.component';
+import { BoardsComponent } from './components/boards/boards.component';
 
-const components = [HeaderComponent, NotedownComponent];
+const components = [
+  HeaderComponent,
+  HomeComponent,
+  BoardsComponent,
+  NotedownComponent,
+];
 
 @NgModule({
   declarations: components.concat([]),

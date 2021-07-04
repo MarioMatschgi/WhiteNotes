@@ -1,18 +1,41 @@
 <header class="box glass">
-  <section fxLayout fxLayoutAlign="space-between center">
-    <div fxLayout fxLayoutAlign="center center" [fxLayoutGap]="gv.unit_tiny">
+  <section
+    fxLayout="row wrap"
+    [fxLayoutGap]="gv.unit_tiny"
+    fxLayoutAlign="space-between center"
+  >
+    <div
+      fxLayout="row wrap"
+      fxLayoutAlign="center center"
+      [fxLayoutGap]="gv.unit_tiny"
+    >
       <span class="interactable" (click)="router.nav_backward()">
         <fa fa="f0d9" fastyle="far" fasize="1.5"></fa>
       </span>
+
       <a [routerLink]="router.get_url(URLs.home)" class="nostyle">
         <fa fa="f015" fastyle="fas"></fa>
       </a>
+
+      <a [routerLink]="router.get_url(URLs.boards)" class="nostyle">
+        <fa fa="f00a" fastyle="fas"></fa>
+      </a>
+
+      <a [routerLink]="router.get_url(URLs.notedown)" class="nostyle">
+        <fa fa="f328" fastyle="fas"></fa>
+      </a>
+
       <span class="interactable" (click)="router.nav_forward()">
         <fa fa="f0da" fastyle="far" fasize="1.5"></fa>
       </span>
+
       <ng-content></ng-content>
     </div>
-    <div fxLayout fxLayoutAlign="center">
+    <div
+      fxLayout="row wrap"
+      [fxLayoutGap]="gv.unit_tiny"
+      fxLayoutAlign="center"
+    >
       <auth-profile></auth-profile>
     </div>
   </section>
