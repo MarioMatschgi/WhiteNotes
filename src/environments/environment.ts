@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  firebaseConfig: {
+  firebase: {
     apiKey: 'AIzaSyAkDxUxw_sTbewd45_sQIW91BEMHdK5fqU',
     authDomain: 'whitenotes-d32a9.firebaseapp.com',
     projectId: 'whitenotes-d32a9',

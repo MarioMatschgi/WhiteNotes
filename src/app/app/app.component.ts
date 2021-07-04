@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { GlobalVariablesService } from '../libraries/util/services/global-variables.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,6 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Whitenotes';
+
+  constructor(public gv: GlobalVariablesService) {}
 }

@@ -1,0 +1,19 @@
+<header class="box glass">
+  <section fxLayout fxLayoutAlign="space-between center">
+    <div fxLayout fxLayoutAlign="center center" [fxLayoutGap]="gv.unit_tiny">
+      <span class="interactable" (click)="router.nav_backward()">
+        <fa fa="f0d9" fastyle="far" fasize="1.5"></fa>
+      </span>
+      <a [routerLink]="router.get_url(URLs.home)" class="nostyle">
+        <fa fa="f015" fastyle="fas"></fa>
+      </a>
+      <span class="interactable" (click)="router.nav_forward()">
+        <fa fa="f0da" fastyle="far" fasize="1.5"></fa>
+      </span>
+      <ng-content></ng-content>
+    </div>
+    <div fxLayout fxLayoutAlign="center">
+      <auth-profile></auth-profile>
+    </div>
+  </section>
+</header>

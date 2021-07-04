@@ -42,9 +42,6 @@
                 "input": "node_modules/@ionic/angular/css/core.css"
               },
               {
-                "input": "node_modules/@ionic/angular/css/normalize.css"
-              },
-              {
                 "input": "node_modules/@ionic/angular/css/structure.css"
               },
               {
@@ -145,9 +142,7 @@
               },
               "src/manifest.webmanifest"
             ],
-            "styles": [
-              "src/styles.scss"
-            ],
+            "styles": ["src/styles.scss"],
             "scripts": []
           }
         },

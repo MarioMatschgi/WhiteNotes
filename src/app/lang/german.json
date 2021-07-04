@@ -1,0 +1,196 @@
+{
+  "general": {
+    "lang": {
+      "en": "Englisch",
+      "de": "Deutsch"
+    },
+    "buttons": {
+      "cancel": "Abbrechen",
+      "ok": "Ok"
+    }
+  },
+
+  "home": {
+    "recipe": {
+      "title": "Rezepte",
+      "desc": "Essen ist wichtig, Essen ist lecker, aber kochen ist oft schwer.<br/>Hier sind einige Rezepte, die dein Leben vereinfachen können!"
+    }
+  },
+
+  "recipes": {},
+
+  "recipe": {
+    "fields": {
+      "language": {
+        "label": "Sprache"
+      },
+      "name": {
+        "label": "Name",
+        "error": "Name ist erforderlich!",
+        "placeholder": "Benenne dein Rezept"
+      },
+      "description": {
+        "label": "Beschreibung",
+        "error": "Beschreibung ist erforderlich!",
+        "placeholder": "Beschreibe dein Rezept"
+      },
+      "ingredients": {
+        "label": "Zutaten",
+        "error": "Zutaten sind erforderlich!",
+        "placeholder": {
+          "name": "Name",
+          "amount": "Menge",
+          "unit": "Einheit"
+        }
+      },
+      "method": {
+        "label": "Methode",
+        "error": "Methode ist erforderlich!",
+        "placeholder": "Methode für dein Rezept"
+      },
+      "notes": {
+        "label": "Notizen",
+        "placeholder": "Notizen für dein Rezept"
+      }
+    },
+    "buttons": {
+      "add": "Hinzufügen",
+      "save": "Speichern",
+      "delete": "Löschen"
+    },
+    "view": {
+      "author": "von %author%",
+      "created": "Erstellt am<br/>%date%",
+      "edited": "Bearbeitet am<br/>%date%"
+    },
+    "edit": {
+      "title": "Bearbeite das Rezept",
+      "desc": "Ändere die Felder um ein neues Rezept zu bearbeiten"
+    },
+    "delete": {
+      "title": "Lösche das Rezept",
+      "desc": "Bist du dir sicher, dass du das folgende Rezept löschen willst:<br/>%recipe%",
+      "confirm": "Bist du dir sicher, dass du das folgende Rezept löschen willst:\n%recipe%"
+    },
+    "create": {
+      "title": "Erstelle ein neues Rezept",
+      "desc": "Befülle alle Felder um ein neues Rezept zu erstellen"
+    }
+  },
+
+  "profile": {
+    "settings": {
+      "title": "Einstellungen",
+      "desc": "Hier sind einige Einstellungen, um dein Nutzererlebnis anzupassen.",
+      "sections": {
+        "themes": {
+          "title": "Themes",
+          "desc": "Wähle dein Lieblings-Theme."
+        },
+        "lang": {
+          "title": "Sprache",
+          "desc": "Wähle deine bevorzugte Sprache."
+        }
+      },
+      "buttons": {
+        "settings": "Einstellungen"
+      }
+    },
+    "creations": {
+      "title": "Kreationen",
+      "desc": "Hier sind alle Rezepte, die du erstellst hast, sodass du alle deine wunderbaren Rezepte sehen kannst.",
+      "new_recipe": {
+        "title": "Neues Rezept erstellen",
+        "desc": "Klicke hier um ein neues Rezept zu erstellen"
+      }
+    },
+    "stars": {
+      "title": "Sterne",
+      "desc": "Hier sind alle Rezepte, die von dir einen Stern bekommen haben."
+    },
+    "bookmarks": {
+      "title": "Lesezeichen",
+      "desc": "Hier sind alle Rezepte, die mit Lesezeichen markiert wurden, sodass du deine Rezepte einfach finden kannst."
+    }
+  },
+
+  "lib": {
+    "auth": {
+      "buttons": {
+        "login": {
+          "login": "Anmelden",
+          "google": "Mit Google anmelden",
+          "email": "Anmelden"
+        },
+        "register": {
+          "register": "Registrieren",
+          "email": "Registrieren"
+        },
+        "logout": {
+          "logout": "Abmelden"
+        },
+        "verify_email": {
+          "resend": "E-Mail erneut senden"
+        },
+        "reset_password": {
+          "reset": "Passwort zurücksetzen"
+        }
+      },
+      "fields": {
+        "email": {
+          "label": "Email",
+          "error": "Email ist erforderlich!",
+          "placeholder": "Deine E-Mail"
+        },
+        "password": {
+          "label": "Password",
+          "error": "Password ist erforderlich!",
+          "placeholder": "Dein Passwort"
+        },
+        "confirm_password": {
+          "label": "Password bestätigen",
+          "error": "Bestätigen ist erforderlich!",
+          "placeholder": "Dein Passwort"
+        }
+      },
+      "errors": {
+        "auth/user-not-found": "Ungültige E-Mail oder Passwort!",
+        "auth/wrong-password": "Ungültige E-Mail oder Passwort!",
+        "auth/too-many-requests": "Der Login ist zu oft fehlgeschlagen!<br/>Bitte versuche es später erneut.",
+        "auth/password-no-match": "Das bestätigte Passwort und das Passwort müssen identisch sein!",
+        "auth/email-already-in-use": "Ein Nutzer mit dieser E-Mail existiert bereits!",
+        "auth/not-verified": "Bitte bestätige deine E-Mail-Adresse vor dem Anmelden!",
+        "auth/too-many-verify-email": "Zu viele bestätigungs E-Mails wurden gesendet!<br/>Bitte versuche es später erneut."
+      },
+      "login": {
+        "title": "Anmelden",
+        "desc": "Um Rezepte zu erstellen/bearbeiten/löschen und um Lesezeichen/Sterne zu setzen musst du angemeldet sein."
+      },
+      "register": {
+        "title": "Registrieren",
+        "desc": "Um Rezepte zu erstellen/bearbeiten/löschen und um Lesezeichen/Sterne zu setzen musst du dich registrieren."
+      },
+      "verify_email": {
+        "title": "Bestätige deine E-Mail",
+        "desc": "Bitte bestätige deine E-Mail um fortzufahren",
+        "successfully_sent": "Die E-Mail wurde erneut gesendet!"
+      },
+      "reset_password": {
+        "title": "Passwort zurücksetzen",
+        "desc": "Bitte gib deine E-Mail-Adresse ein",
+        "successfully_sent": "Die E-Mail wurde erneut gesendet!"
+      }
+    },
+    "share": {
+      "desc": "Teile dieses Rezept: %nam%",
+      "txt": "Sieh dir dieses tolle Rezept an: %url%",
+      "ttl": "Recipe4you | %nam%"
+    }
+  },
+
+  "not_found": {
+    "desc": "Uuuups!<br/>Es scheint, als würde %what% nicht existieren!",
+    "general": "die Seite, die du suchst,",
+    "recipe": "das Rezept, dass du suchst,"
+  }
+}

@@ -54,5 +54,10 @@ a {
 
   &.nostyle {
     text-decoration: none;
+    color: var(--color-font);
   }
+}
+
+.interactable {
+  cursor: pointer;
 }

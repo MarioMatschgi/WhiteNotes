@@ -7,15 +7,13 @@ form {
   .no-stretch {
     margin-bottom: 0 !important;
   }
-  section/*,
-  div */ {
+  section {
     display: flex;
     flex-wrap: wrap;
 
     justify-content: center;
   }
-  section > */*,
-  div > * */ {
+  section > * {
     flex-grow: 1;
     flex-basis: 100%;
   }

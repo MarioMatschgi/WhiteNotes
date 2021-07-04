@@ -1,7 +1,6 @@
-import { RecipeHelper } from 'src/app/app/model/recipe.model';
 import { Injectable } from '@angular/core';
-import * as data_en from '../../../../lang/english.json';
-import * as data_de from '../../../../lang/german.json';
+import * as data_en from '../../../lang/english.json';
+import * as data_de from '../../../lang/german.json';
 import { AuthService } from '../../authentication/services/auth.service';
 
 /**
@@ -47,7 +46,7 @@ export class LocalizationService {
    */
   update_lang(lang: string) {
     this.lang = lang;
-    RecipeHelper.lang = this.get_eval_lang(this.lang);
+    // RecipeHelper.lang = this.get_eval_lang(this.lang);
 
     this.data = this.langs[this.lang] || this.langs['en'];
   }

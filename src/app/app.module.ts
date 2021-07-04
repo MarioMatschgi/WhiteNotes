@@ -12,6 +12,7 @@ import { ThemesModule } from './libraries/themes/themes.module';
 import { WhitenotesModule } from './app/_whitenotes.module';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+import { AngularFireModule } from '@angular/fire';
 
 @NgModule({
   declarations: [AppComponent],
@@ -20,6 +21,12 @@ import { environment } from '../environments/environment';
     AppRoutingModule,
     FlexLayoutModule,
     IonicModule.forRoot(),
+    AngularFireModule.initializeApp(environment.firebase),
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: environment.production,
+      registrationStrategy: 'registerWhenStable:10000',
+    }),
+
     WhitenotesModule,
 
     /* LIBRARIES */
@@ -27,12 +34,6 @@ import { environment } from '../environments/environment';
     PopoverModule,
     ThemesModule,
     UtilModule,
-    ServiceWorkerModule.register('ngsw-worker.js', {
-      enabled: environment.production,
-      // Register the ServiceWorker as soon as the app is stable
-      // or after 30 seconds (whichever comes first).
-      registrationStrategy: 'registerWhenStable:30000'
-    }),
   ],
   providers: [],
   bootstrap: [AppComponent],

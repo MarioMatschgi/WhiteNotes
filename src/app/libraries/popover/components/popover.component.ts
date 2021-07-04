@@ -12,7 +12,7 @@ export class PopoverComponent implements OnInit {
   /**
    * List of all popovers
    */
-  static popovers: PopoverComponent[];
+  static popovers: PopoverComponent[] = [];
 
   /**
    * Whether the popover is open
