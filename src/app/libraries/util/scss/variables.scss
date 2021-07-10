@@ -7,10 +7,15 @@
   --color-background: #6cdbeb;
   --color-selection: #27ae60;
 
+  // --bg-glass: linear-gradient(
+  //   to left top,
+  //   rgba(255, 255, 255, 0.1),
+  //   rgba(255, 255, 255, 0.35)
+  // );
   --bg-glass: linear-gradient(
     to left top,
     rgba(255, 255, 255, 0.1),
-    rgba(255, 255, 255, 0.35)
+    rgba(255, 255, 255, 0.4)
   );
 
   --bs-glass: 0.5em 0.5em 20px rgba(122, 122, 122, 0.2);

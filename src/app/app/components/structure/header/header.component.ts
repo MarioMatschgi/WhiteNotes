@@ -8,7 +8,7 @@ import { RouterService } from 'src/app/libraries/util/services/router.service';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
 })
-export class HeaderComponent implements OnInit {
+export class StHeaderComponent implements OnInit {
   URLs = RouterUrls;
 
   constructor(

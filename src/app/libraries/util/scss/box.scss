@@ -16,6 +16,7 @@
 .box:not(.nostyle) {
   background: var(--bg-glass);
   box-shadow: var(--bs-glass);
+  backdrop-filter: blur(1rem);
 }
 
 .box,

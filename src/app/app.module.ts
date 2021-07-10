@@ -6,7 +6,6 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app/app.component';
-import { IonicModule } from '@ionic/angular';
 import { UtilModule } from './libraries/util/util.module';
 import { ThemesModule } from './libraries/themes/themes.module';
 import { WhitenotesModule } from './app/_whitenotes.module';
@@ -20,7 +19,6 @@ import { AngularFireModule } from '@angular/fire';
     BrowserModule,
     AppRoutingModule,
     FlexLayoutModule,
-    IonicModule.forRoot(),
     AngularFireModule.initializeApp(environment.firebase),
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,

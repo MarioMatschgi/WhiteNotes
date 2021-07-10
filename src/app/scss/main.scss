@@ -9,6 +9,19 @@
 }
 
 body {
-  background-color: var(--color-background) !important;
+  // background-color: var(--color-background) !important;
+  // background: linear-gradient(to left top, #7be4d1, #6cdbeb) !important;
+  // background: url("https://source.unsplash.com/featured/?kitten");
+
+  // background-image: url("https://source.unsplash.com/collection/i3sgkkUavrk");
+
+  // background-image: url("https://source.unsplash.com/PrQqQVPzmlw");
+  // background-image: url("https://source.unsplash.com/qjCHPZbeXCQ");
+
+  background-image: url("../../assets/images/backgrounds/crystals.jpeg");
+
+  background-size: cover;
+  background-position: center;
   transition: background-color 1s;
+  min-height: 100vh;
 }

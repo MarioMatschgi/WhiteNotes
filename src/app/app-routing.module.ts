@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { BoardsComponent } from './app/components/boards/boards.component';
+import { DashboardComponent } from './app/components/dashboard/dashboard.component';
 import { HomeComponent } from './app/components/home/home.component';
-import { NotedownComponent } from './app/components/notedown/notedown.component';
 import { AuthLoginComponent } from './libraries/authentication/components/auth-login/auth-login.component';
 import { AuthRegisterComponent } from './libraries/authentication/components/auth-register/auth-register.component';
 import { AuthResetComponent } from './libraries/authentication/components/auth-reset/auth-reset.component';
@@ -11,11 +11,16 @@ import { AuthComponent } from './libraries/authentication/components/auth.compon
 import { AuthLoginGuard } from './libraries/authentication/guards/auth-login.guard';
 
 const routes: Routes = [
-  { path: '', component: HomeComponent },
-
-  { path: 'boards', component: BoardsComponent },
-
-  { path: 'notedown', component: NotedownComponent },
+  {
+    path: '',
+    component: HomeComponent,
+    children: [
+      { path: '', component: DashboardComponent },
+      { path: 'boards', component: BoardsComponent },
+      { path: 'notes', component: BoardsComponent },
+      { path: 'tasks', component: BoardsComponent },
+    ],
+  },
 
   /* AUTH: authentication stuff */
   {
