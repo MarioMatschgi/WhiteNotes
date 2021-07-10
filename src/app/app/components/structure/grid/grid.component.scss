@@ -1,0 +1,24 @@
+@import "../../../../libraries/util/scss/mixings.scss";
+
+:host ::ng-deep {
+  .st-grid {
+    @include units();
+
+    display: flex;
+
+    margin: calc(0px - var(--unit) / 2);
+
+    > * {
+      flex-grow: var(--fx-grow);
+      flex-shrink: var(--fx-shrink);
+      flex-basis: var(--fx-basis);
+
+      min-width: var(--fx-min-width);
+      max-width: var(--fx-max-width);
+      min-height: var(--fx-min-height);
+      max-height: var(--fx-max-height);
+
+      margin: calc(var(--unit) / 2);
+    }
+  }
+}

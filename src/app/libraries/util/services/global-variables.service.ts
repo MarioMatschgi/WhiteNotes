@@ -5,10 +5,10 @@ import { Injectable } from '@angular/core';
 })
 export class GlobalVariablesService {
   unit_auto = 'max(calc(1em + 20vmin - 150px), 0px)';
-  unit_large = '5em';
-  unit_normal = '2em';
-  unit_small = '1em';
-  unit_tiny = '0.5em';
+  unit_large = '5rem';
+  unit_normal = '2rem';
+  unit_small = '1rem';
+  unit_tiny = '0.5rem';
 
   constructor() {
     const style = (document.querySelector(':root') as HTMLElement).style;

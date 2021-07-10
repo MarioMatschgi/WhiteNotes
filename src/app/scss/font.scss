@@ -38,10 +38,15 @@ h6 {
 h1 {
   font-size: var(--font-size-h1);
   font-weight: 700;
+  margin-bottom: var(--unit-normal);
 }
 h2 {
   font-size: var(--font-size-h2);
   font-weight: 600;
+  margin-bottom: var(--unit-small);
+}
+h3 {
+  margin-bottom: var(--unit-tiny);
 }
 
 p {

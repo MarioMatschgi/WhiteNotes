@@ -1,20 +1,19 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { NotedownComponent } from './notedown.component';
+import { StSectionComponent } from './section.component';
 
-describe('NotedownComponent', () => {
-  let component: NotedownComponent;
-  let fixture: ComponentFixture<NotedownComponent>;
+describe('SectionComponent', () => {
+  let component: StSectionComponent;
+  let fixture: ComponentFixture<StSectionComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ NotedownComponent ]
-    })
-    .compileComponents();
+      declarations: [StSectionComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(NotedownComponent);
+    fixture = TestBed.createComponent(StSectionComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
