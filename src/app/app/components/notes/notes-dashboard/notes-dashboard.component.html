@@ -1,0 +1,20 @@
+<st-grid fx="1 1 0%">
+  <st-section
+    class="clickable hoverable"
+    fxLayout
+    fxLayoutAlign="center center"
+    fxFlex="0 0 0%"
+    [routerLink]="router.get_url(URLs.notes_new)"
+  >
+    <fa fa="f067" fasize="3"></fa>
+  </st-section>
+
+  <st-section
+    class="clickable hoverable"
+    *ngFor="let note of notes"
+    [routerLink]="router.get_url(URLs.notes_note, [note.id])"
+  >
+    <h3>{{ note.title }}</h3>
+    <p>{{ note.body }}</p>
+  </st-section>
+</st-grid>

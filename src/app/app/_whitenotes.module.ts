@@ -11,6 +11,11 @@ import { HomeComponent } from './components/home/home.component';
 import { BoardsComponent } from './components/boards/boards.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { StSectionComponent } from './components/structure/section/section.component';
+import { NotesComponent } from './components/notes/notes.component';
+import { NotesNoteComponent } from './components/notes/notes-note/notes-note.component';
+import { NotesNewComponent } from './components/notes/notes-new/notes-new.component';
+import { NotesDashboardComponent } from './components/notes/notes-dashboard/notes-dashboard.component';
+import { NotesNoteEditorComponent } from './components/notes/notes-note-editor/notes-note-editor.component';
 
 const components = [
   /* STRUCTURE COMPONENTS */
@@ -23,6 +28,13 @@ const components = [
   HomeComponent,
   DashboardComponent,
   BoardsComponent,
+
+  /* NOTES */
+  NotesComponent,
+  NotesDashboardComponent,
+  NotesNewComponent,
+  NotesNoteComponent,
+  NotesNoteEditorComponent,
 ];
 
 @NgModule({
