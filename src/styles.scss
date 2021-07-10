@@ -1,5 +1,12 @@
-@import "./app/scss/main.scss";
 @import "./app/libraries/util/scss/libraries.scss";
+
+@import "./app/scss/main.scss";
+
+@import "~quill/dist/quill.core.css";
+@import "~quill/dist/quill.bubble.css";
+@import "~quill/dist/quill.snow.css";
+@import "./app/scss/quill.scss";
+
 @import "./app/scss/scrollbar.scss";
 @import "./app/scss/form.scss";
 @import "./app/scss/font.scss";

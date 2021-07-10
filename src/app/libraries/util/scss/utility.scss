@@ -23,3 +23,9 @@ ul.nostyle {
   height: 0;
   margin: var(--unit-small);
 }
+
+.inset {
+  @include units;
+  margin-left: var(--unit);
+  margin-right: var(--unit);
+}

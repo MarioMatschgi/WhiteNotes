@@ -1,3 +1,4 @@
+import { QuillModule } from 'ngx-quill';
 import { StGridComponent } from './components/structure/grid/grid.component';
 import { StContentComponent } from './components/structure/content/content.component';
 import { NgModule } from '@angular/core';
@@ -45,6 +46,7 @@ const components = [
     FlexLayoutModule,
     AuthenticationModule,
     UtilModule,
+    QuillModule,
   ],
   exports: components.concat([]),
 })
