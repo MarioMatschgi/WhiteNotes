@@ -35,6 +35,8 @@ quill-editor {
   border-bottom-left-radius: 0 !important;
   border-bottom-right-radius: 0 !important;
 
+  text-align: center;
+
   > span {
     > button {
       margin: calc(var(--unit-tiny) / 2) !important;
@@ -70,4 +72,78 @@ quill-editor {
   padding: var(--unit-tiny) !important;
   border-radius: var(--unit-tiny) !important;
   border: none !important;
+}
+
+.emoji_completions {
+  background: var(--bg-glass) !important;
+  backdrop-filter: var(--bd-glass) !important;
+  box-shadow: var(--bs-glass) !important;
+  border-radius: var(--unit-small) !important;
+  border: none !important;
+
+  list-style-type: none !important;
+  padding: 0 !important;
+
+  button {
+    background: none !important;
+    backdrop-filter: none !important;
+    padding: var(--unit-small) !important;
+    width: 100% !important;
+    text-align: left !important;
+
+    > :first-child {
+      margin-right: var(--unit-tiny);
+    }
+  }
+}
+.textarea-emoji-control {
+  display: none;
+}
+#emoji-palette {
+  background: none !important;
+  backdrop-filter: none !important;
+  padding: 0 !important;
+  border-radius: var(--unit-small) !important;
+  box-shadow: var(--bs-glass) !important;
+  border: none !important;
+  max-width: 14em;
+
+  box-sizing: content-box;
+
+  z-index: 9999 !important;
+
+  > div {
+    padding: var(--unit-small) !important;
+    background: none !important;
+    border: none !important;
+
+    &#tab-toolbar {
+      background: var(--bg-glass) !important;
+      box-shadow: var(--bs-glass) !important;
+      border-radius: var(--unit-small) var(--unit-small) 0 0 !important;
+      text-align: center;
+    }
+
+    &#tab-panel {
+      justify-content: space-between !important;
+
+      > span {
+        font-size: 1em;
+        margin: calc(var(--unit-tiny) / 2) !important;
+        background-position: unset !important;
+        text-indent: unset !important;
+        background-image: unset !important;
+        background-repeat: unset !important;
+        background-size: unset !important;
+        display: unset !important;
+        overflow: unset !important;
+        width: unset !important;
+        height: unset !important;
+      }
+    }
+  }
+}
+
+#emoji-close-div {
+  display: none !important;
 }

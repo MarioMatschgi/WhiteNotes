@@ -7,8 +7,9 @@ export enum RouterUrls {
   notedown = 'notedown',
   boards = 'boards',
 
+  notes = 'notes',
+  notes_note = 'notes/note',
   notes_new = 'notes/new',
-  note = 'note',
 
   profile_settings = 'profile/settings',
 }

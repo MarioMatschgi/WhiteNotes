@@ -17,6 +17,9 @@ import { NotesNoteComponent } from './components/notes/notes-note/notes-note.com
 import { NotesNewComponent } from './components/notes/notes-new/notes-new.component';
 import { NotesDashboardComponent } from './components/notes/notes-dashboard/notes-dashboard.component';
 import { NotesNoteEditorComponent } from './components/notes/notes-note-editor/notes-note-editor.component';
+import { FormsModule } from '@angular/forms';
+import { LoadingModule } from '../libraries/loading/loading.module';
+import { PopoverModule } from '../libraries/popover/popover.module';
 
 const components = [
   /* STRUCTURE COMPONENTS */
@@ -47,6 +50,9 @@ const components = [
     AuthenticationModule,
     UtilModule,
     QuillModule,
+    FormsModule,
+    LoadingModule,
+    PopoverModule,
   ],
   exports: components.concat([]),
 })

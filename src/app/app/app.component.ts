@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { LoadService } from '../libraries/loading/services/load.service';
 import { GlobalVariablesService } from '../libraries/util/services/global-variables.service';
 
 @Component({
@@ -9,5 +10,5 @@ import { GlobalVariablesService } from '../libraries/util/services/global-variab
 export class AppComponent {
   title = 'Whitenotes';
 
-  constructor(public gv: GlobalVariablesService) {}
+  constructor(public gv: GlobalVariablesService, public loader: LoadService) {}
 }
