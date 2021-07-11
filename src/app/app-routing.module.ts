@@ -27,7 +27,7 @@ const routes: Routes = [
         children: [
           { path: '', component: NotesDashboardComponent },
           { path: 'new', component: NotesNewComponent },
-          { path: 'note/:note_id', component: NotesNoteComponent },
+          { path: 'note/:nid', component: NotesNoteComponent },
         ],
       },
       { path: 'tasks', component: BoardsComponent },

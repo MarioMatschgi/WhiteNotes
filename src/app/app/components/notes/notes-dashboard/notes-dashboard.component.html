@@ -11,11 +11,10 @@
   </st-section>
 
   <st-section
-    class="clickable hoverable"
+    class="clickable"
     *ngFor="let note of notes"
     [routerLink]="router.get_url(URLs.notes_note, [note.id])"
   >
-    <h3>{{ note.title }}</h3>
-    <p>{{ note.body }}</p>
+    <quill-view [content]="note.body"></quill-view>
   </st-section>
 </st-grid>

@@ -1,5 +1,12 @@
 import { NoteModel } from './../../../models/note.model';
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+  ViewChild,
+} from '@angular/core';
 import { RouterUrls } from 'src/app/libraries/util/models/router.model';
 import { GlobalVariablesService } from 'src/app/libraries/util/services/global-variables.service';
 import { RouterService } from 'src/app/libraries/util/services/router.service';
@@ -18,7 +25,16 @@ export class NotesNoteEditorComponent implements OnInit {
   URLs = RouterUrls;
 
   @Input() mode: 'add' | 'edit';
-  note: NoteModel = {} as NoteModel;
+
+  private _note: NoteModel = {} as NoteModel;
+  get note(): NoteModel {
+    return this._note;
+  }
+  @Input() set note(val) {
+    this._note = val;
+    this.noteChange.emit(val);
+  }
+  @Output() noteChange: EventEmitter<NoteModel> = new EventEmitter<NoteModel>();
 
   @ViewChild('quill') quill: QuillEditorComponent;
   toolbarOptions = [
@@ -56,16 +72,17 @@ export class NotesNoteEditorComponent implements OnInit {
   async add() {
     this.loader.load();
 
-    const title = new DOMParser()
-      .parseFromString(this.note.body, 'text/html')
-      .getElementsByTagName('body')[0].children[0];
-    this.note.title = title.innerHTML;
-    this.note.body = this.note.body.replace(title.outerHTML, '');
-
     await this.db.addNote(this.auth.userData.uid, this.note);
 
     this.loader.unload();
 
     this.router.nav(this.URLs.notes_note, [this.note.id]);
+  }
+  async save() {
+    this.loader.load();
+
+    await this.db.updateNote(this.auth.userData.uid, this.note);
+
+    this.loader.unload();
   }
 }

@@ -49,11 +49,29 @@ export class DatabaseService {
       .pipe(map((e) => e as NoteModel[]));
   }
 
+  // TODO: call decrypt on notes
+  getNote(uid: string, nid: string): Observable<NoteModel> {
+    return this.col_usersData
+      .doc(uid)
+      .collection('notes')
+      .doc(nid)
+      .valueChanges()
+      .pipe(map((e) => e as NoteModel));
+  }
+
   // TODO: call encrypt on note
   async addNote(uid: string, note: NoteModel) {
     const doc = await this.col_usersData.doc(uid).collection('notes').add(note);
 
     note.id = doc.id;
+    await this.col_usersData
+      .doc(uid)
+      .collection('notes')
+      .doc(note.id)
+      .set(note);
+  }
+
+  async updateNote(uid: string, note: NoteModel) {
     await this.col_usersData
       .doc(uid)
       .collection('notes')

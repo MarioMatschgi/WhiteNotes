@@ -1,17 +1,3 @@
-// .ql-toolbar {
-//   @include interactable(2, true);
-//   box-shadow: none !important;
-//   border: none !important;
-//   cursor: unset !important;
-//   border-bottom-left-radius: 0 !important;
-//   border-bottom-right-radius: 0 !important;
-// }
-// .ql-container {
-//   @include interactable(2, true);
-//   border: none !important;
-//   border-top-left-radius: 0 !important;
-//   border-top-right-radius: 0 !important;
-// }
 quill-editor {
   @include units;
   background: var(--bg-glass) !important;
@@ -21,6 +7,30 @@ quill-editor {
 
   cursor: unset !important;
   display: inline-block;
+
+  .ql-container {
+    padding: var(--unit) !important;
+    padding-top: var(--unit-small) !important;
+  }
+  .ql-editor {
+    min-height: 10em;
+  }
+}
+quill-view,
+quill-view-html {
+  .ql-editor {
+    padding: 0;
+    max-height: 5em;
+    overflow-y: scroll;
+  }
+}
+.ql-editor {
+  h1 {
+    font-size: var(--font-size-h1) !important;
+  }
+  h2 {
+    font-size: var(--font-size-h2) !important;
+  }
 }
 .ql-toolbar {
   background: var(--bg-glass) !important;
@@ -48,15 +58,10 @@ quill-editor {
   }
 }
 .ql-container {
-  padding: var(--unit) !important;
-
   margin: 0 !important;
   border: none !important;
 
   font-size: inherit !important;
-}
-.ql-editor {
-  min-height: 10em;
 }
 .ql-blank::before {
   left: calc(var(--unit) + 15px) !important;
