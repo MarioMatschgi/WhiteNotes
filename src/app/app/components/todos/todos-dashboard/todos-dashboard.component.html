@@ -12,9 +12,9 @@
 
   <st-section
     class="clickable note"
-    *ngFor="let note of notes"
-    [routerLink]="router.get_url(URLs.notes_note, [note.id])"
+    *ngFor="let todo of todos"
+    [routerLink]="router.get_url(URLs.todos_todo, [todo.id])"
   >
-    <quill-view [content]="note.body"></quill-view>
+    <quill-view [content]="todo.body"></quill-view>
   </st-section>
 </st-grid>

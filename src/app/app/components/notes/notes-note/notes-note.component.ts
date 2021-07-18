@@ -4,6 +4,7 @@ import { AuthService } from 'src/app/libraries/authentication/services/auth.serv
 import { DatabaseService } from 'src/app/libraries/util/services/database.service';
 import { ActivatedRoute } from '@angular/router';
 import { LoadService } from 'src/app/libraries/loading/services/load.service';
+import { NotesLoaderService } from 'src/app/app/services/notes-data-loader.service';
 
 @Component({
   selector: 'app-notes-note',
@@ -15,7 +16,7 @@ export class NotesNoteComponent implements OnInit {
 
   constructor(
     private auth: AuthService,
-    private db: DatabaseService,
+    private notes_loader: NotesLoaderService,
     private route: ActivatedRoute,
     public loader: LoadService
   ) {}
@@ -24,8 +25,8 @@ export class NotesNoteComponent implements OnInit {
     this.loader.load();
     this.auth.sub_userData((data) => {
       if (data) {
-        this.db
-          .getNote(data.uid, this.route.snapshot.params['nid'])
+        this.notes_loader
+          .getData(data.uid, this.route.snapshot.params['nid'])
           .subscribe((note) => {
             this.note = note;
             this.loader.unload();

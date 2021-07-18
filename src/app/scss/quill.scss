@@ -1,3 +1,23 @@
+quill-view,
+quill-view-html {
+  display: flex !important;
+  overflow: auto !important;
+  height: 100%;
+  width: 100%;
+
+  .ql-container {
+    flex: 1 1 100% !important;
+  }
+
+  .ql-editor {
+    h1 {
+      font-size: var(--font-size-h2) !important;
+    }
+    h2 {
+      font-size: var(--font-size-h3) !important;
+    }
+  }
+}
 quill-editor {
   @include units;
   background: var(--bg-glass) !important;
@@ -14,22 +34,22 @@ quill-editor {
   }
   .ql-editor {
     min-height: 10em;
+
+    h1 {
+      font-size: var(--font-size-h1) !important;
+    }
+    h2 {
+      font-size: var(--font-size-h2) !important;
+    }
   }
 }
 quill-view,
 quill-view-html {
   .ql-editor {
-    padding: 0;
-    max-height: 5em;
-    overflow-y: scroll;
-  }
-}
-.ql-editor {
-  h1 {
-    font-size: var(--font-size-h1) !important;
-  }
-  h2 {
-    font-size: var(--font-size-h2) !important;
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 0;
+    overflow: initial !important;
   }
 }
 .ql-toolbar {
@@ -79,6 +99,9 @@ quill-view-html {
   border: none !important;
 }
 
+/*
+  EMOJI
+*/
 .emoji_completions {
   background: var(--bg-glass) !important;
   backdrop-filter: var(--bd-glass) !important;

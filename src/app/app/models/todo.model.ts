@@ -1,4 +1,4 @@
 import { Encryptable } from './encryptable.model';
-export interface NoteModel extends Encryptable {
+export interface TodoModel extends Encryptable {
   body: string;
 }

@@ -11,10 +11,10 @@ import { RouterUrls } from 'src/app/libraries/util/models/router.model';
 import { GlobalVariablesService } from 'src/app/libraries/util/services/global-variables.service';
 import { RouterService } from 'src/app/libraries/util/services/router.service';
 import { LoadService } from 'src/app/libraries/loading/services/load.service';
-import { DatabaseService } from 'src/app/libraries/util/services/database.service';
 import { AuthService } from 'src/app/libraries/authentication/services/auth.service';
 import { QuillEditorComponent } from 'ngx-quill';
 import 'quill-emoji/dist/quill-emoji.js';
+import { NotesLoaderService } from 'src/app/app/services/notes-data-loader.service';
 
 @Component({
   selector: 'notes-note-editor',
@@ -60,7 +60,7 @@ export class NotesNoteEditorComponent implements OnInit {
     public gv: GlobalVariablesService,
     private router: RouterService,
     public loader: LoadService,
-    private db: DatabaseService,
+    private notes_loader: NotesLoaderService,
     private auth: AuthService
   ) {}
 
@@ -72,7 +72,7 @@ export class NotesNoteEditorComponent implements OnInit {
   async add() {
     this.loader.load();
 
-    await this.db.addNote(this.auth.userData.uid, this.note);
+    await this.notes_loader.addData(this.auth.userData.uid, this.note);
 
     this.loader.unload();
 
@@ -81,7 +81,7 @@ export class NotesNoteEditorComponent implements OnInit {
   async save() {
     this.loader.load();
 
-    await this.db.updateNote(this.auth.userData.uid, this.note);
+    await this.notes_loader.updateData(this.auth.userData.uid, this.note);
 
     this.loader.unload();
   }

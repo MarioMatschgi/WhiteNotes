@@ -31,25 +31,25 @@ const routes: Routes = [
         ],
       },
       { path: 'tasks', component: BoardsComponent },
-      { path: 'todo-lists', component: BoardsComponent },
+      { path: 'todos', component: BoardsComponent },
       { path: 'reminders', component: BoardsComponent },
-      { path: 'mind-maps', component: BoardsComponent },
+      { path: 'mindmaps', component: BoardsComponent },
       { path: 'calender', component: BoardsComponent },
-    ],
-  },
 
-  /* AUTH: authentication stuff */
-  {
-    path: 'auth',
-    component: AuthComponent,
-    children: [
-      { path: 'login', component: AuthLoginComponent },
-      { path: 'register', component: AuthRegisterComponent },
-      { path: 'verify-email', component: AuthVerifyEmailComponent },
-      { path: 'reset-password', component: AuthResetComponent },
+      /* AUTH: authentication stuff */
+      {
+        path: 'auth',
+        component: AuthComponent,
+        children: [
+          { path: 'login', component: AuthLoginComponent },
+          { path: 'register', component: AuthRegisterComponent },
+          { path: 'verify-email', component: AuthVerifyEmailComponent },
+          { path: 'reset-password', component: AuthResetComponent },
+        ],
+        canActivate: [AuthLoginGuard],
+        data: { inverted: true },
+      },
     ],
-    canActivate: [AuthLoginGuard],
-    data: { inverted: true },
   },
 
   /* NOT FOUND */

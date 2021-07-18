@@ -1,42 +1,62 @@
 <header class="box glass">
-  <section
-    fxLayout="row wrap"
-    [fxLayoutGap]="gv.unit_tiny"
-    fxLayoutAlign="space-between center"
-  >
-    <div
-      fxLayout="row wrap"
-      fxLayoutAlign="center center"
-      [fxLayoutGap]="gv.unit_tiny"
-    >
-      <span class="interactable" (click)="router.nav_backward()">
-        <fa fa="f0d9" fastyle="far" fasize="1.5"></fa>
-      </span>
-
-      <a [routerLink]="router.get_url(URLs.home)" class="nostyle">
-        <fa fa="f015" fastyle="fas"></fa>
-      </a>
-
-      <a [routerLink]="router.get_url(URLs.boards)" class="nostyle">
-        <fa fa="f00a" fastyle="fas"></fa>
-      </a>
-
-      <a [routerLink]="router.get_url(URLs.notedown)" class="nostyle">
-        <fa fa="f328" fastyle="fas"></fa>
-      </a>
-
-      <span class="interactable" (click)="router.nav_forward()">
-        <fa fa="f0da" fastyle="far" fasize="1.5"></fa>
-      </span>
-
-      <ng-content></ng-content>
-    </div>
-    <div
+  <nav>
+    <section
       fxLayout="row wrap"
       [fxLayoutGap]="gv.unit_tiny"
-      fxLayoutAlign="center"
+      fxLayoutAlign="space-between center"
     >
-      <auth-profile></auth-profile>
-    </div>
-  </section>
+      <div
+        fxLayout="row wrap"
+        fxLayoutAlign="center center"
+        [fxLayoutGap]="gv.unit_tiny"
+      >
+        <span class="interactable" (click)="router.nav_backward()">
+          <fa fa="f0d9" fastyle="far" fasize="1.5"></fa>
+        </span>
+
+        <a [routerLink]="router.get_url(URLs.home)" class="nostyle">
+          <fa [fa]="Icons.home"></fa>
+        </a>
+
+        <a [routerLink]="router.get_url(URLs.boards)" class="nostyle">
+          <fa [fa]="Icons.boards"></fa>
+        </a>
+
+        <a [routerLink]="router.get_url(URLs.notes)" class="nostyle">
+          <fa [fa]="Icons.notes"></fa>
+        </a>
+
+        <a [routerLink]="router.get_url(URLs.tasks)" class="nostyle">
+          <fa [fa]="Icons.tasks"></fa>
+        </a>
+
+        <a [routerLink]="router.get_url(URLs.todos)" class="nostyle">
+          <fa [fa]="Icons.todos"></fa>
+        </a>
+
+        <a [routerLink]="router.get_url(URLs.reminders)" class="nostyle">
+          <fa [fa]="Icons.reminders"></fa>
+        </a>
+
+        <a [routerLink]="router.get_url(URLs.calender)" class="nostyle">
+          <fa [fa]="Icons.calender"></fa>
+        </a>
+
+        <span class="interactable" (click)="router.nav_forward()">
+          <fa fa="f0da" fastyle="far" fasize="1.5"></fa>
+        </span>
+
+        <span class="nav-title">{{ nav_title }}</span>
+
+        <ng-content></ng-content>
+      </div>
+      <div
+        fxLayout="row wrap"
+        [fxLayoutGap]="gv.unit_tiny"
+        fxLayoutAlign="center"
+      >
+        <auth-profile></auth-profile>
+      </div>
+    </section>
+  </nav>
 </header>

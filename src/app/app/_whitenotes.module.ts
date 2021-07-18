@@ -20,6 +20,8 @@ import { NotesNoteEditorComponent } from './components/notes/notes-note-editor/n
 import { FormsModule } from '@angular/forms';
 import { LoadingModule } from '../libraries/loading/loading.module';
 import { PopoverModule } from '../libraries/popover/popover.module';
+import { TodosComponent } from './components/todos/todos.component';
+import { TodosDashboardComponent } from './components/todos/todos-dashboard/todos-dashboard.component';
 
 const components = [
   /* STRUCTURE COMPONENTS */
@@ -39,6 +41,10 @@ const components = [
   NotesNewComponent,
   NotesNoteComponent,
   NotesNoteEditorComponent,
+
+  /* TODOS */
+  TodosComponent,
+  TodosDashboardComponent,
 ];
 
 @NgModule({
