@@ -17,7 +17,15 @@ export class PopoverComponent implements OnInit {
   /**
    * Whether the popover is open
    */
-  isOpen: boolean;
+  private _isOpen: boolean;
+  @Input() set isOpen(val: boolean) {
+    this.set(val);
+  }
+  get isOpen(): boolean {
+    return this._isOpen;
+  }
+
+  @Input() userCanClose: boolean = true;
 
   /**
    * The position of the popover
@@ -46,7 +54,7 @@ export class PopoverComponent implements OnInit {
   keydown(event: KeyboardEvent) {
     // Check if this is the front-most popover
     if (PopoverComponent.popovers[PopoverComponent.popovers.length - 1] == this)
-      this.set(false);
+      this.userClose();
   }
 
   /**
@@ -62,9 +70,9 @@ export class PopoverComponent implements OnInit {
    */
   set(isOpen: boolean) {
     setTimeout(() => {
-      this.isOpen = isOpen;
+      this._isOpen = isOpen;
 
-      if (this.isOpen) PopoverComponent.popovers.push(this);
+      if (this._isOpen) PopoverComponent.popovers.push(this);
       else
         PopoverComponent.popovers.splice(
           PopoverComponent.popovers.findIndex((e) => e == this),
@@ -78,5 +86,9 @@ export class PopoverComponent implements OnInit {
    */
   hide_if_open() {
     if (this.isOpen) this.set(false);
+  }
+
+  userClose() {
+    if (this.userCanClose) this.hide_if_open();
   }
 }

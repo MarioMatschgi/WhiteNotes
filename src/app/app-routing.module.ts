@@ -3,6 +3,10 @@ import { RouterModule, Routes } from '@angular/router';
 import { BoardsComponent } from './app/components/boards/boards.component';
 import { DashboardComponent } from './app/components/dashboard/dashboard.component';
 import { HomeComponent } from './app/components/home/home.component';
+import { NotesDashboardComponent } from './app/components/notes/notes-dashboard/notes-dashboard.component';
+import { NotesNewComponent } from './app/components/notes/notes-new/notes-new.component';
+import { NotesNoteComponent } from './app/components/notes/notes-note/notes-note.component';
+import { NotesComponent } from './app/components/notes/notes.component';
 import { AuthLoginComponent } from './libraries/authentication/components/auth-login/auth-login.component';
 import { AuthRegisterComponent } from './libraries/authentication/components/auth-register/auth-register.component';
 import { AuthResetComponent } from './libraries/authentication/components/auth-reset/auth-reset.component';
@@ -17,23 +21,35 @@ const routes: Routes = [
     children: [
       { path: '', component: DashboardComponent },
       { path: 'boards', component: BoardsComponent },
-      { path: 'notes', component: BoardsComponent },
+      {
+        path: 'notes',
+        component: NotesComponent,
+        children: [
+          { path: '', component: NotesDashboardComponent },
+          { path: 'new', component: NotesNewComponent },
+          { path: 'note/:nid', component: NotesNoteComponent },
+        ],
+      },
       { path: 'tasks', component: BoardsComponent },
-    ],
-  },
+      { path: 'todos', component: BoardsComponent },
+      { path: 'reminders', component: BoardsComponent },
+      { path: 'mindmaps', component: BoardsComponent },
+      { path: 'calender', component: BoardsComponent },
 
-  /* AUTH: authentication stuff */
-  {
-    path: 'auth',
-    component: AuthComponent,
-    children: [
-      { path: 'login', component: AuthLoginComponent },
-      { path: 'register', component: AuthRegisterComponent },
-      { path: 'verify-email', component: AuthVerifyEmailComponent },
-      { path: 'reset-password', component: AuthResetComponent },
+      /* AUTH: authentication stuff */
+      {
+        path: 'auth',
+        component: AuthComponent,
+        children: [
+          { path: 'login', component: AuthLoginComponent },
+          { path: 'register', component: AuthRegisterComponent },
+          { path: 'verify-email', component: AuthVerifyEmailComponent },
+          { path: 'reset-password', component: AuthResetComponent },
+        ],
+        canActivate: [AuthLoginGuard],
+        data: { inverted: true },
+      },
     ],
-    canActivate: [AuthLoginGuard],
-    data: { inverted: true },
   },
 
   /* NOT FOUND */

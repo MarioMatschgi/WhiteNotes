@@ -1,0 +1,20 @@
+<st-grid fx="1 1 0%" fx-justify-content="space-between">
+  <st-section
+    class="clickable hoverable"
+    fxLayout
+    fxLayoutAlign="center center"
+    fxFlex="0 0 0%"
+    [routerLink]="router.get_url(URLs.notes_new)"
+    style="align-self: center; aspect-ratio: 1"
+  >
+    <fa fa="f067" fasize="3"></fa>
+  </st-section>
+
+  <st-section
+    class="clickable note"
+    *ngFor="let note of notes"
+    [routerLink]="router.get_url(URLs.notes_note, [note.id])"
+  >
+    <quill-view [content]="note.body"></quill-view>
+  </st-section>
+</st-grid>

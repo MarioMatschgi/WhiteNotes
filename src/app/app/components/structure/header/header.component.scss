@@ -9,14 +9,30 @@ header {
   );
   padding-left: calc(
     max(
-        env(safe-area-inset-left) + var(--unit-tiny),
-        var(--unit-normal) - var(--unit-tiny)
-      ) + var(--unit-tiny)
+      min(
+        max(
+          calc(env(safe-area-inset-right) + var(--unit-auto)),
+          var(--unit-auto)
+        ),
+        var(--unit-normal)
+      ),
+      var(--unit-small)
+    )
   );
   padding-right: calc(
     max(
-        env(safe-area-inset-right) + var(--unit-tiny),
-        var(--unit-normal) - var(--unit-tiny)
-      ) + var(--unit-tiny)
+      min(
+        max(
+          calc(env(safe-area-inset-right) + var(--unit-auto)),
+          var(--unit-auto)
+        ),
+        var(--unit-normal)
+      ),
+      var(--unit-small)
+    )
   );
+
+  nav {
+    font-size: var(--font-size-h2);
+  }
 }

@@ -12,6 +12,7 @@ import { WhitenotesModule } from './app/_whitenotes.module';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { AngularFireModule } from '@angular/fire';
+import { QuillModule } from 'ngx-quill';
 
 @NgModule({
   declarations: [AppComponent],
@@ -24,6 +25,7 @@ import { AngularFireModule } from '@angular/fire';
       enabled: environment.production,
       registrationStrategy: 'registerWhenStable:10000',
     }),
+    QuillModule.forRoot(),
 
     WhitenotesModule,
 

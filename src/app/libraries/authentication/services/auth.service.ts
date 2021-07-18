@@ -337,8 +337,11 @@ export class AuthService {
    * Subscribes to the user data and calls the function when data is set
    * @param func Callback
    */
-  sub_userData(func: (data: firebase.User) => void) {
-    func(this.userData);
+  sub_userData(
+    func: (data: firebase.User) => void,
+    skip_first: boolean = false
+  ) {
+    if (!skip_first) func(this.userData);
     this.changed_userData.subscribe((data) => {
       func(data);
     });
@@ -348,8 +351,11 @@ export class AuthService {
    * Subscribes to the private user data and calls the function when data is set
    * @param func Callback
    */
-  sub_userPrivateData(func: (data: UserPrivateData) => void) {
-    func(this.userPrivateData);
+  sub_userPrivateData(
+    func: (data: UserPrivateData) => void,
+    skip_first: boolean = false
+  ) {
+    if (!skip_first) func(this.userPrivateData);
     this.changed_userPrivateData.subscribe((data) => {
       func(data);
     });
@@ -359,8 +365,11 @@ export class AuthService {
    * Subscribes to the public user data and calls the function when data is set
    * @param func Callback
    */
-  sub_userPublicData(func: (data: UserPublicData) => void) {
-    func(this.userPublicData);
+  sub_userPublicData(
+    func: (data: UserPublicData) => void,
+    skip_first: boolean = false
+  ) {
+    if (!skip_first) func(this.userPublicData);
     this.changed_userPublicData.subscribe((data) => {
       func(data);
     });

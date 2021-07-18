@@ -26,7 +26,7 @@ export class LoadService {
    * @param id Id of loader
    * @returns Whether the loader is loading
    */
-  isLoading(id: string = 'main'): boolean {
+  isLoading(id: string = window.location.pathname): boolean {
     return this.loads(id) > 0;
   }
 
@@ -35,7 +35,7 @@ export class LoadService {
    * @param id Id of loader
    * @returns Whether the loader is finished loading
    */
-  finished(id: string = 'main'): boolean {
+  finished(id: string = window.location.pathname): boolean {
     return !this.isLoading(id);
   }
 
@@ -45,7 +45,7 @@ export class LoadService {
    * Adds a load by id
    * @param id Id of loader
    */
-  load(id: string = 'main'): void {
+  load(id: string = window.location.pathname): void {
     if (!Object.keys(this.m_loads).includes(id)) this.m_loads[id] = 1;
     else this.m_loads[id]++;
   }
@@ -54,7 +54,7 @@ export class LoadService {
    * Removes a load by id
    * @param id Id of loader
    */
-  unload(id: string = 'main'): void {
+  unload(id: string = window.location.pathname): void {
     if (!this.m_loads[id] || this.m_loads[id] == 1) delete this.m_loads[id];
     else this.m_loads[id]--;
   }

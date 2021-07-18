@@ -29,21 +29,39 @@
   }
 }
 
-@mixin interactable($size: 2) {
+@mixin interactable($size: 2, $important: false) {
   @include units($size);
+  @if ($important) {
+    background: var(--bg-glass) !important;
+    backdrop-filter: var(--bd-glass) !important;
+    padding: var(--unit) !important;
+    border-radius: var(--unit) !important;
 
-  background: var(--bg-glass);
-  padding: var(--unit);
-  border-radius: var(--unit);
+    color: var(--color-font) !important;
+    cursor: pointer !important;
 
-  color: var(--color-font);
-  cursor: pointer;
+    transition: box-shadow 0.4s !important;
 
-  transition: box-shadow 0.4s;
+    &:focus,
+    &:hover:not(:disabled) {
+      box-shadow: 0 0 0 2px var(--colors-red);
+      outline: none !important;
+    }
+  } @else {
+    background: var(--bg-glass);
+    backdrop-filter: var(--bd-glass);
+    padding: var(--unit);
+    border-radius: var(--unit);
 
-  &:focus,
-  &:hover:not(:disabled) {
-    box-shadow: 0 0 0 2px var(--colors-red);
-    outline: none;
+    color: var(--color-font);
+    cursor: pointer;
+
+    transition: box-shadow 0.4s;
+
+    &:focus,
+    &:hover:not(:disabled) {
+      box-shadow: 0 0 0 2px var(--colors-red);
+      outline: none;
+    }
   }
 }

@@ -1,6 +1,12 @@
+:host ::ng-deep > * {
+  margin-left: 1ch;
+  display: inline-block;
+}
+
 i {
   font-style: inherit;
   vertical-align: middle;
+  margin-left: 0;
 }
 
 @font-face {

@@ -1,0 +1,30 @@
+<section>
+  <quill-editor
+    [(ngModel)]="note.body"
+    [readOnly]="loader.isLoading()"
+    [modules]="{
+      'emoji-shortname': true,
+      'emoji-textarea': true,
+      'emoji-toolbar': true,
+      toolbar: toolbarOptions
+    }"
+    #quill
+  ></quill-editor>
+</section>
+<section>
+  <load-loader-popover></load-loader-popover>
+</section>
+<section fxLayout fxLayoutAlign="center" [fxLayoutGap]="gv.unit_normal">
+  <button (click)="cancel()">Cancel</button>
+
+  <button (click)="add()" *ngIf="mode == 'add'" [disabled]="loader.isLoading()">
+    Add new note
+  </button>
+  <button
+    (click)="save()"
+    *ngIf="mode == 'edit'"
+    [disabled]="loader.isLoading()"
+  >
+    Save note
+  </button>
+</section>

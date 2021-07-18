@@ -21,7 +21,7 @@ export class LoadLoaderComponent implements OnInit, AfterViewInit {
   /**
    * Id of the loader
    */
-  @Input('loader-id') loader_id = 'main';
+  @Input('loader-id') loader_id = window.location.pathname;
 
   /**
    * Parent of the loaders

@@ -34,6 +34,12 @@ export class FaComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
+    const spl = this.fa.split(' ');
+    if (spl.length > 1) {
+      this.fa = spl[0];
+      this.fastyle = spl[1] as FaType;
+    }
+
     this.fastyle = this.fastyle.replace('fa-', '').replace('fa', '') as FaType;
     if (this.fastyle.length > 1) {
       this.fastyle = this.fastyle.substr(0, 1) as FaType;

@@ -1,15 +1,21 @@
 .st-content {
   padding: var(--unit-normal);
   padding-left: calc(
-    max(
-        env(safe-area-inset-left) + var(--unit-tiny),
-        var(--unit-normal) - var(--unit-tiny)
-      ) + var(--unit-tiny)
+    min(
+      max(
+        calc(env(safe-area-inset-right) + var(--unit-auto)),
+        var(--unit-auto)
+      ),
+      var(--unit-large)
+    )
   );
   padding-right: calc(
-    max(
-        env(safe-area-inset-right) + var(--unit-tiny),
-        var(--unit-normal) - var(--unit-tiny)
-      ) + var(--unit-tiny)
+    min(
+      max(
+        calc(env(safe-area-inset-right) + var(--unit-auto)),
+        var(--unit-auto)
+      ),
+      var(--unit-large)
+    )
   );
 }

@@ -1,0 +1,177 @@
+quill-view,
+quill-view-html {
+  display: flex !important;
+  overflow: auto !important;
+  height: 100%;
+  width: 100%;
+
+  .ql-container {
+    flex: 1 1 100% !important;
+  }
+
+  .ql-editor {
+    h1 {
+      font-size: var(--font-size-h2) !important;
+    }
+    h2 {
+      font-size: var(--font-size-h3) !important;
+    }
+  }
+}
+quill-editor {
+  @include units;
+  background: var(--bg-glass) !important;
+  box-shadow: var(--bs-glass) !important;
+  backdrop-filter: var(--bd-glass) !important;
+  border-radius: var(--unit) !important;
+
+  cursor: unset !important;
+  display: inline-block;
+
+  .ql-container {
+    padding: var(--unit) !important;
+    padding-top: var(--unit-small) !important;
+  }
+  .ql-editor {
+    min-height: 10em;
+
+    h1 {
+      font-size: var(--font-size-h1) !important;
+    }
+    h2 {
+      font-size: var(--font-size-h2) !important;
+    }
+  }
+}
+quill-view,
+quill-view-html {
+  .ql-editor {
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 0;
+    overflow: initial !important;
+  }
+}
+.ql-toolbar {
+  background: var(--bg-glass) !important;
+  box-shadow: var(--bs-glass) !important;
+  padding: var(--unit) !important;
+
+  margin-bottom: 0 !important;
+  border: none !important;
+
+  border-top-left-radius: var(--unit) !important;
+  border-top-right-radius: var(--unit) !important;
+  border-bottom-left-radius: 0 !important;
+  border-bottom-right-radius: 0 !important;
+
+  text-align: center;
+
+  > span {
+    > button {
+      margin: calc(var(--unit-tiny) / 2) !important;
+      width: var(--unit-normal) !important;
+      height: var(--unit-normal) !important;
+      padding: var(--unit-tiny) !important;
+      border-radius: calc(var(--unit-small) / 2);
+    }
+  }
+}
+.ql-container {
+  margin: 0 !important;
+  border: none !important;
+
+  font-size: inherit !important;
+}
+.ql-blank::before {
+  left: calc(var(--unit) + 15px) !important;
+  right: calc(var(--unit) + 15px) !important;
+}
+.ql-picker-label {
+  border: none !important;
+}
+.ql-picker-options {
+  background: var(--bg-glass) !important;
+  backdrop-filter: var(--bd-glass) !important;
+  box-shadow: var(--bs-glass) !important;
+  padding: var(--unit-tiny) !important;
+  border-radius: var(--unit-tiny) !important;
+  border: none !important;
+}
+
+/*
+  EMOJI
+*/
+.emoji_completions {
+  background: var(--bg-glass) !important;
+  backdrop-filter: var(--bd-glass) !important;
+  box-shadow: var(--bs-glass) !important;
+  border-radius: var(--unit-small) !important;
+  border: none !important;
+
+  list-style-type: none !important;
+  padding: 0 !important;
+
+  button {
+    background: none !important;
+    backdrop-filter: none !important;
+    padding: var(--unit-small) !important;
+    width: 100% !important;
+    text-align: left !important;
+
+    > :first-child {
+      margin-right: var(--unit-tiny);
+    }
+  }
+}
+.textarea-emoji-control {
+  display: none;
+}
+#emoji-palette {
+  background: none !important;
+  backdrop-filter: none !important;
+  padding: 0 !important;
+  border-radius: var(--unit-small) !important;
+  box-shadow: var(--bs-glass) !important;
+  border: none !important;
+  max-width: 14em;
+
+  box-sizing: content-box;
+
+  z-index: 9999 !important;
+
+  > div {
+    padding: var(--unit-small) !important;
+    background: none !important;
+    border: none !important;
+
+    &#tab-toolbar {
+      background: var(--bg-glass) !important;
+      box-shadow: var(--bs-glass) !important;
+      border-radius: var(--unit-small) var(--unit-small) 0 0 !important;
+      text-align: center;
+    }
+
+    &#tab-panel {
+      justify-content: space-between !important;
+
+      > span {
+        font-size: 1em;
+        margin: calc(var(--unit-tiny) / 2) !important;
+        background-position: unset !important;
+        text-indent: unset !important;
+        background-image: unset !important;
+        background-repeat: unset !important;
+        background-size: unset !important;
+        display: unset !important;
+        overflow: unset !important;
+        width: unset !important;
+        height: unset !important;
+      }
+    }
+  }
+}
+
+#emoji-close-div {
+  display: none !important;
+}
