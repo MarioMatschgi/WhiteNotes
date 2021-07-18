@@ -7,6 +7,10 @@ import { NotesDashboardComponent } from './app/components/notes/notes-dashboard/
 import { NotesNewComponent } from './app/components/notes/notes-new/notes-new.component';
 import { NotesNoteComponent } from './app/components/notes/notes-note/notes-note.component';
 import { NotesComponent } from './app/components/notes/notes.component';
+import { TodosDashboardComponent } from './app/components/todos/todos-dashboard/todos-dashboard.component';
+import { TodosNewComponent } from './app/components/todos/todos-new/todos-new.component';
+import { TodosTodoComponent } from './app/components/todos/todos-todo/todos-todo.component';
+import { TodosComponent } from './app/components/todos/todos.component';
 import { AuthLoginComponent } from './libraries/authentication/components/auth-login/auth-login.component';
 import { AuthRegisterComponent } from './libraries/authentication/components/auth-register/auth-register.component';
 import { AuthResetComponent } from './libraries/authentication/components/auth-reset/auth-reset.component';
@@ -31,7 +35,15 @@ const routes: Routes = [
         ],
       },
       { path: 'tasks', component: BoardsComponent },
-      { path: 'todos', component: BoardsComponent },
+      {
+        path: 'todos',
+        component: TodosComponent,
+        children: [
+          { path: '', component: TodosDashboardComponent },
+          { path: 'new', component: TodosNewComponent },
+          { path: 'todo/:tid', component: TodosTodoComponent },
+        ],
+      },
       { path: 'reminders', component: BoardsComponent },
       { path: 'mindmaps', component: BoardsComponent },
       { path: 'calender', component: BoardsComponent },

@@ -22,6 +22,9 @@ import { LoadingModule } from '../libraries/loading/loading.module';
 import { PopoverModule } from '../libraries/popover/popover.module';
 import { TodosComponent } from './components/todos/todos.component';
 import { TodosDashboardComponent } from './components/todos/todos-dashboard/todos-dashboard.component';
+import { TodosNewComponent } from './components/todos/todos-new/todos-new.component';
+import { TodosTodoComponent } from './components/todos/todos-todo/todos-todo.component';
+import { TodosTodoEditorComponent } from './components/todos/todos-todo-editor/todos-todo-editor.component';
 
 const components = [
   /* STRUCTURE COMPONENTS */
@@ -45,6 +48,9 @@ const components = [
   /* TODOS */
   TodosComponent,
   TodosDashboardComponent,
+  TodosNewComponent,
+  TodosTodoComponent,
+  TodosTodoEditorComponent,
 ];
 
 @NgModule({
