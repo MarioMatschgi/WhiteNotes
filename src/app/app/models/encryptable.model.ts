@@ -6,7 +6,7 @@ export interface Encryptable extends Identifiable {}
 /**
  * Encrypts and decrypts every property except the id
  */
-export class Encryptor {
+export class Endecryptor {
   private static pw = 'AHdajashdgajhdgjGJDASHJADjadjghasjhdg';
 
   static encryptSingle(str: string): string {

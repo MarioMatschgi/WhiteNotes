@@ -1,4 +1,4 @@
-import { Encryptable, Encryptor } from './../models/encryptable.model';
+import { Encryptable, Endecryptor } from './../models/encryptable.model';
 import { Injectable } from '@angular/core';
 import { AngularFirestoreCollection } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
@@ -19,7 +19,7 @@ export class DataLoaderService<T extends Encryptable> {
       .doc(uid)
       .collection(this.db_path)
       .valueChanges()
-      .pipe(map((e) => Encryptor.decryptAll(e as T[])));
+      .pipe(map((e) => Endecryptor.decryptAll(e as T[])));
   }
 
   // TODO: call decrypt on notes
@@ -29,12 +29,12 @@ export class DataLoaderService<T extends Encryptable> {
       .collection(this.db_path)
       .doc(did)
       .valueChanges()
-      .pipe(map((e) => Encryptor.decrypt(e as T)));
+      .pipe(map((e) => Endecryptor.decrypt(e as T)));
   }
 
   // TODO: call encrypt on note
   async addData(uid: string, data: T) {
-    data = Encryptor.encrypt(data);
+    data = Endecryptor.encrypt(data);
 
     const doc = await this.db.col_usersData
       .doc(uid)
@@ -50,7 +50,7 @@ export class DataLoaderService<T extends Encryptable> {
   }
 
   async updateData(uid: string, data: T) {
-    data = Encryptor.encrypt(data);
+    data = Endecryptor.encrypt(data);
 
     await this.db.col_usersData
       .doc(uid)
