@@ -1,7 +1,6 @@
 import { NoteModel } from './../../../models/note.model';
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/libraries/authentication/services/auth.service';
-import { DatabaseService } from 'src/app/libraries/util/services/database.service';
 import { ActivatedRoute } from '@angular/router';
 import { LoadService } from 'src/app/libraries/loading/services/load.service';
 import { NotesLoaderService } from 'src/app/app/services/notes-data-loader.service';

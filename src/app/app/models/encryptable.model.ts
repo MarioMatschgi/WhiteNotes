@@ -19,7 +19,14 @@ export class Endecryptor {
 
   static encrypt<T extends Encryptable>(data: T): T {
     for (const key of Object.keys(data)) {
-      if (key != 'id') data[key] = this.encryptSingle(data[key]);
+      if (key != 'id') {
+        if (data[key] instanceof Object) data[key] = this.encrypt(data[key]);
+        else if (Array.isArray(data[key]))
+          data[key] = this.encryptAll(data[key]);
+        else {
+          data[key] = this.encryptSingle(data[key]);
+        }
+      }
     }
 
     return data;
@@ -27,7 +34,12 @@ export class Endecryptor {
 
   static decrypt<T extends Encryptable>(data: T): T {
     for (const key of Object.keys(data)) {
-      if (key != 'id') data[key] = this.decryptSingle(data[key]);
+      if (key != 'id') {
+        if (data[key] instanceof Object) data[key] = this.decrypt(data[key]);
+        else if (Array.isArray(data[key]))
+          data[key] = this.decryptAll(data[key]);
+        else data[key] = this.decryptSingle(data[key]);
+      }
     }
 
     return data;

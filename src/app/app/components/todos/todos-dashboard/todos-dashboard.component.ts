@@ -1,9 +1,9 @@
-import { TodoModel } from './../../../models/todo.model';
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/libraries/authentication/services/auth.service';
 import { RouterUrls } from 'src/app/libraries/util/models/router.model';
 import { RouterService } from 'src/app/libraries/util/services/router.service';
 import { TodosLoaderService } from 'src/app/app/services/todos-loader.service';
+import { TodoListModel } from 'src/app/app/models/todo.model';
 
 @Component({
   selector: 'todos-dashboard',
@@ -12,7 +12,7 @@ import { TodosLoaderService } from 'src/app/app/services/todos-loader.service';
 })
 export class TodosDashboardComponent implements OnInit {
   URLs = RouterUrls;
-  todos: TodoModel[];
+  todos: TodoListModel[];
 
   constructor(
     public router: RouterService,

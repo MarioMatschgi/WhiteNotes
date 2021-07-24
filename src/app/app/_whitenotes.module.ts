@@ -25,6 +25,7 @@ import { TodosDashboardComponent } from './components/todos/todos-dashboard/todo
 import { TodosNewComponent } from './components/todos/todos-new/todos-new.component';
 import { TodosTodoComponent } from './components/todos/todos-todo/todos-todo.component';
 import { TodosTodoEditorComponent } from './components/todos/todos-todo-editor/todos-todo-editor.component';
+import { TodosBaseComponent } from './components/todos/todos-base/todos-base.component';
 
 const components = [
   /* STRUCTURE COMPONENTS */
@@ -48,6 +49,7 @@ const components = [
   /* TODOS */
   TodosComponent,
   TodosDashboardComponent,
+  TodosBaseComponent,
   TodosNewComponent,
   TodosTodoComponent,
   TodosTodoEditorComponent,

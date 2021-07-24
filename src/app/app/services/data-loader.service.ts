@@ -1,6 +1,5 @@
 import { Encryptable, Endecryptor } from './../models/encryptable.model';
 import { Injectable } from '@angular/core';
-import { AngularFirestoreCollection } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { DatabaseService } from 'src/app/libraries/util/services/database.service';
