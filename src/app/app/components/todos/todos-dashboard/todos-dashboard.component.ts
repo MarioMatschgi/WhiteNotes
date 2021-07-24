@@ -4,6 +4,7 @@ import { RouterUrls } from 'src/app/libraries/util/models/router.model';
 import { RouterService } from 'src/app/libraries/util/services/router.service';
 import { TodosLoaderService } from 'src/app/app/services/todos-loader.service';
 import { TodoListModel } from 'src/app/app/models/todo.model';
+import { Icons } from 'src/app/libraries/util/models/icons.model';
 
 @Component({
   selector: 'todos-dashboard',
@@ -12,6 +13,7 @@ import { TodoListModel } from 'src/app/app/models/todo.model';
 })
 export class TodosDashboardComponent implements OnInit {
   URLs = RouterUrls;
+  Icons = Icons;
   todos: TodoListModel[];
 
   constructor(
@@ -23,8 +25,9 @@ export class TodosDashboardComponent implements OnInit {
   ngOnInit(): void {
     this.auth.sub_userData(async (data) => {
       if (data) {
-        this.todos_loader.getAllData(data.uid).subscribe((todos) => {
+        this.todos_loader.getAllData().subscribe((todos) => {
           this.todos = todos;
+          console.log(todos);
         });
       }
     }, true);

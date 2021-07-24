@@ -1,1 +1,20 @@
 <load-loader-popover></load-loader-popover>
+<section *ngIf="!loader.isLoading()" class="box glass todo">
+  <h2 class="inset small">{{ todoList.title }}</h2>
+  <div
+    class="container"
+    cdkDropList
+    [cdkDropListData]="todoList.items"
+    (cdkDropListDropped)="dropItem($event)"
+  >
+    <div class="box glass small" *ngFor="let todo of todoList.items" cdkDrag>
+      {{ todo.title }}
+    </div>
+    <div>
+      <form (ngSubmit)="submitNewTodo(addInput)" class="form-input-button tiny">
+        <input placeholder="New todo" #addInput />
+        <button type="submit"><fa [fa]="Icons.add"></fa></button>
+      </form>
+    </div>
+  </div>
+</section>

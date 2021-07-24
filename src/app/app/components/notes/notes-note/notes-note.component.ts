@@ -25,7 +25,7 @@ export class NotesNoteComponent implements OnInit {
     this.auth.sub_userData((data) => {
       if (data) {
         this.notes_loader
-          .getData(data.uid, this.route.snapshot.params['nid'])
+          .getData(this.route.snapshot.params['nid'])
           .subscribe((note) => {
             this.note = note;
             this.loader.unload();

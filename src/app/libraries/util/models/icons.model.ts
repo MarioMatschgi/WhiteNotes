@@ -9,4 +9,5 @@ export enum Icons {
   calender = 'f783 fas',
   forward = 'f0d9 far',
   backward = 'f0da far',
+  add = 'f067 far',
 }

@@ -60,8 +60,7 @@ export class NotesNoteEditorComponent implements OnInit {
     public gv: GlobalVariablesService,
     private router: RouterService,
     public loader: LoadService,
-    private notes_loader: NotesLoaderService,
-    private auth: AuthService
+    private notes_loader: NotesLoaderService
   ) {}
 
   ngOnInit(): void {}
@@ -72,7 +71,7 @@ export class NotesNoteEditorComponent implements OnInit {
   async add() {
     this.loader.load();
 
-    await this.notes_loader.addData(this.auth.userData.uid, this.note);
+    await this.notes_loader.addData(this.note);
 
     this.loader.unload();
 
@@ -81,7 +80,7 @@ export class NotesNoteEditorComponent implements OnInit {
   async save() {
     this.loader.load();
 
-    await this.notes_loader.updateData(this.auth.userData.uid, this.note);
+    await this.notes_loader.updateData(this.note);
 
     this.loader.unload();
   }

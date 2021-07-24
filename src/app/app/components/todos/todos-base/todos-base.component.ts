@@ -41,7 +41,6 @@ export class TodosBaseComponent implements OnInit {
 
   constructor(
     public loader: LoadService,
-    private auth: AuthService,
     private router: RouterService,
     private todo_loader: TodosLoaderService,
     public gv: GlobalVariablesService
@@ -58,7 +57,7 @@ export class TodosBaseComponent implements OnInit {
     this.loader.load();
 
     this.todo.items = [];
-    await this.todo_loader.addData(this.auth.userData.uid, this.todo);
+    this.todo.id = await this.todo_loader.addData(this.todo);
 
     this.loader.unload();
 
@@ -69,7 +68,7 @@ export class TodosBaseComponent implements OnInit {
 
     this.loader.load();
 
-    await this.todo_loader.updateData(this.auth.userData.uid, this.todo);
+    await this.todo_loader.updateData(this.todo);
 
     this.loader.unload();
   }

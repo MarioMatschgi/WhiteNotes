@@ -13,6 +13,8 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { AngularFireModule } from '@angular/fire';
 import { QuillModule } from 'ngx-quill';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 @NgModule({
   declarations: [AppComponent],
@@ -26,6 +28,8 @@ import { QuillModule } from 'ngx-quill';
       registrationStrategy: 'registerWhenStable:10000',
     }),
     QuillModule.forRoot(),
+    NoopAnimationsModule,
+    DragDropModule,
 
     WhitenotesModule,
 
@@ -37,5 +41,6 @@ import { QuillModule } from 'ngx-quill';
   ],
   providers: [],
   bootstrap: [AppComponent],
+  schemas: [],
 })
 export class AppModule {}
