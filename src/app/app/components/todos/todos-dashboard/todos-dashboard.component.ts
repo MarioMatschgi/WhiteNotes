@@ -27,7 +27,6 @@ export class TodosDashboardComponent implements OnInit {
       if (data) {
         this.todos_loader.getAllData().subscribe((todos) => {
           this.todos = todos;
-          console.log(todos);
         });
       }
     }, true);

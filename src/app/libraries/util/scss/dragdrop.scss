@@ -12,6 +12,7 @@
 
 .cdk-drag-placeholder {
   opacity: 0.5;
+  transition: var(--transition);
 }
 
 .cdk-drag-animating {

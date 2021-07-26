@@ -10,6 +10,8 @@ import {
   transferArrayItem,
 } from '@angular/cdk/drag-drop';
 import { Icons } from 'src/app/libraries/util/models/icons.model';
+import { UtilService } from 'src/app/libraries/util/services/util.service';
+import { toolbarOptions } from 'src/app/app/models/toolbarOptions.model';
 
 @Component({
   selector: 'todos-todo',
@@ -17,15 +19,20 @@ import { Icons } from 'src/app/libraries/util/models/icons.model';
   styleUrls: ['./todos-todo.component.scss'],
 })
 export class TodosTodoComponent implements OnInit {
+  toolbarOptions = toolbarOptions;
   Icons = Icons;
 
   todoList: TodoListModel;
+  isEditingTitle: boolean;
+  contextMenuOpen: boolean;
+  viewTodo: TodoItem;
 
   constructor(
     private auth: AuthService,
     private todos_loader: TodosLoaderService,
     private route: ActivatedRoute,
-    public loader: LoadService
+    public loader: LoadService,
+    public util: UtilService
   ) {}
 
   ngOnInit(): void {
@@ -53,7 +60,30 @@ export class TodosTodoComponent implements OnInit {
       title: text,
     } as TodoItem);
 
+    this.save();
+  }
+
+  save() {
+    if (this.viewTodo) {
+      const idx = this.todoList.items.indexOf(this.viewTodo);
+      this.todoList.items[idx] = this.viewTodo;
+    }
+
     this.todos_loader.updateData(this.todoList);
+    console.log('saving', this.todoList);
+  }
+
+  removeTodo(todo: TodoItem) {
+    setTimeout(() => {
+      const idx = this.todoList.items.indexOf(todo);
+      this.todoList.items.splice(idx, 1);
+
+      this.save();
+    });
+  }
+
+  saveTitle() {
+    this.save();
   }
 
   dropItem(event: CdkDragDrop<TodoItem[]>) {
@@ -72,8 +102,6 @@ export class TodosTodoComponent implements OnInit {
       );
     }
 
-    console.log('update');
-
-    this.todos_loader.updateData(this.todoList);
+    this.save();
   }
 }

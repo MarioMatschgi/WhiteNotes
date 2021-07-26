@@ -1,0 +1,10 @@
+<div
+  class="context-menu box glass small"
+  [hidden]="!isOpen"
+  [style.left]="pos[0] + 'px'"
+  [style.top]="pos[1] + 'px'"
+>
+  <form (ngSubmit)="hide()" class="box glass small">
+    <ng-content></ng-content>
+  </form>
+</div>

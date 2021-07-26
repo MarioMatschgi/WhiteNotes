@@ -112,6 +112,15 @@ select {
   box-sizing: content-box;
   border: none;
 
+  &.blank {
+    padding: var(--unit-tiny);
+    margin: calc(0px - var(--unit-tiny));
+    border-radius: var(--unit-tiny);
+    background: none !important;
+    border: none;
+    backdrop-filter: none !important;
+  }
+
   font-size: 1em;
 
   &.tiny {
