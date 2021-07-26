@@ -1,0 +1,52 @@
+.context-menu {
+  position: absolute;
+  padding: 0;
+
+  transition: var(--context-menu-transition);
+  opacity: 0;
+  &.active {
+    opacity: 1;
+  }
+}
+:host ::ng-deep {
+  form {
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+
+    > * {
+      padding: var(--unit-small);
+      margin-bottom: var(--unit-tiny);
+      background: none;
+      backdrop-filter: none;
+      text-align: left;
+    }
+  }
+}
+
+::ng-deep {
+  :root {
+    --context-menu-transition: all 250ms;
+  }
+
+  .context-menu-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    backdrop-filter: blur(0);
+    transition: var(--context-menu-transition);
+
+    &.active {
+      backdrop-filter: blur(0.2rem);
+    }
+  }
+  .context-menu-target {
+    position: absolute;
+    box-sizing: border-box;
+  }
+  .context-menu-placeholder {
+    box-sizing: border-box;
+  }
+}

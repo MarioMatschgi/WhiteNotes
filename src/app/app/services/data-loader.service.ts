@@ -1,9 +1,9 @@
 import { Encryptable, Endecryptor } from './../models/encryptable.model';
 import { Injectable } from '@angular/core';
-import { AngularFirestoreCollection } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { debounceTime, delay, distinct, map } from 'rxjs/operators';
 import { DatabaseService } from 'src/app/libraries/util/services/database.service';
+import { AuthService } from 'src/app/libraries/authentication/services/auth.service';
 
 @Injectable({
   providedIn: 'root',
@@ -11,21 +11,21 @@ import { DatabaseService } from 'src/app/libraries/util/services/database.servic
 export class DataLoaderService<T extends Encryptable> {
   protected db_path: string;
 
-  constructor(private db: DatabaseService) {}
+  constructor(private db: DatabaseService, public auth: AuthService) {}
 
   // TODO: call decrypt on notes
-  getAllData(uid: string): Observable<T[]> {
+  getAllData(): Observable<T[]> {
     return this.db.col_usersData
-      .doc(uid)
+      .doc(this.auth.userData.uid)
       .collection(this.db_path)
       .valueChanges()
       .pipe(map((e) => Endecryptor.decryptAll(e as T[])));
   }
 
   // TODO: call decrypt on notes
-  getData(uid: string, did: string): Observable<T> {
+  getData(did: string): Observable<T> {
     return this.db.col_usersData
-      .doc(uid)
+      .doc(this.auth.userData.uid)
       .collection(this.db_path)
       .doc(did)
       .valueChanges()
@@ -33,29 +33,33 @@ export class DataLoaderService<T extends Encryptable> {
   }
 
   // TODO: call encrypt on note
-  async addData(uid: string, data: T) {
-    data = Endecryptor.encrypt(data);
+  async addData(data: T) {
+    const d = Endecryptor.encrypt(data);
 
     const doc = await this.db.col_usersData
-      .doc(uid)
+      .doc(this.auth.userData.uid)
       .collection(this.db_path)
-      .add(data);
+      .add(d);
 
-    data.id = doc.id;
+    d.id = doc.id;
     await this.db.col_usersData
-      .doc(uid)
+      .doc(this.auth.userData.uid)
       .collection(this.db_path)
-      .doc(data.id)
-      .set(data);
+      .doc(d.id)
+      .set(d);
+
+    return d.id;
   }
 
-  async updateData(uid: string, data: T) {
-    data = Endecryptor.encrypt(data);
+  async updateData(data: T) {
+    const d = Endecryptor.encrypt(data);
 
     await this.db.col_usersData
-      .doc(uid)
+      .doc(this.auth.userData.uid)
       .collection(this.db_path)
-      .doc(data.id)
-      .set(data);
+      .doc(d.id)
+      .set(d);
+
+    return d.id;
   }
 }

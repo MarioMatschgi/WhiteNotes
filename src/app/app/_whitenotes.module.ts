@@ -22,6 +22,12 @@ import { LoadingModule } from '../libraries/loading/loading.module';
 import { PopoverModule } from '../libraries/popover/popover.module';
 import { TodosComponent } from './components/todos/todos.component';
 import { TodosDashboardComponent } from './components/todos/todos-dashboard/todos-dashboard.component';
+import { TodosNewComponent } from './components/todos/todos-new/todos-new.component';
+import { TodosTodoComponent } from './components/todos/todos-todo/todos-todo.component';
+import { TodosTodoEditorComponent } from './components/todos/todos-todo-editor/todos-todo-editor.component';
+import { TodosBaseComponent } from './components/todos/todos-base/todos-base.component';
+import { DragDropModule } from '@angular/cdk/drag-drop';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 const components = [
   /* STRUCTURE COMPONENTS */
@@ -45,6 +51,10 @@ const components = [
   /* TODOS */
   TodosComponent,
   TodosDashboardComponent,
+  TodosBaseComponent,
+  TodosNewComponent,
+  TodosTodoComponent,
+  TodosTodoEditorComponent,
 ];
 
 @NgModule({
@@ -59,6 +69,8 @@ const components = [
     FormsModule,
     LoadingModule,
     PopoverModule,
+    NoopAnimationsModule,
+    DragDropModule,
   ],
   exports: components.concat([]),
 })

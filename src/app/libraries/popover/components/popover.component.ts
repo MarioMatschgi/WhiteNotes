@@ -1,4 +1,12 @@
-import { Component, HostListener, Input, OnInit } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  EventEmitter,
+  HostListener,
+  Input,
+  OnInit,
+  Output,
+} from '@angular/core';
 
 /**
  * Component for Popovers
@@ -14,6 +22,8 @@ export class PopoverComponent implements OnInit {
    */
   static popovers: PopoverComponent[] = [];
 
+  private host: HTMLElement;
+
   /**
    * Whether the popover is open
    */
@@ -24,6 +34,8 @@ export class PopoverComponent implements OnInit {
   get isOpen(): boolean {
     return this._isOpen;
   }
+
+  @Output() openChange = new EventEmitter<boolean>();
 
   @Input() userCanClose: boolean = true;
 
@@ -42,7 +54,7 @@ export class PopoverComponent implements OnInit {
    */
   @Input() align: 'center' | 'left' | 'right' = 'center';
 
-  constructor() {}
+  constructor(private _elementRef: ElementRef) {}
 
   ngOnInit(): void {}
 
@@ -72,12 +84,30 @@ export class PopoverComponent implements OnInit {
     setTimeout(() => {
       this._isOpen = isOpen;
 
-      if (this._isOpen) PopoverComponent.popovers.push(this);
-      else
+      const body = document.getElementsByTagName('body')[0];
+      let el = this._elementRef.nativeElement as HTMLElement;
+      if (this._isOpen) {
+        PopoverComponent.popovers.push(this);
+
+        this.host = el.parentElement;
+        this.host.removeChild(el);
+        body.appendChild(el);
+      } else {
         PopoverComponent.popovers.splice(
           PopoverComponent.popovers.findIndex((e) => e == this),
           1
         );
+
+        if (this.host) {
+          (el.childNodes.item(0) as HTMLElement).classList.remove('active');
+
+          body.removeChild(el);
+          this.host.appendChild(el);
+          this.host = undefined;
+        }
+      }
+
+      this.openChange.emit(isOpen);
     }, 0);
   }
 

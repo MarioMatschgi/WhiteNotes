@@ -1,0 +1,32 @@
+.todo-item {
+  display: flex;
+  overflow-x: hidden;
+
+  * {
+    flex-grow: 1;
+  }
+  &.cdk-drag-placeholder .todo-icons {
+    display: none;
+  }
+  .todo-icons {
+    flex-grow: 0;
+    opacity: 0;
+    transform: translateX(calc(var(--unit) + 100%));
+    transition: all 250ms;
+  }
+
+  &:hover,
+  &.active {
+    .todo-icons {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+}
+
+::ng-deep {
+  .view-todo-popover .popover {
+    max-width: calc(100vw - var(--unit-auto));
+    max-height: calc(100vh - var(--unit-auto));
+  }
+}

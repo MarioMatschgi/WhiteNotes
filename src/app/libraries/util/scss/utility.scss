@@ -29,3 +29,11 @@ ul.nostyle {
   margin-left: var(--unit);
   margin-right: var(--unit);
 }
+
+/* EDITABLE TEXT */
+.editable-text {
+  display: flex;
+  > * {
+    flex-grow: 1;
+  }
+}

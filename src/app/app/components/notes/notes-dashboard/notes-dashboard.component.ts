@@ -4,6 +4,7 @@ import { NoteModel } from 'src/app/app/models/note.model';
 import { AuthService } from 'src/app/libraries/authentication/services/auth.service';
 import { RouterUrls } from 'src/app/libraries/util/models/router.model';
 import { RouterService } from 'src/app/libraries/util/services/router.service';
+import { Icons } from 'src/app/libraries/util/models/icons.model';
 
 @Component({
   selector: 'notes-dashboard',
@@ -12,6 +13,7 @@ import { RouterService } from 'src/app/libraries/util/services/router.service';
 })
 export class NotesDashboardComponent implements OnInit {
   URLs = RouterUrls;
+  Icons = Icons;
   notes: NoteModel[];
 
   constructor(
@@ -23,7 +25,7 @@ export class NotesDashboardComponent implements OnInit {
   ngOnInit(): void {
     this.auth.sub_userData(async (data) => {
       if (data) {
-        this.notes_loader.getAllData(data.uid).subscribe((notes) => {
+        this.notes_loader.getAllData().subscribe((notes) => {
           this.notes = notes;
         });
       }

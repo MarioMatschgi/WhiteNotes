@@ -18,34 +18,54 @@ export class Endecryptor {
   }
 
   static encrypt<T extends Encryptable>(data: T): T {
-    for (const key of Object.keys(data)) {
-      if (key != 'id') data[key] = this.encryptSingle(data[key]);
+    let d = { ...data };
+    for (const key of Object.keys(d)) {
+      if (key != 'id') {
+        if (Array.isArray(d[key])) {
+          d[key] = this.encryptAll(d[key]);
+        } else if (d[key] instanceof Object) {
+          d[key] = this.encrypt(d[key]);
+        } else {
+          d[key] = this.encryptSingle(d[key]);
+        }
+      }
     }
 
-    return data;
+    return d;
   }
 
   static decrypt<T extends Encryptable>(data: T): T {
-    for (const key of Object.keys(data)) {
-      if (key != 'id') data[key] = this.decryptSingle(data[key]);
+    let d = { ...data };
+    for (const key of Object.keys(d)) {
+      if (key != 'id') {
+        if (Array.isArray(d[key])) {
+          d[key] = this.decryptAll(d[key]);
+        } else if (d[key] instanceof Object) {
+          d[key] = this.decrypt(d[key]);
+        } else {
+          d[key] = this.decryptSingle(d[key]);
+        }
+      }
     }
 
-    return data;
+    return d;
   }
 
   static encryptAll<T extends Encryptable>(data: T[]): T[] {
-    for (let i = 0; i < data.length; i++) {
-      data[i] = this.encrypt(data[i]);
+    let d = [...data];
+    for (let i = 0; i < d.length; i++) {
+      d[i] = this.encrypt(d[i]);
     }
 
-    return data;
+    return d;
   }
 
   static decryptAll<T extends Encryptable>(data: T[]): T[] {
-    for (let i = 0; i < data.length; i++) {
-      data[i] = this.decrypt(data[i]);
+    let d = [...data];
+    for (let i = 0; i < d.length; i++) {
+      d[i] = this.decrypt(d[i]);
     }
 
-    return data;
+    return d;
   }
 }

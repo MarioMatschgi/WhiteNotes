@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
+import { Icons } from 'src/app/libraries/util/models/icons.model';
 
 @Component({
-  selector: 'app-todos',
+  selector: 'todos',
   templateUrl: './todos.component.html',
-  styleUrls: ['./todos.component.scss']
+  styleUrls: ['./todos.component.scss'],
 })
 export class TodosComponent implements OnInit {
+  Icons = Icons;
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 }

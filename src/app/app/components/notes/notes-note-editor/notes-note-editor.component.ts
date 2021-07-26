@@ -15,6 +15,7 @@ import { AuthService } from 'src/app/libraries/authentication/services/auth.serv
 import { QuillEditorComponent } from 'ngx-quill';
 import 'quill-emoji/dist/quill-emoji.js';
 import { NotesLoaderService } from 'src/app/app/services/notes-data-loader.service';
+import { toolbarOptions } from 'src/app/app/models/toolbarOptions.model';
 
 @Component({
   selector: 'notes-note-editor',
@@ -22,6 +23,7 @@ import { NotesLoaderService } from 'src/app/app/services/notes-data-loader.servi
   styleUrls: ['./notes-note-editor.component.scss'],
 })
 export class NotesNoteEditorComponent implements OnInit {
+  toolbarOptions = toolbarOptions;
   URLs = RouterUrls;
 
   @Input() mode: 'add' | 'edit';
@@ -37,31 +39,12 @@ export class NotesNoteEditorComponent implements OnInit {
   @Output() noteChange: EventEmitter<NoteModel> = new EventEmitter<NoteModel>();
 
   @ViewChild('quill') quill: QuillEditorComponent;
-  toolbarOptions = [
-    ['bold', 'italic', 'underline', 'strike'], // toggled buttons
-    ['blockquote', 'code-block'],
-
-    [{ header: 1 }, { header: 2 }], // custom button values
-    [{ list: 'ordered' }, { list: 'bullet' }],
-    [{ script: 'sub' }, { script: 'super' }], // superscript/subscript
-    [{ indent: '-1' }, { indent: '+1' }], // outdent/indent
-
-    ['clean'], // remove formatting button
-
-    ['emoji'],
-
-    [{ header: [1, 2, 3, 4, 5, 6, false] }],
-
-    [{ color: [] }, { background: [] }], // dropdown with defaults from theme
-    [{ align: [] }],
-  ];
 
   constructor(
     public gv: GlobalVariablesService,
     private router: RouterService,
     public loader: LoadService,
-    private notes_loader: NotesLoaderService,
-    private auth: AuthService
+    private notes_loader: NotesLoaderService
   ) {}
 
   ngOnInit(): void {}
@@ -72,7 +55,7 @@ export class NotesNoteEditorComponent implements OnInit {
   async add() {
     this.loader.load();
 
-    await this.notes_loader.addData(this.auth.userData.uid, this.note);
+    await this.notes_loader.addData(this.note);
 
     this.loader.unload();
 
@@ -81,7 +64,7 @@ export class NotesNoteEditorComponent implements OnInit {
   async save() {
     this.loader.load();
 
-    await this.notes_loader.updateData(this.auth.userData.uid, this.note);
+    await this.notes_loader.updateData(this.note);
 
     this.loader.unload();
   }

@@ -341,7 +341,7 @@ export class AuthService {
     func: (data: firebase.User) => void,
     skip_first: boolean = false
   ) {
-    if (!skip_first) func(this.userData);
+    if (!skip_first || this.is_auth_setup) func(this.userData);
     this.changed_userData.subscribe((data) => {
       func(data);
     });
@@ -355,7 +355,7 @@ export class AuthService {
     func: (data: UserPrivateData) => void,
     skip_first: boolean = false
   ) {
-    if (!skip_first) func(this.userPrivateData);
+    if (!skip_first || this.is_auth_setup) func(this.userPrivateData);
     this.changed_userPrivateData.subscribe((data) => {
       func(data);
     });
@@ -369,7 +369,7 @@ export class AuthService {
     func: (data: UserPublicData) => void,
     skip_first: boolean = false
   ) {
-    if (!skip_first) func(this.userPublicData);
+    if (!skip_first || this.is_auth_setup) func(this.userPublicData);
     this.changed_userPublicData.subscribe((data) => {
       func(data);
     });
