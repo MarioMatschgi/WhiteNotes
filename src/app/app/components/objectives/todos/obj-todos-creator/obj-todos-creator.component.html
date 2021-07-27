@@ -1,5 +1,5 @@
 <objective-creator [loaderType]="LoaderServices.todo" #creator>
-  <div class="objective-creator" *ngIf="!creator.loader.isLoading()">
-    <todos-base mode="add"></todos-base>
+  <div class="objective-creator">
+    <obj-todos-editor mode="add"></obj-todos-editor>
   </div>
 </objective-creator>

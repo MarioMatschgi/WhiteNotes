@@ -12,12 +12,10 @@ import { HomeComponent } from './components/home/home.component';
 import { BoardsComponent } from './components/boards/boards.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { StSectionComponent } from './components/structure/section/section.component';
-import { NotesComponent } from './components/notes/notes.component';
 import { NotesNoteEditorComponent } from './components/notes/notes-note-editor/notes-note-editor.component';
 import { FormsModule } from '@angular/forms';
 import { LoadingModule } from '../libraries/loading/loading.module';
 import { PopoverModule } from '../libraries/popover/popover.module';
-import { TodosComponent } from './components/todos/todos.component';
 import { TodosTodoEditorComponent } from './components/todos/todos-todo-editor/todos-todo-editor.component';
 import { TodosBaseComponent } from './components/todos/todos-base/todos-base.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
@@ -31,9 +29,12 @@ import { ObjectiveCreatorComponent } from './components/objectives/base/objectiv
 import { ObjTodosDashboardComponent } from './components/objectives/todos/obj-todos-dashboard/obj-todos-dashboard.component';
 import { ObjTodosViewerComponent } from './components/objectives/todos/obj-todos-viewer/obj-todos-viewer.component';
 import { ObjTodosCreatorComponent } from './components/objectives/todos/obj-todos-creator/obj-todos-creator.component';
-import { AuthService } from '../libraries/authentication/services/auth.service';
-import { DatabaseService } from '../libraries/util/services/database.service';
-import { DataLoadService } from './services/data-load.service';
+import { ObjectiveRootComponent } from './components/objectives/base/objective-root/objective-root.component';
+import { ObjTodosRootComponent } from './components/objectives/todos/obj-todos-root/obj-todos-root.component';
+import { ObjNotesRootComponent } from './components/objectives/notes/obj-notes-root/obj-notes-root.component';
+import { ObjTodosEditorComponent } from './components/objectives/todos/obj-todos-editor/obj-todos-editor.component';
+import { ObjectiveEditorComponent } from './components/objectives/base/objective-editor/objective-editor.component';
+import { ObjNotesEditorComponent } from './components/objectives/notes/obj-notes-editor/obj-notes-editor.component';
 
 const components = [
   /* STRUCTURE COMPONENTS */
@@ -51,25 +52,30 @@ const components = [
     OBJECTIVES
    */
   /* BASE */
+  ObjectiveRootComponent,
   ObjectiveDashboardComponent,
   ObjectiveViewerComponent,
   ObjectiveCreatorComponent,
+  ObjectiveEditorComponent,
 
   /* NOTES */
-  NotesComponent,
+  ObjNotesRootComponent,
   ObjNotesDashboardComponent,
   ObjNotesViewerComponent,
   ObjNotesCreatorComponent,
+  ObjNotesEditorComponent,
+
   NotesNoteEditorComponent,
 
   /* TO-DOS */
-  TodosComponent,
+  ObjTodosRootComponent,
   ObjTodosDashboardComponent,
   ObjTodosViewerComponent,
   ObjTodosCreatorComponent,
+  ObjTodosEditorComponent,
 
   TodosBaseComponent,
-  TodosTodoEditorComponent,
+  // TodosTodoEditorComponent,
 ];
 
 @NgModule({
@@ -88,12 +94,5 @@ const components = [
     DragDropModule,
   ],
   exports: components.concat([]),
-  providers: [
-    {
-      provide: DataLoadService,
-      useFactory: (db, auth) => new DataLoadService(db, auth),
-      deps: [DatabaseService, AuthService],
-    },
-  ],
 })
 export class WhitenotesModule {}

@@ -42,13 +42,7 @@ import { AuthService } from './libraries/authentication/services/auth.service';
     ThemesModule,
     UtilModule,
   ],
-  providers: [
-    // {
-    //   provide: DataLoadService,
-    //   useFactory: (db, auth) => new DataLoadService(db, auth),
-    //   deps: [DatabaseService, AuthService],
-    // },
-  ],
+  providers: [],
   bootstrap: [AppComponent],
   schemas: [],
 })

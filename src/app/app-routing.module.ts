@@ -3,8 +3,6 @@ import { RouterModule, Routes } from '@angular/router';
 import { BoardsComponent } from './app/components/boards/boards.component';
 import { DashboardComponent } from './app/components/dashboard/dashboard.component';
 import { HomeComponent } from './app/components/home/home.component';
-import { NotesComponent } from './app/components/notes/notes.component';
-import { TodosComponent } from './app/components/todos/todos.component';
 import { AuthLoginComponent } from './libraries/authentication/components/auth-login/auth-login.component';
 import { AuthRegisterComponent } from './libraries/authentication/components/auth-register/auth-register.component';
 import { AuthResetComponent } from './libraries/authentication/components/auth-reset/auth-reset.component';
@@ -17,6 +15,9 @@ import { ObjNotesCreatorComponent } from './app/components/objectives/notes/obj-
 import { ObjTodosCreatorComponent } from './app/components/objectives/todos/obj-todos-creator/obj-todos-creator.component';
 import { ObjTodosDashboardComponent } from './app/components/objectives/todos/obj-todos-dashboard/obj-todos-dashboard.component';
 import { ObjTodosViewerComponent } from './app/components/objectives/todos/obj-todos-viewer/obj-todos-viewer.component';
+import { ObjectiveRootComponent } from './app/components/objectives/base/objective-root/objective-root.component';
+import { ObjTodosRootComponent } from './app/components/objectives/todos/obj-todos-root/obj-todos-root.component';
+import { ObjNotesRootComponent } from './app/components/objectives/notes/obj-notes-root/obj-notes-root.component';
 
 const routes: Routes = [
   {
@@ -35,7 +36,7 @@ const routes: Routes = [
       },
       {
         path: 'notes',
-        component: NotesComponent,
+        component: ObjNotesRootComponent,
         children: [
           { path: '', component: ObjNotesDashboardComponent },
           { path: 'new', component: ObjNotesCreatorComponent },
@@ -53,7 +54,7 @@ const routes: Routes = [
       },
       {
         path: 'todos',
-        component: TodosComponent,
+        component: ObjTodosRootComponent,
         children: [
           { path: '', component: ObjTodosDashboardComponent },
           { path: 'new', component: ObjTodosCreatorComponent },

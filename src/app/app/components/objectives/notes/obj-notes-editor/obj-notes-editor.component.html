@@ -1,0 +1,22 @@
+<objective-editor
+  [loaderType]="LoaderServices.todo"
+  [mode]="mode"
+  [routeViewObjective]="URLs.notes_note"
+  #editor
+>
+  <div class="objective-editor" *ngIf="!editor.loader.isLoading()">
+    <section>
+      <quill-editor
+        [(ngModel)]="editor.objective.body"
+        [readOnly]="editor.loader.isLoading()"
+        [modules]="{
+          'emoji-shortname': true,
+          'emoji-textarea': true,
+          'emoji-toolbar': true,
+          toolbar: toolbarOptions
+        }"
+        #quill
+      ></quill-editor>
+    </section>
+  </div>
+</objective-editor>

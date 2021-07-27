@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { NotesComponent } from './notes.component';
+import { ObjectiveEditorComponent } from './objective-editor.component';
 
-describe('NotesComponent', () => {
-  let component: NotesComponent;
-  let fixture: ComponentFixture<NotesComponent>;
+describe('ObjectiveEditorComponent', () => {
+  let component: ObjectiveEditorComponent;
+  let fixture: ComponentFixture<ObjectiveEditorComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ NotesComponent ]
+      declarations: [ ObjectiveEditorComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(NotesComponent);
+    fixture = TestBed.createComponent(ObjectiveEditorComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -1,0 +1,34 @@
+<objective-editor
+  [loaderType]="LoaderServices.todo"
+  [mode]="mode"
+  [routeViewObjective]="URLs.todos_todo"
+  #editor
+>
+  <div class="objective-editor" *ngIf="!editor.loader.isLoading()">
+    <section>
+      <label for="title" class="required">Title</label>
+      <input
+        placeholder="Title"
+        name="title"
+        [(ngModel)]="editor.objective.title"
+        required
+      />
+    </section>
+    <section>
+      <label for="description">Description</label>
+      <quill-editor
+        [(ngModel)]="editor.objective.description"
+        [readOnly]="editor.loader.isLoading()"
+        [modules]="{
+          'emoji-shortname': true,
+          'emoji-textarea': true,
+          'emoji-toolbar': true,
+          toolbar: toolbarOptions
+        }"
+        placeholder="Description"
+        name="description"
+        #quill
+      ></quill-editor>
+    </section>
+  </div>
+</objective-editor>

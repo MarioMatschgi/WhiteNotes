@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TodosComponent } from './todos.component';
+import { ObjNotesRootComponent } from './obj-notes-root.component';
 
-describe('TodosComponent', () => {
-  let component: TodosComponent;
-  let fixture: ComponentFixture<TodosComponent>;
+describe('ObjNotesRootComponent', () => {
+  let component: ObjNotesRootComponent;
+  let fixture: ComponentFixture<ObjNotesRootComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ TodosComponent ]
+      declarations: [ ObjNotesRootComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TodosComponent);
+    fixture = TestBed.createComponent(ObjNotesRootComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

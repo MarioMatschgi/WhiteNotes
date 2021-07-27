@@ -1,0 +1,20 @@
+<load-loader-popover></load-loader-popover>
+
+<form #form="ngForm">
+  <ng-content select=".objective-editor"></ng-content>
+</form>
+
+<section fxLayout fxLayoutAlign="center" [fxLayoutGap]="gv.unit_normal">
+  <button (click)="cancel()">Cancel</button>
+
+  <button (click)="add()" *ngIf="mode == 'add'" [disabled]="loader.isLoading()">
+    Add new note
+  </button>
+  <button
+    (click)="save()"
+    *ngIf="mode == 'edit'"
+    [disabled]="loader.isLoading()"
+  >
+    Save note
+  </button>
+</section>
