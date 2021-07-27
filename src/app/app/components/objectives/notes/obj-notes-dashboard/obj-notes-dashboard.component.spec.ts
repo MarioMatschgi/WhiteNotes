@@ -1,20 +1,19 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { NotesDashboardComponent } from './notes-dashboard.component';
+import { ObjNotesDashboardComponent } from './obj-notes-dashboard.component';
 
 describe('NotesDashboardComponent', () => {
-  let component: NotesDashboardComponent;
-  let fixture: ComponentFixture<NotesDashboardComponent>;
+  let component: ObjNotesDashboardComponent;
+  let fixture: ComponentFixture<ObjNotesDashboardComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ NotesDashboardComponent ]
-    })
-    .compileComponents();
+      declarations: [ObjNotesDashboardComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(NotesDashboardComponent);
+    fixture = TestBed.createComponent(ObjNotesDashboardComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -1,6 +1,6 @@
 import { PopoverModule } from './libraries/popover/popover.module';
 import { LoadingModule } from './libraries/loading/loading.module';
-import { NgModule } from '@angular/core';
+import { InjectionToken, NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -15,6 +15,9 @@ import { AngularFireModule } from '@angular/fire';
 import { QuillModule } from 'ngx-quill';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import { DataLoadService } from './app/services/data-load.service';
+import { DatabaseService } from './libraries/util/services/database.service';
+import { AuthService } from './libraries/authentication/services/auth.service';
 
 @NgModule({
   declarations: [AppComponent],
@@ -39,7 +42,13 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
     ThemesModule,
     UtilModule,
   ],
-  providers: [],
+  providers: [
+    // {
+    //   provide: DataLoadService,
+    //   useFactory: (db, auth) => new DataLoadService(db, auth),
+    //   deps: [DatabaseService, AuthService],
+    // },
+  ],
   bootstrap: [AppComponent],
   schemas: [],
 })

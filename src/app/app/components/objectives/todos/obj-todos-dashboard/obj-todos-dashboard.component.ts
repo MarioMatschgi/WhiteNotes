@@ -1,20 +1,20 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { NoteModel } from 'src/app/app/models/note.model';
+import { TodoListModel } from 'src/app/app/models/todo.model';
 import { LoaderServices } from 'src/app/app/services/data-load.service';
 import { RouterUrls } from 'src/app/libraries/util/models/router.model';
 import { RouterService } from 'src/app/libraries/util/services/router.service';
 import { ObjectiveDashboardComponent } from '../../base/objective-dashboard/objective-dashboard.component';
 
 @Component({
-  selector: 'app-notes-dashboard',
-  templateUrl: './notes-dashboard.component.html',
-  styleUrls: ['./notes-dashboard.component.scss'],
+  selector: 'obj-todos-dashboard',
+  templateUrl: './obj-todos-dashboard.component.html',
+  styleUrls: ['./obj-todos-dashboard.component.scss'],
 })
-export class NotesDashboardComponent implements OnInit {
+export class ObjTodosDashboardComponent implements OnInit {
   LoaderServices = LoaderServices;
   URLs = RouterUrls;
 
-  @ViewChild('dashboard') dashboard: ObjectiveDashboardComponent<NoteModel>;
+  @ViewChild('dashboard') dashboard: ObjectiveDashboardComponent<TodoListModel>;
 
   constructor(public router: RouterService) {}
 

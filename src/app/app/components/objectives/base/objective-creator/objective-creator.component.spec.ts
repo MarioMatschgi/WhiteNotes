@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TodosNewComponent } from './todos-new.component';
+import { ObjectiveCreatorComponent } from './objective-creator.component';
 
-describe('TodosNewComponent', () => {
-  let component: TodosNewComponent;
-  let fixture: ComponentFixture<TodosNewComponent>;
+describe('ObjectiveCreatorComponent', () => {
+  let component: ObjectiveCreatorComponent;
+  let fixture: ComponentFixture<ObjectiveCreatorComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ TodosNewComponent ]
+      declarations: [ ObjectiveCreatorComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TodosNewComponent);
+    fixture = TestBed.createComponent(ObjectiveCreatorComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

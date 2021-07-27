@@ -31,7 +31,7 @@ export class TodosBaseComponent implements OnInit {
     private data_loader: DataLoadService<TodoListModel>,
     public gv: GlobalVariablesService
   ) {
-    data_loader.loader_type = LoaderServices.todo;
+    data_loader.loaderType = LoaderServices.todo;
   }
 
   ngOnInit(): void {}

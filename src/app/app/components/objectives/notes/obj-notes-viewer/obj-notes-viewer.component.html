@@ -1,0 +1,8 @@
+<objective-viewer [loaderType]="LoaderServices.note" #viewer>
+  <div class="objective-viewer" *ngIf="!viewer.loader.isLoading()">
+    <notes-note-editor
+      mode="edit"
+      [(note)]="viewer.objective"
+    ></notes-note-editor>
+  </div>
+</objective-viewer>

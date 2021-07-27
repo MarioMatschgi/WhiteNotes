@@ -49,7 +49,7 @@ export class NotesNoteEditorComponent implements OnInit {
     public loader: LoadService,
     private data_loader: DataLoadService<NoteModel>
   ) {
-    data_loader.loader_type = LoaderServices.note;
+    data_loader.loaderType = LoaderServices.note;
   }
 
   ngOnInit(): void {}
@@ -60,7 +60,7 @@ export class NotesNoteEditorComponent implements OnInit {
   async add() {
     this.loader.load();
 
-    await this.data_loader.addData(this.note);
+    this.note.id = await this.data_loader.addData(this.note);
 
     this.loader.unload();
 

@@ -1,0 +1,8 @@
+<objective-creator [loaderType]="LoaderServices.note" #creator>
+  <div class="objective-creator" *ngIf="!creator.loader.isLoading()">
+    <notes-note-editor
+      mode="add"
+      [(note)]="creator.objective"
+    ></notes-note-editor>
+  </div>
+</objective-creator>

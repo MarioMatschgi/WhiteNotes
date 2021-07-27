@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { NotesNewComponent } from './notes-new.component';
+import { ObjTodosViewerComponent } from './obj-todos-viewer.component';
 
-describe('NotesNewComponent', () => {
-  let component: NotesNewComponent;
-  let fixture: ComponentFixture<NotesNewComponent>;
+describe('ObjTodosViewerComponent', () => {
+  let component: ObjTodosViewerComponent;
+  let fixture: ComponentFixture<ObjTodosViewerComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ NotesNewComponent ]
+      declarations: [ ObjTodosViewerComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(NotesNewComponent);
+    fixture = TestBed.createComponent(ObjTodosViewerComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

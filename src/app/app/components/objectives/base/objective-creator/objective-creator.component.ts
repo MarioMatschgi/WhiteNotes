@@ -6,11 +6,13 @@ import { AuthService } from 'src/app/libraries/authentication/services/auth.serv
 import { LoadService } from 'src/app/libraries/loading/services/load.service';
 
 @Component({
-  selector: 'objective-viewer',
-  templateUrl: './objective-viewer.component.html',
-  styleUrls: ['./objective-viewer.component.scss'],
+  selector: 'objective-creator',
+  templateUrl: './objective-creator.component.html',
+  styleUrls: ['./objective-creator.component.scss'],
 })
-export class ObjectiveViewerComponent<T extends Encryptable> implements OnInit {
+export class ObjectiveCreatorComponent<T extends Encryptable>
+  implements OnInit
+{
   objective: T;
 
   @Input() loaderType;

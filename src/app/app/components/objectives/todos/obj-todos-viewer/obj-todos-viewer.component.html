@@ -1,0 +1,89 @@
+<objective-viewer [loaderType]="LoaderServices.todo" #viewer>
+  <!-- <div class="" *ngIf="!viewer.loader.isLoading()"> -->
+  <!-- <notes-note-editor
+      mode="edit"
+      [(note)]="viewer.objective"
+    ></notes-note-editor> -->
+  <section
+    *ngIf="!viewer.loader.isLoading()"
+    class="box glass todo-list objective-viewer"
+  >
+    <h2 class="inset small editable-text">
+      <input
+        type="text"
+        class="blank"
+        [(ngModel)]="viewer.objective.title"
+        (submit)="saveTitle()"
+        placeholder="New todo"
+      />
+    </h2>
+
+    <div
+      class="container"
+      cdkDropList
+      [cdkDropListData]="viewer.objective.items"
+      (cdkDropListDropped)="dropItem($event)"
+    >
+      <div
+        class="box glass small todo-item"
+        [class.active]="contextMenuOpen"
+        *ngFor="let todo of viewer.objective.items"
+        cdkDrag
+        [cdkDragStartDelay]="util.isTouchDevice ? 100 : null"
+        [contextMenu]="context_menu"
+        (click)="viewTodo = todo"
+      >
+        <p>{{ todo.title }}</p>
+        <div class="todo-icons flexbox tiny">
+          <fa [fa]="Icons.remove" (click)="removeTodo(todo)"></fa>
+        </div>
+      </div>
+      <div>
+        <form
+          (ngSubmit)="submitNewTodo(addInput)"
+          class="form-input-button tiny"
+        >
+          <input placeholder="New todo" #addInput />
+          <button type="submit"><fa [fa]="Icons.add"></fa></button>
+        </form>
+      </div>
+    </div>
+
+    <pop-popover
+      [isOpen]="viewTodo != null"
+      [align]="'center'"
+      [position]="'center'"
+      (openChange)="$event ? (viewTodo = viewTodo) : (viewTodo = null)"
+      class="view-todo-popover"
+    >
+      <div *ngIf="viewTodo">
+        <h2 class="inset small editable-text">
+          <input
+            type="text"
+            class="blank"
+            [(ngModel)]="viewTodo.title"
+            (submit)="save()"
+            placeholder="New todo"
+          />
+        </h2>
+        <quill-editor
+          [(ngModel)]="viewTodo.description"
+          (submit)="save()"
+          [modules]="{
+            'emoji-shortname': true,
+            'emoji-textarea': true,
+            'emoji-toolbar': true,
+            toolbar: toolbarOptions
+          }"
+          #quill
+        ></quill-editor>
+      </div>
+    </pop-popover>
+
+    <util-context-menu #context_menu>
+      <button>View</button>
+      <button (click)="removeTodo(todo)">{{ todo?.title }}Delete</button>
+    </util-context-menu>
+  </section>
+  <!-- </div> -->
+</objective-viewer>
