@@ -1,7 +1,6 @@
 import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { TodoItem, TodoListModel } from 'src/app/app/models/todo.model';
-import { TodosLoaderService } from 'src/app/app/services/todos-loader.service';
 import { AuthService } from 'src/app/libraries/authentication/services/auth.service';
 import { LoadService } from 'src/app/libraries/loading/services/load.service';
 import {
@@ -12,6 +11,10 @@ import {
 import { Icons } from 'src/app/libraries/util/models/icons.model';
 import { UtilService } from 'src/app/libraries/util/services/util.service';
 import { toolbarOptions } from 'src/app/app/models/toolbarOptions.model';
+import {
+  DataLoadService,
+  LoaderServices,
+} from 'src/app/app/services/data-load.service';
 
 @Component({
   selector: 'todos-todo',
@@ -29,17 +32,19 @@ export class TodosTodoComponent implements OnInit {
 
   constructor(
     private auth: AuthService,
-    private todos_loader: TodosLoaderService,
+    private data_loader: DataLoadService<TodoListModel>,
     private route: ActivatedRoute,
     public loader: LoadService,
     public util: UtilService
-  ) {}
+  ) {
+    data_loader.loader_type = LoaderServices.todo;
+  }
 
   ngOnInit(): void {
     this.loader.load();
     this.auth.sub_userData((data) => {
       if (data) {
-        this.todos_loader
+        this.data_loader
           .getData(this.route.snapshot.params['toid'])
           .subscribe((todoList) => {
             this.todoList = todoList;
@@ -69,7 +74,7 @@ export class TodosTodoComponent implements OnInit {
       this.todoList.items[idx] = this.viewTodo;
     }
 
-    this.todos_loader.updateData(this.todoList);
+    this.data_loader.updateData(this.todoList);
     console.log('saving', this.todoList);
   }
 

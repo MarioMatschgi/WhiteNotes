@@ -2,9 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/libraries/authentication/services/auth.service';
 import { RouterUrls } from 'src/app/libraries/util/models/router.model';
 import { RouterService } from 'src/app/libraries/util/services/router.service';
-import { TodosLoaderService } from 'src/app/app/services/todos-loader.service';
 import { TodoListModel } from 'src/app/app/models/todo.model';
 import { Icons } from 'src/app/libraries/util/models/icons.model';
+import {
+  DataLoadService,
+  LoaderServices,
+} from 'src/app/app/services/data-load.service';
 
 @Component({
   selector: 'todos-dashboard',
@@ -19,13 +22,15 @@ export class TodosDashboardComponent implements OnInit {
   constructor(
     public router: RouterService,
     private auth: AuthService,
-    private todos_loader: TodosLoaderService
-  ) {}
+    private data_loader: DataLoadService<TodoListModel>
+  ) {
+    data_loader.loader_type = LoaderServices.todo;
+  }
 
   ngOnInit(): void {
     this.auth.sub_userData(async (data) => {
       if (data) {
-        this.todos_loader.getAllData().subscribe((todos) => {
+        this.data_loader.getAllData().subscribe((todos) => {
           this.todos = todos;
         });
       }

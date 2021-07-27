@@ -1,50 +1,52 @@
-import { Encryptable, Endecryptor } from './../models/encryptable.model';
+import { Encryptable, Endecryptor } from '../models/encryptable.model';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { debounceTime, delay, distinct, map } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 import { DatabaseService } from 'src/app/libraries/util/services/database.service';
 import { AuthService } from 'src/app/libraries/authentication/services/auth.service';
+
+export enum LoaderServices {
+  note = 'notes',
+  todo = 'todos',
+}
 
 @Injectable({
   providedIn: 'root',
 })
-export class DataLoaderService<T extends Encryptable> {
-  protected db_path: string;
+export class DataLoadService<T extends Encryptable> {
+  public loader_type: LoaderServices;
 
   constructor(private db: DatabaseService, public auth: AuthService) {}
 
-  // TODO: call decrypt on notes
   getAllData(): Observable<T[]> {
     return this.db.col_usersData
       .doc(this.auth.userData.uid)
-      .collection(this.db_path)
+      .collection(this.loader_type)
       .valueChanges()
       .pipe(map((e) => Endecryptor.decryptAll(e as T[])));
   }
 
-  // TODO: call decrypt on notes
   getData(did: string): Observable<T> {
     return this.db.col_usersData
       .doc(this.auth.userData.uid)
-      .collection(this.db_path)
+      .collection(this.loader_type)
       .doc(did)
       .valueChanges()
       .pipe(map((e) => Endecryptor.decrypt(e as T)));
   }
 
-  // TODO: call encrypt on note
   async addData(data: T) {
     const d = Endecryptor.encrypt(data);
 
     const doc = await this.db.col_usersData
       .doc(this.auth.userData.uid)
-      .collection(this.db_path)
+      .collection(this.loader_type)
       .add(d);
 
     d.id = doc.id;
     await this.db.col_usersData
       .doc(this.auth.userData.uid)
-      .collection(this.db_path)
+      .collection(this.loader_type)
       .doc(d.id)
       .set(d);
 
@@ -56,7 +58,7 @@ export class DataLoaderService<T extends Encryptable> {
 
     await this.db.col_usersData
       .doc(this.auth.userData.uid)
-      .collection(this.db_path)
+      .collection(this.loader_type)
       .doc(d.id)
       .set(d);
 

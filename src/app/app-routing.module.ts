@@ -17,6 +17,7 @@ import { AuthResetComponent } from './libraries/authentication/components/auth-r
 import { AuthVerifyEmailComponent } from './libraries/authentication/components/auth-verify-email/auth-verify-email.component';
 import { AuthComponent } from './libraries/authentication/components/auth.component';
 import { AuthLoginGuard } from './libraries/authentication/guards/auth-login.guard';
+import { NotesDashboardComponent as NotesDashboardComponentNew } from './app/components/objectives/notes/notes-dashboard/notes-dashboard.component';
 
 const routes: Routes = [
   {
@@ -24,6 +25,10 @@ const routes: Routes = [
     component: HomeComponent,
     children: [
       { path: '', component: DashboardComponent },
+      {
+        path: 'test',
+        component: NotesDashboardComponentNew,
+      },
       {
         path: 'boards',
         component: BoardsComponent,

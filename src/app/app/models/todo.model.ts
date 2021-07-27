@@ -1,6 +1,7 @@
 import { Encryptable } from './encryptable.model';
+import { ObjectiveModel } from './objective.model';
 
-export interface TodoListModel extends Encryptable {
+export class TodoListModel extends Encryptable implements ObjectiveModel {
   title: string;
   description: string;
   items: TodoItem[];

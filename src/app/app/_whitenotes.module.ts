@@ -28,6 +28,9 @@ import { TodosTodoEditorComponent } from './components/todos/todos-todo-editor/t
 import { TodosBaseComponent } from './components/todos/todos-base/todos-base.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { ObjectiveDashboardComponent } from './components/objectives/base/objective-dashboard/objective-dashboard.component';
+import { NotesDashboardComponent as NotesDashboardComponentNew } from './components/objectives/notes/notes-dashboard/notes-dashboard.component';
+import { ObjectiveViewerComponent } from './components/objectives/base/objective-viewer/objective-viewer.component';
 
 const components = [
   /* STRUCTURE COMPONENTS */
@@ -55,6 +58,13 @@ const components = [
   TodosNewComponent,
   TodosTodoComponent,
   TodosTodoEditorComponent,
+
+  /* BASE */
+  ObjectiveDashboardComponent,
+  ObjectiveViewerComponent,
+
+  /* NOTES */
+  NotesDashboardComponentNew,
 ];
 
 @NgModule({

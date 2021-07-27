@@ -14,8 +14,11 @@ import { LoadService } from 'src/app/libraries/loading/services/load.service';
 import { AuthService } from 'src/app/libraries/authentication/services/auth.service';
 import { QuillEditorComponent } from 'ngx-quill';
 import 'quill-emoji/dist/quill-emoji.js';
-import { NotesLoaderService } from 'src/app/app/services/notes-data-loader.service';
 import { toolbarOptions } from 'src/app/app/models/toolbarOptions.model';
+import {
+  DataLoadService,
+  LoaderServices,
+} from 'src/app/app/services/data-load.service';
 
 @Component({
   selector: 'notes-note-editor',
@@ -44,8 +47,10 @@ export class NotesNoteEditorComponent implements OnInit {
     public gv: GlobalVariablesService,
     private router: RouterService,
     public loader: LoadService,
-    private notes_loader: NotesLoaderService
-  ) {}
+    private data_loader: DataLoadService<NoteModel>
+  ) {
+    data_loader.loader_type = LoaderServices.note;
+  }
 
   ngOnInit(): void {}
 
@@ -55,7 +60,7 @@ export class NotesNoteEditorComponent implements OnInit {
   async add() {
     this.loader.load();
 
-    await this.notes_loader.addData(this.note);
+    await this.data_loader.addData(this.note);
 
     this.loader.unload();
 
@@ -64,7 +69,7 @@ export class NotesNoteEditorComponent implements OnInit {
   async save() {
     this.loader.load();
 
-    await this.notes_loader.updateData(this.note);
+    await this.data_loader.updateData(this.note);
 
     this.loader.unload();
   }

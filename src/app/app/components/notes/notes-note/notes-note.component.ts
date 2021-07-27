@@ -3,7 +3,10 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/libraries/authentication/services/auth.service';
 import { ActivatedRoute } from '@angular/router';
 import { LoadService } from 'src/app/libraries/loading/services/load.service';
-import { NotesLoaderService } from 'src/app/app/services/notes-data-loader.service';
+import {
+  DataLoadService,
+  LoaderServices,
+} from 'src/app/app/services/data-load.service';
 
 @Component({
   selector: 'app-notes-note',
@@ -15,16 +18,18 @@ export class NotesNoteComponent implements OnInit {
 
   constructor(
     private auth: AuthService,
-    private notes_loader: NotesLoaderService,
+    private data_loader: DataLoadService<NoteModel>,
     private route: ActivatedRoute,
     public loader: LoadService
-  ) {}
+  ) {
+    data_loader.loader_type = LoaderServices.note;
+  }
 
   ngOnInit(): void {
     this.loader.load();
     this.auth.sub_userData((data) => {
       if (data) {
-        this.notes_loader
+        this.data_loader
           .getData(this.route.snapshot.params['nid'])
           .subscribe((note) => {
             this.note = note;

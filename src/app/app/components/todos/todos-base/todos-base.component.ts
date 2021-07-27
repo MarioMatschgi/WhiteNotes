@@ -2,8 +2,10 @@ import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { TodoListModel } from 'src/app/app/models/todo.model';
 import { toolbarOptions } from 'src/app/app/models/toolbarOptions.model';
-import { TodosLoaderService } from 'src/app/app/services/todos-loader.service';
-import { AuthService } from 'src/app/libraries/authentication/services/auth.service';
+import {
+  DataLoadService,
+  LoaderServices,
+} from 'src/app/app/services/data-load.service';
 import { LoadService } from 'src/app/libraries/loading/services/load.service';
 import { RouterUrls } from 'src/app/libraries/util/models/router.model';
 import { GlobalVariablesService } from 'src/app/libraries/util/services/global-variables.service';
@@ -26,9 +28,11 @@ export class TodosBaseComponent implements OnInit {
   constructor(
     public loader: LoadService,
     private router: RouterService,
-    private todo_loader: TodosLoaderService,
+    private data_loader: DataLoadService<TodoListModel>,
     public gv: GlobalVariablesService
-  ) {}
+  ) {
+    data_loader.loader_type = LoaderServices.todo;
+  }
 
   ngOnInit(): void {}
 
@@ -41,7 +45,7 @@ export class TodosBaseComponent implements OnInit {
     this.loader.load();
 
     this.todo.items = [];
-    this.todo.id = await this.todo_loader.addData(this.todo);
+    this.todo.id = await this.data_loader.addData(this.todo);
 
     this.loader.unload();
 
@@ -52,7 +56,7 @@ export class TodosBaseComponent implements OnInit {
 
     this.loader.load();
 
-    await this.todo_loader.updateData(this.todo);
+    await this.data_loader.updateData(this.todo);
 
     this.loader.unload();
   }
