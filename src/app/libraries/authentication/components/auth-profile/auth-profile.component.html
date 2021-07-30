@@ -51,9 +51,7 @@
 
       <div class="flexbox small resize">
         <button
-          (click)="
-            router.nav(RouterUrls.profile_settings); pop_profile.set(false)
-          "
+          (click)="router.nav(gv.URLs.profile_settings); pop_profile.set(false)"
           [innerHtml]="local.data.profile.settings.buttons.settings"
         ></button>
         <button

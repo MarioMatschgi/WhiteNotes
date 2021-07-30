@@ -1,4 +1,8 @@
 import { Injectable } from '@angular/core';
+import { quillModules } from 'src/app/app/models/toolbarOptions.model';
+import { LoaderServices } from 'src/app/app/services/data-load.service';
+import { Icons } from '../models/icons.model';
+import { RouterUrls } from '../models/router.model';
 
 @Injectable({
   providedIn: 'root',
@@ -9,6 +13,11 @@ export class GlobalVariablesService {
   unit_normal = '2rem';
   unit_small = '1rem';
   unit_tiny = '0.5rem';
+
+  LoaderServices = LoaderServices;
+  modules = quillModules;
+  URLs = RouterUrls;
+  Icons = Icons;
 
   constructor() {
     const style = (document.querySelector(':root') as HTMLElement).style;

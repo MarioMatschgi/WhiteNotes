@@ -1,4 +1,11 @@
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+  ViewChild,
+} from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Encryptable } from 'src/app/app/models/encryptable.model';
@@ -17,14 +24,15 @@ export type EditorType = 'add' | 'edit';
   styleUrls: ['./objective-editor.component.scss'],
 })
 export class ObjectiveEditorComponent<T extends Encryptable> implements OnInit {
-  URLs = RouterUrls;
-
   objective: T;
 
   @Input() loaderType;
   @ViewChild('form') form: NgForm;
   @Input() mode: EditorType;
   @Input() routeViewObjective: RouterUrls;
+
+  @Output() beforeAddChange = new EventEmitter<T>();
+  @Output() beforeEditChange = new EventEmitter<T>();
 
   constructor(
     private auth: AuthService,
@@ -69,6 +77,8 @@ export class ObjectiveEditorComponent<T extends Encryptable> implements OnInit {
     if (!this.isFormValid()) return;
 
     this.loader.load();
+
+    this.beforeAddChange.emit(this.objective);
 
     this.objective.id = await this.loadService.addData(this.objective);
 

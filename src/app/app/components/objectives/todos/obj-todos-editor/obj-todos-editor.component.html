@@ -1,7 +1,8 @@
 <objective-editor
-  [loaderType]="LoaderServices.todo"
+  [loaderType]="gv.LoaderServices.todo"
   [mode]="mode"
-  [routeViewObjective]="URLs.todos_todo"
+  [routeViewObjective]="gv.URLs.todos_todo"
+  (beforeAddChange)="beforeAddEvent($event)"
   #editor
 >
   <div class="objective-editor" *ngIf="!editor.loader.isLoading()">
@@ -19,12 +20,7 @@
       <quill-editor
         [(ngModel)]="editor.objective.description"
         [readOnly]="editor.loader.isLoading()"
-        [modules]="{
-          'emoji-shortname': true,
-          'emoji-textarea': true,
-          'emoji-toolbar': true,
-          toolbar: toolbarOptions
-        }"
+        [modules]="gv.modules"
         placeholder="Description"
         name="description"
         #quill

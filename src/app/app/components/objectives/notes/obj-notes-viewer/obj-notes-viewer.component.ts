@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NoteModel } from 'src/app/app/models/note.model';
-import { LoaderServices } from 'src/app/app/services/data-load.service';
+import { GlobalVariablesService } from 'src/app/libraries/util/services/global-variables.service';
 import { ObjectiveViewerComponent } from '../../base/objective-viewer/objective-viewer.component';
 
 @Component({
@@ -9,11 +9,9 @@ import { ObjectiveViewerComponent } from '../../base/objective-viewer/objective-
   styleUrls: ['./obj-notes-viewer.component.scss'],
 })
 export class ObjNotesViewerComponent implements OnInit {
-  LoaderServices = LoaderServices;
-
   @ViewChild('viewer') viewer: ObjectiveViewerComponent<NoteModel>;
 
-  constructor() {}
+  constructor(public gv: GlobalVariablesService) {}
 
   ngOnInit(): void {}
 }

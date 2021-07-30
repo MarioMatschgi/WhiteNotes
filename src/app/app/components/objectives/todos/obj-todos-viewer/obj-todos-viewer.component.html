@@ -1,4 +1,4 @@
-<objective-viewer [loaderType]="LoaderServices.todo" #viewer>
+<objective-viewer [loaderType]="gv.LoaderServices.todo" #viewer>
   <!-- <div class="" *ngIf="!viewer.loader.isLoading()"> -->
   <!-- <notes-note-editor
       mode="edit"
@@ -69,12 +69,7 @@
         <quill-editor
           [(ngModel)]="viewTodo.description"
           (submit)="save()"
-          [modules]="{
-            'emoji-shortname': true,
-            'emoji-textarea': true,
-            'emoji-toolbar': true,
-            toolbar: toolbarOptions
-          }"
+          [modules]="gv.modules"
           #quill
         ></quill-editor>
       </div>

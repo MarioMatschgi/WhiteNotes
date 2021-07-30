@@ -7,6 +7,7 @@ import {
   OnInit,
   Output,
 } from '@angular/core';
+import { NavigationEnd, Router } from '@angular/router';
 
 /**
  * Component for Popovers
@@ -54,7 +55,13 @@ export class PopoverComponent implements OnInit {
    */
   @Input() align: 'center' | 'left' | 'right' = 'center';
 
-  constructor(private _elementRef: ElementRef) {}
+  constructor(private _elementRef: ElementRef, private router: Router) {
+    router.events.subscribe((evt) => {
+      if (evt instanceof NavigationEnd) {
+        this.hide_if_open();
+      }
+    });
+  }
 
   ngOnInit(): void {}
 

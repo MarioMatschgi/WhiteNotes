@@ -1,7 +1,5 @@
-import { Icons } from './../../../../../libraries/util/models/icons.model';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { TodoItem, TodoListModel } from 'src/app/app/models/todo.model';
-import { LoaderServices } from 'src/app/app/services/data-load.service';
 import { ObjectiveViewerComponent } from '../../base/objective-viewer/objective-viewer.component';
 import {
   CdkDragDrop,
@@ -9,6 +7,7 @@ import {
   transferArrayItem,
 } from '@angular/cdk/drag-drop';
 import { UtilService } from 'src/app/libraries/util/services/util.service';
+import { GlobalVariablesService } from 'src/app/libraries/util/services/global-variables.service';
 
 @Component({
   selector: 'obj-todos-viewer',
@@ -16,14 +15,11 @@ import { UtilService } from 'src/app/libraries/util/services/util.service';
   styleUrls: ['./obj-todos-viewer.component.scss'],
 })
 export class ObjTodosViewerComponent implements OnInit {
-  LoaderServices = LoaderServices;
-  Icons = Icons;
-
   @ViewChild('viewer') viewer: ObjectiveViewerComponent<TodoListModel>;
 
   viewTodo: TodoItem;
 
-  constructor(public util: UtilService) {}
+  constructor(public util: UtilService, public gv: GlobalVariablesService) {}
 
   ngOnInit(): void {}
 

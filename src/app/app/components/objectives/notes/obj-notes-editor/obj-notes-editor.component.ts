@@ -1,8 +1,6 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { NoteModel } from 'src/app/app/models/note.model';
-import { toolbarOptions } from 'src/app/app/models/toolbarOptions.model';
-import { LoaderServices } from 'src/app/app/services/data-load.service';
-import { RouterUrls } from 'src/app/libraries/util/models/router.model';
+import { GlobalVariablesService } from 'src/app/libraries/util/services/global-variables.service';
 import {
   ObjectiveEditorComponent,
   EditorType,
@@ -14,14 +12,10 @@ import {
   styleUrls: ['./obj-notes-editor.component.scss'],
 })
 export class ObjNotesEditorComponent implements OnInit {
-  LoaderServices = LoaderServices;
-  toolbarOptions = toolbarOptions;
-  URLs = RouterUrls;
-
   @ViewChild('editor') editor: ObjectiveEditorComponent<NoteModel>;
   @Input() mode: EditorType;
 
-  constructor() {}
+  constructor(public gv: GlobalVariablesService) {}
 
   ngOnInit(): void {}
 }

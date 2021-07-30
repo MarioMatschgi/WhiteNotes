@@ -1,7 +1,7 @@
 <objective-editor
-  [loaderType]="LoaderServices.todo"
+  [loaderType]="gv.LoaderServices.note"
   [mode]="mode"
-  [routeViewObjective]="URLs.notes_note"
+  [routeViewObjective]="gv.URLs.notes_note"
   #editor
 >
   <div class="objective-editor" *ngIf="!editor.loader.isLoading()">
@@ -9,12 +9,7 @@
       <quill-editor
         [(ngModel)]="editor.objective.body"
         [readOnly]="editor.loader.isLoading()"
-        [modules]="{
-          'emoji-shortname': true,
-          'emoji-textarea': true,
-          'emoji-toolbar': true,
-          toolbar: toolbarOptions
-        }"
+        [modules]="gv.modules"
         #quill
       ></quill-editor>
     </section>

@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { NavigationEnd, Router } from '@angular/router';
 
 /**
  * Service for Loading
@@ -11,6 +12,15 @@ export class LoadService {
    * Dictionary of loads
    */
   private m_loads: { [loader: string]: number } = {};
+
+  constructor(private router: Router) {
+    router.events.subscribe((evt) => {
+      if (evt instanceof NavigationEnd) {
+        this.m_loads = {};
+        console.log('RESET LOADS');
+      }
+    });
+  }
 
   /**
    * Returns loads for loader
@@ -39,8 +49,6 @@ export class LoadService {
     return !this.isLoading(id);
   }
 
-  constructor() {}
-
   /**
    * Adds a load by id
    * @param id Id of loader
@@ -48,6 +56,8 @@ export class LoadService {
   load(id: string = window.location.pathname): void {
     if (!Object.keys(this.m_loads).includes(id)) this.m_loads[id] = 1;
     else this.m_loads[id]++;
+
+    console.log('loading', id);
   }
 
   /**
@@ -57,5 +67,7 @@ export class LoadService {
   unload(id: string = window.location.pathname): void {
     if (!this.m_loads[id] || this.m_loads[id] == 1) delete this.m_loads[id];
     else this.m_loads[id]--;
+
+    console.log('unloading', id);
   }
 }

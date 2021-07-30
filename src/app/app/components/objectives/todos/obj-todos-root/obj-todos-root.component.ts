@@ -1,5 +1,5 @@
-import { Icons } from './../../../../../libraries/util/models/icons.model';
 import { Component, OnInit } from '@angular/core';
+import { GlobalVariablesService } from 'src/app/libraries/util/services/global-variables.service';
 
 @Component({
   selector: 'obj-todos-root',
@@ -7,9 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./obj-todos-root.component.scss'],
 })
 export class ObjTodosRootComponent implements OnInit {
-  Icons = Icons;
-
-  constructor() {}
+  constructor(public gv: GlobalVariablesService) {}
 
   ngOnInit(): void {}
 }

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/libraries/authentication/services/auth.service';
-import { RouterUrls } from 'src/app/libraries/util/models/router.model';
+import { GlobalVariablesService } from 'src/app/libraries/util/services/global-variables.service';
 import { LocalizationService } from 'src/app/libraries/util/services/localization.service';
 import { RouterService } from 'src/app/libraries/util/services/router.service';
 
@@ -13,7 +13,6 @@ import { RouterService } from 'src/app/libraries/util/services/router.service';
   styleUrls: ['./auth-profile.component.scss'],
 })
 export class AuthProfileComponent implements OnInit {
-  RouterUrls = RouterUrls;
   popover: boolean;
 
   /**
@@ -25,7 +24,8 @@ export class AuthProfileComponent implements OnInit {
   constructor(
     public auth: AuthService,
     public router: RouterService,
-    public local: LocalizationService
+    public local: LocalizationService,
+    public gv: GlobalVariablesService
   ) {}
 
   ngOnInit(): void {}

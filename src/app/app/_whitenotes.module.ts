@@ -12,12 +12,9 @@ import { HomeComponent } from './components/home/home.component';
 import { BoardsComponent } from './components/boards/boards.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { StSectionComponent } from './components/structure/section/section.component';
-import { NotesNoteEditorComponent } from './components/notes/notes-note-editor/notes-note-editor.component';
 import { FormsModule } from '@angular/forms';
 import { LoadingModule } from '../libraries/loading/loading.module';
 import { PopoverModule } from '../libraries/popover/popover.module';
-import { TodosTodoEditorComponent } from './components/todos/todos-todo-editor/todos-todo-editor.component';
-import { TodosBaseComponent } from './components/todos/todos-base/todos-base.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { ObjectiveDashboardComponent } from './components/objectives/base/objective-dashboard/objective-dashboard.component';
@@ -65,17 +62,12 @@ const components = [
   ObjNotesCreatorComponent,
   ObjNotesEditorComponent,
 
-  NotesNoteEditorComponent,
-
   /* TO-DOS */
   ObjTodosRootComponent,
   ObjTodosDashboardComponent,
   ObjTodosViewerComponent,
   ObjTodosCreatorComponent,
   ObjTodosEditorComponent,
-
-  TodosBaseComponent,
-  // TodosTodoEditorComponent,
 ];
 
 @NgModule({
