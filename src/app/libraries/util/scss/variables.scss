@@ -18,7 +18,9 @@
     rgba(255, 255, 255, 0.4)
   );
 
-  --bs-glass: 0.5em 0.5em 20px rgba(122, 122, 122, 0.2);
+  // --bs-glass: 0.5em 0.5em 20px rgba(122, 122, 122, 0.2);
+  --bs-glass: 0.5em 0.5em 20px rgba(122, 122, 122, 0.2),
+    0.25em 0.25em 0.5em 0px rgba(255, 255, 255, 0.25) inset;
 
   --bd-glass: blur(1rem);
 

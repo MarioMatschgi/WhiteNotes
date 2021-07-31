@@ -12,22 +12,26 @@ import { HomeComponent } from './components/home/home.component';
 import { BoardsComponent } from './components/boards/boards.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { StSectionComponent } from './components/structure/section/section.component';
-import { NotesComponent } from './components/notes/notes.component';
-import { NotesNoteComponent } from './components/notes/notes-note/notes-note.component';
-import { NotesNewComponent } from './components/notes/notes-new/notes-new.component';
-import { NotesDashboardComponent } from './components/notes/notes-dashboard/notes-dashboard.component';
-import { NotesNoteEditorComponent } from './components/notes/notes-note-editor/notes-note-editor.component';
 import { FormsModule } from '@angular/forms';
 import { LoadingModule } from '../libraries/loading/loading.module';
 import { PopoverModule } from '../libraries/popover/popover.module';
-import { TodosComponent } from './components/todos/todos.component';
-import { TodosDashboardComponent } from './components/todos/todos-dashboard/todos-dashboard.component';
-import { TodosNewComponent } from './components/todos/todos-new/todos-new.component';
-import { TodosTodoComponent } from './components/todos/todos-todo/todos-todo.component';
-import { TodosTodoEditorComponent } from './components/todos/todos-todo-editor/todos-todo-editor.component';
-import { TodosBaseComponent } from './components/todos/todos-base/todos-base.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { ObjectiveDashboardComponent } from './components/objectives/base/objective-dashboard/objective-dashboard.component';
+import { ObjNotesDashboardComponent } from './components/objectives/notes/obj-notes-dashboard/obj-notes-dashboard.component';
+import { ObjectiveViewerComponent } from './components/objectives/base/objective-viewer/objective-viewer.component';
+import { ObjNotesViewerComponent } from './components/objectives/notes/obj-notes-viewer/obj-notes-viewer.component';
+import { ObjNotesCreatorComponent } from './components/objectives/notes/obj-notes-creator/obj-notes-creator.component';
+import { ObjectiveCreatorComponent } from './components/objectives/base/objective-creator/objective-creator.component';
+import { ObjTodosDashboardComponent } from './components/objectives/todos/obj-todos-dashboard/obj-todos-dashboard.component';
+import { ObjTodosViewerComponent } from './components/objectives/todos/obj-todos-viewer/obj-todos-viewer.component';
+import { ObjTodosCreatorComponent } from './components/objectives/todos/obj-todos-creator/obj-todos-creator.component';
+import { ObjectiveRootComponent } from './components/objectives/base/objective-root/objective-root.component';
+import { ObjTodosRootComponent } from './components/objectives/todos/obj-todos-root/obj-todos-root.component';
+import { ObjNotesRootComponent } from './components/objectives/notes/obj-notes-root/obj-notes-root.component';
+import { ObjTodosEditorComponent } from './components/objectives/todos/obj-todos-editor/obj-todos-editor.component';
+import { ObjectiveEditorComponent } from './components/objectives/base/objective-editor/objective-editor.component';
+import { ObjNotesEditorComponent } from './components/objectives/notes/obj-notes-editor/obj-notes-editor.component';
 
 const components = [
   /* STRUCTURE COMPONENTS */
@@ -41,20 +45,29 @@ const components = [
   DashboardComponent,
   BoardsComponent,
 
-  /* NOTES */
-  NotesComponent,
-  NotesDashboardComponent,
-  NotesNewComponent,
-  NotesNoteComponent,
-  NotesNoteEditorComponent,
+  /*
+    OBJECTIVES
+   */
+  /* BASE */
+  ObjectiveRootComponent,
+  ObjectiveDashboardComponent,
+  ObjectiveViewerComponent,
+  ObjectiveCreatorComponent,
+  ObjectiveEditorComponent,
 
-  /* TODOS */
-  TodosComponent,
-  TodosDashboardComponent,
-  TodosBaseComponent,
-  TodosNewComponent,
-  TodosTodoComponent,
-  TodosTodoEditorComponent,
+  /* NOTES */
+  ObjNotesRootComponent,
+  ObjNotesDashboardComponent,
+  ObjNotesViewerComponent,
+  ObjNotesCreatorComponent,
+  ObjNotesEditorComponent,
+
+  /* TO-DOS */
+  ObjTodosRootComponent,
+  ObjTodosDashboardComponent,
+  ObjTodosViewerComponent,
+  ObjTodosCreatorComponent,
+  ObjTodosEditorComponent,
 ];
 
 @NgModule({

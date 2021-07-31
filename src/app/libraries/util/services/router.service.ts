@@ -41,7 +41,7 @@ export class RouterService {
    * @returns Returns the url as an array for the given RouterUrl and the given params
    */
   get_url_arr(url: RouterUrls, params: string[] = []): string[] {
-    return url.split('/').concat(params);
+    return this.get_url(url, params).substr(1).split('/');
   }
 
   constructor(public router: Router, public location: Location) {
@@ -102,7 +102,7 @@ export class RouterService {
    */
   nav_login_back() {
     let route = localStorage.getItem(this.k_login_loc);
-    if (route == '/') route = '';
+    if (route == null || route == '/') route = '';
 
     this.router.navigate(route.split('/'));
   }

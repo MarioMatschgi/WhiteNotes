@@ -1,7 +1,6 @@
-import { RouterUrls } from './../../../libraries/util/models/router.model';
 import { Component, OnInit } from '@angular/core';
+import { GlobalVariablesService } from 'src/app/libraries/util/services/global-variables.service';
 import { RouterService } from 'src/app/libraries/util/services/router.service';
-import { Icons } from 'src/app/libraries/util/models/icons.model';
 
 @Component({
   selector: 'dashboard',
@@ -9,10 +8,10 @@ import { Icons } from 'src/app/libraries/util/models/icons.model';
   styleUrls: ['./dashboard.component.scss'],
 })
 export class DashboardComponent implements OnInit {
-  URLs = RouterUrls;
-  Icons = Icons;
-
-  constructor(public router: RouterService) {}
+  constructor(
+    public router: RouterService,
+    public gv: GlobalVariablesService
+  ) {}
 
   ngOnInit(): void {}
 }

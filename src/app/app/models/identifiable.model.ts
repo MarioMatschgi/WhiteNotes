@@ -1,3 +1,3 @@
-export interface Identifiable {
+export class Identifiable {
   id: string;
 }

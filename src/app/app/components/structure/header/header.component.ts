@@ -1,7 +1,5 @@
-import { Icons } from './../../../../libraries/util/models/icons.model';
 import { Component, OnInit } from '@angular/core';
 import { Event, NavigationEnd } from '@angular/router';
-import { RouterUrls } from 'src/app/libraries/util/models/router.model';
 import { GlobalVariablesService } from 'src/app/libraries/util/services/global-variables.service';
 import { RouterService } from 'src/app/libraries/util/services/router.service';
 
@@ -11,9 +9,6 @@ import { RouterService } from 'src/app/libraries/util/services/router.service';
   styleUrls: ['./header.component.scss'],
 })
 export class StHeaderComponent implements OnInit {
-  URLs = RouterUrls;
-  Icons = Icons;
-
   nav_title: string;
 
   constructor(public gv: GlobalVariablesService, public router: RouterService) {

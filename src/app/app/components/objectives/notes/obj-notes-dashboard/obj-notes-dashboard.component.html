@@ -1,0 +1,13 @@
+<objective-dashboard
+  [loaderType]="gv.LoaderServices.note"
+  [routeNewObjective]="gv.URLs.notes_new"
+  #dashboard
+>
+  <st-section
+    class="clickable objective-preview"
+    *ngFor="let note of dashboard.objectives"
+    [routerLink]="router.get_url(gv.URLs.notes_note, [note.id])"
+  >
+    <quill-view [content]="note.body"></quill-view>
+  </st-section>
+</objective-dashboard>

@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { AuthService } from 'src/app/libraries/authentication/services/auth.service';
-import { RouterUrls } from 'src/app/libraries/util/models/router.model';
+import { GlobalVariablesService } from 'src/app/libraries/util/services/global-variables.service';
 import { LocalizationService } from 'src/app/libraries/util/services/localization.service';
 import { RouterService } from 'src/app/libraries/util/services/router.service';
 
@@ -40,12 +40,13 @@ export class AuthBaseComponent implements OnInit {
   constructor(
     public auth: AuthService,
     public local: LocalizationService,
-    public router: RouterService
+    public router: RouterService,
+    public gv: GlobalVariablesService
   ) {}
 
   ngOnInit(): void {
     if (this.auth.loggedIn) {
-      this.router.nav(RouterUrls.home);
+      this.router.nav(this.gv.URLs.home);
       return;
     }
   }

@@ -1,0 +1,14 @@
+<st-grid fx="1 1 0%" fx-justify-content="space-between">
+  <st-section
+    class="clickable hoverable"
+    fxLayout
+    fxLayoutAlign="center center"
+    fxFlex="0 0 0%"
+    [routerLink]="router.get_url(routeNewObjective)"
+    style="align-self: center; aspect-ratio: 1"
+  >
+    <fa [fa]="gv.Icons.add" fasize="3"></fa>
+  </st-section>
+
+  <ng-content select=".objective-preview"></ng-content>
+</st-grid>

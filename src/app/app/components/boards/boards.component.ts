@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Icons } from 'src/app/libraries/util/models/icons.model';
+import { GlobalVariablesService } from 'src/app/libraries/util/services/global-variables.service';
 
 @Component({
   selector: 'boards',
@@ -7,9 +7,7 @@ import { Icons } from 'src/app/libraries/util/models/icons.model';
   styleUrls: ['./boards.component.scss'],
 })
 export class BoardsComponent implements OnInit {
-  Icons = Icons;
-
-  constructor() {}
+  constructor(public gv: GlobalVariablesService) {}
 
   ngOnInit(): void {}
 }

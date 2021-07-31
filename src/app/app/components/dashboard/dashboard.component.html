@@ -1,75 +1,28 @@
 <h1 class="inset small">Dashboard</h1>
 
 <!-- 
-  BOARDS
- -->
-<section>
-  <a [routerLink]="router.get_url(URLs.boards)" class="nostyle inset small">
-    <fa [fa]="Icons.boards">
-      <h2>Boards</h2>
-    </fa>
-  </a>
-
-  <st-grid fx="1 1 0%">
-    <st-section class="clickable hoverable">
-      <h3>Board1</h3>
-      <p>Board for testing</p>
-    </st-section>
-    <st-section class="clickable hoverable">
-      <h3>Board2</h3>
-      <p>Board for testing, but another one</p>
-    </st-section>
-    <st-section class="clickable hoverable">
-      <h3>Board3</h3>
-      <p>Board for testing, but the third now</p>
-    </st-section>
-  </st-grid>
-</section>
-
-<!-- 
-  TASKS
- -->
-<section>
-  <a [routerLink]="router.get_url(URLs.tasks)" class="nostyle inset small">
-    <fa [fa]="Icons.tasks">
-      <h2>Tasks</h2>
-    </fa>
-  </a>
-
-  <st-grid fx="1 1 0%">
-    <st-section class="clickable hoverable">
-      <h3>Task1</h3>
-      <p>Task for testing</p>
-    </st-section>
-    <st-section class="clickable hoverable">
-      <h3>Task2</h3>
-      <p>Yet another task for testing</p>
-    </st-section>
-  </st-grid>
-</section>
-
-<!-- 
   TO-DOS
  -->
+<!-- TODO: MAKE GENERIC COMPONENT FOR THAT -->
 <section>
-  <a [routerLink]="router.get_url(URLs.todos)" class="nostyle inset small">
-    <fa [fa]="Icons.todos">
+  <a [routerLink]="router.get_url(gv.URLs.todos)" class="nostyle inset small">
+    <fa [fa]="gv.Icons.todos">
       <h2>Todos</h2>
     </fa>
   </a>
 
-  <todos-dashboard></todos-dashboard>
+  <obj-todos-dashboard></obj-todos-dashboard>
 </section>
 
 <!-- 
   NOTES
  -->
 <section>
-  <a [routerLink]="router.get_url(URLs.notes)" class="nostyle inset small">
-    <fa [fa]="Icons.notes">
+  <a [routerLink]="router.get_url(gv.URLs.notes)" class="nostyle inset small">
+    <fa [fa]="gv.Icons.notes">
       <h2>Notes</h2>
     </fa>
   </a>
 
-  <notes-dashboard></notes-dashboard>
+  <obj-notes-dashboard></obj-notes-dashboard>
 </section>

@@ -17,7 +17,7 @@ import firebase from 'firebase/app';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Subscription } from 'rxjs';
 import { RouterService } from '../../util/services/router.service';
-import { RouterUrls } from '../../util/models/router.model';
+import { GlobalVariablesService } from '../../util/services/global-variables.service';
 
 /**
  * Type for authentication error
@@ -151,7 +151,8 @@ export class AuthService {
   constructor(
     public afAuth: AngularFireAuth,
     private router: RouterService,
-    private db: AngularFirestore
+    private db: AngularFirestore,
+    public gv: GlobalVariablesService
   ) {
     this.userPrivateData = {
       ...emptyUserPrivateData,
@@ -591,6 +592,6 @@ export class AuthService {
   async signOut(redir = true) {
     this.error = undefined;
     await this.afAuth.signOut();
-    if (redir) this.router.nav(RouterUrls.home);
+    if (redir) this.router.nav(this.gv.URLs.home);
   }
 }

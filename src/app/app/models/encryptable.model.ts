@@ -1,7 +1,7 @@
 import { Identifiable } from './identifiable.model';
 import * as CryptoJS from 'crypto-js';
 
-export interface Encryptable extends Identifiable {}
+export class Encryptable extends Identifiable {}
 
 /**
  * Encrypts and decrypts every property except the id

@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { NavigationEnd, Router } from '@angular/router';
 
 /**
  * Service for Loading
@@ -11,6 +12,14 @@ export class LoadService {
    * Dictionary of loads
    */
   private m_loads: { [loader: string]: number } = {};
+
+  constructor(private router: Router) {
+    router.events.subscribe((evt) => {
+      if (evt instanceof NavigationEnd) {
+        this.m_loads = {};
+      }
+    });
+  }
 
   /**
    * Returns loads for loader
@@ -38,8 +47,6 @@ export class LoadService {
   finished(id: string = window.location.pathname): boolean {
     return !this.isLoading(id);
   }
-
-  constructor() {}
 
   /**
    * Adds a load by id
