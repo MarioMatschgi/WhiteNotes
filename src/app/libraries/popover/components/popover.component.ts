@@ -23,7 +23,7 @@ export class PopoverComponent implements OnInit {
    */
   static popovers: PopoverComponent[] = [];
 
-  private host: HTMLElement;
+  private pop_container: HTMLElement;
 
   /**
    * Whether the popover is open
@@ -44,7 +44,7 @@ export class PopoverComponent implements OnInit {
    * The position of the popover
    * - normal: Position at button
    */
-  @Input() position: 'normal' | 'center' = 'normal';
+  @Input() position: 'normal' | 'center' = 'center';
 
   /**
    * The alignment of the popover
@@ -92,25 +92,27 @@ export class PopoverComponent implements OnInit {
       this._isOpen = isOpen;
 
       const body = document.getElementsByTagName('body')[0];
-      let el = this._elementRef.nativeElement as HTMLElement;
       if (this._isOpen) {
         PopoverComponent.popovers.push(this);
 
-        this.host = el.parentElement;
-        this.host.removeChild(el);
-        body.appendChild(el);
+        this.pop_container = (
+          this._elementRef.nativeElement as HTMLElement
+        ).getElementsByClassName('pop_container')[0] as HTMLElement;
+
+        this.pop_container.parentElement.removeChild(this.pop_container);
+        body.appendChild(this.pop_container);
       } else {
         PopoverComponent.popovers.splice(
           PopoverComponent.popovers.findIndex((e) => e == this),
           1
         );
 
-        if (this.host) {
-          (el.childNodes.item(0) as HTMLElement).classList.remove('active');
-
-          body.removeChild(el);
-          this.host.appendChild(el);
-          this.host = undefined;
+        if (this.pop_container) {
+          body.removeChild(this.pop_container);
+          (this._elementRef.nativeElement as HTMLElement).appendChild(
+            this.pop_container
+          );
+          this.pop_container = undefined;
         }
       }
 

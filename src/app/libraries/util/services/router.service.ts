@@ -102,7 +102,7 @@ export class RouterService {
    */
   nav_login_back() {
     let route = localStorage.getItem(this.k_login_loc);
-    if (route == '/') route = '';
+    if (route == null || route == '/') route = '';
 
     this.router.navigate(route.split('/'));
   }

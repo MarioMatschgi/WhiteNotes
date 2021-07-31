@@ -35,7 +35,7 @@
       >
         <p>{{ todo.title }}</p>
         <div class="todo-icons flexbox tiny">
-          <fa [fa]="Icons.remove" (click)="removeTodo(todo)"></fa>
+          <fa [fa]="gv.Icons.remove" (click)="removeTodo(todo)"></fa>
         </div>
       </div>
       <div>
@@ -44,15 +44,13 @@
           class="form-input-button tiny"
         >
           <input placeholder="New todo" #addInput />
-          <button type="submit"><fa [fa]="Icons.add"></fa></button>
+          <button type="submit"><fa [fa]="gv.Icons.add"></fa></button>
         </form>
       </div>
     </div>
 
     <pop-popover
       [isOpen]="viewTodo != null"
-      [align]="'center'"
-      [position]="'center'"
       (openChange)="$event ? (viewTodo = viewTodo) : (viewTodo = null)"
       class="view-todo-popover"
     >

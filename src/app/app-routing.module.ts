@@ -15,7 +15,6 @@ import { ObjNotesCreatorComponent } from './app/components/objectives/notes/obj-
 import { ObjTodosCreatorComponent } from './app/components/objectives/todos/obj-todos-creator/obj-todos-creator.component';
 import { ObjTodosDashboardComponent } from './app/components/objectives/todos/obj-todos-dashboard/obj-todos-dashboard.component';
 import { ObjTodosViewerComponent } from './app/components/objectives/todos/obj-todos-viewer/obj-todos-viewer.component';
-import { ObjectiveRootComponent } from './app/components/objectives/base/objective-root/objective-root.component';
 import { ObjTodosRootComponent } from './app/components/objectives/todos/obj-todos-root/obj-todos-root.component';
 import { ObjNotesRootComponent } from './app/components/objectives/notes/obj-notes-root/obj-notes-root.component';
 
@@ -33,6 +32,7 @@ const routes: Routes = [
           // { path: 'new', component: TodosNewComponent },
           // { path: 'board/:bid', component: TodosTodoComponent },
         ],
+        canActivate: [AuthLoginGuard],
       },
       {
         path: 'notes',
@@ -42,6 +42,7 @@ const routes: Routes = [
           { path: 'new', component: ObjNotesCreatorComponent },
           { path: 'note/:oid', component: ObjNotesViewerComponent },
         ],
+        canActivate: [AuthLoginGuard],
       },
       {
         path: 'tasks',
@@ -51,6 +52,7 @@ const routes: Routes = [
           // { path: 'new', component: TodosNewComponent },
           // { path: 'tasks/:taid', component: TodosTodoComponent },
         ],
+        canActivate: [AuthLoginGuard],
       },
       {
         path: 'todos',
@@ -60,6 +62,7 @@ const routes: Routes = [
           { path: 'new', component: ObjTodosCreatorComponent },
           { path: 'todo/:oid', component: ObjTodosViewerComponent },
         ],
+        canActivate: [AuthLoginGuard],
       },
       {
         path: 'reminders',
@@ -69,6 +72,7 @@ const routes: Routes = [
           // { path: 'new', component: TodosNewComponent },
           // { path: 'reminder/:rid', component: TodosTodoComponent },
         ],
+        canActivate: [AuthLoginGuard],
       },
       {
         path: 'mindmaps',
@@ -78,11 +82,13 @@ const routes: Routes = [
           // { path: 'new', component: TodosNewComponent },
           // { path: 'mindmap/:mid', component: TodosTodoComponent },
         ],
+        canActivate: [AuthLoginGuard],
       },
       {
         path: 'calender',
         component: BoardsComponent,
         // children: [{ path: '', component: TodosDashboardComponent }],
+        canActivate: [AuthLoginGuard],
       },
 
       /* AUTH: authentication stuff */
