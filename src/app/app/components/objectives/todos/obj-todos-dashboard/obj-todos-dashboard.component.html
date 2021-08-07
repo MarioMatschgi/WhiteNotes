@@ -8,7 +8,6 @@
     *ngFor="let todo of dashboard.objectives"
     [routerLink]="router.get_url(gv.URLs.todos_todo, [todo.id])"
   >
-    <!-- <quill-view [content]="todo.body"></quill-view> -->
-    <p>{{ todo.title }}</p>
+    <quill-view [content]="todo.description"></quill-view>
   </st-section>
 </objective-dashboard>

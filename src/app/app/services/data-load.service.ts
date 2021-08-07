@@ -1,19 +1,21 @@
-import { Encryptable, Endecryptor } from '../models/encryptable.model';
+import { Endecryptor } from '../models/encryptable.model';
 import { Injectable, Provider } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { DatabaseService } from 'src/app/libraries/util/services/database.service';
 import { AuthService } from 'src/app/libraries/authentication/services/auth.service';
+import { ObjectiveModel } from '../models/objectives/objective.model';
 
 export enum LoaderServices {
   note = 'notes',
   todo = 'todos',
+  board = 'boards',
 }
 
 @Injectable({
   providedIn: 'root',
 })
-export class DataLoadService<T extends Encryptable> {
+export class DataLoadService<T extends ObjectiveModel> {
   public loaderType: LoaderServices;
 
   constructor(private db: DatabaseService, public auth: AuthService) {}

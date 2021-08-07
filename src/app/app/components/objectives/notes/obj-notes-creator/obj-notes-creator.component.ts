@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { NoteModel } from 'src/app/app/models/note.model';
+import { NoteModel } from 'src/app/app/models/objectives/note.model';
 import { GlobalVariablesService } from 'src/app/libraries/util/services/global-variables.service';
 import { ObjectiveCreatorComponent } from '../../base/objective-creator/objective-creator.component';
 

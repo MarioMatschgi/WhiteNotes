@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { BoardsComponent } from './app/components/boards/boards.component';
 import { DashboardComponent } from './app/components/dashboard/dashboard.component';
 import { HomeComponent } from './app/components/home/home.component';
 import { AuthLoginComponent } from './libraries/authentication/components/auth-login/auth-login.component';
@@ -17,6 +16,10 @@ import { ObjTodosDashboardComponent } from './app/components/objectives/todos/ob
 import { ObjTodosViewerComponent } from './app/components/objectives/todos/obj-todos-viewer/obj-todos-viewer.component';
 import { ObjTodosRootComponent } from './app/components/objectives/todos/obj-todos-root/obj-todos-root.component';
 import { ObjNotesRootComponent } from './app/components/objectives/notes/obj-notes-root/obj-notes-root.component';
+import { ObjBoardsDashboardComponent } from './app/components/objectives/boards/obj-boards-dashboard/obj-boards-dashboard.component';
+import { ObjBoardsCreatorComponent } from './app/components/objectives/boards/obj-boards-creator/obj-boards-creator.component';
+import { ObjBoardsViewerComponent } from './app/components/objectives/boards/obj-boards-viewer/obj-boards-viewer.component';
+import { ObjBoardsRootComponent } from './app/components/objectives/boards/obj-boards-root/obj-boards-root.component';
 
 const routes: Routes = [
   {
@@ -26,11 +29,11 @@ const routes: Routes = [
       { path: '', component: DashboardComponent },
       {
         path: 'boards',
-        component: BoardsComponent,
+        component: ObjBoardsRootComponent,
         children: [
-          // { path: '', component: TodosDashboardComponent },
-          // { path: 'new', component: TodosNewComponent },
-          // { path: 'board/:bid', component: TodosTodoComponent },
+          { path: '', component: ObjBoardsDashboardComponent },
+          { path: 'new', component: ObjBoardsCreatorComponent },
+          { path: 'board/:oid', component: ObjBoardsViewerComponent },
         ],
         canActivate: [AuthLoginGuard],
       },
@@ -46,7 +49,7 @@ const routes: Routes = [
       },
       {
         path: 'tasks',
-        component: BoardsComponent,
+        component: ObjNotesRootComponent,
         children: [
           // { path: '', component: TodosDashboardComponent },
           // { path: 'new', component: TodosNewComponent },
@@ -66,7 +69,7 @@ const routes: Routes = [
       },
       {
         path: 'reminders',
-        component: BoardsComponent,
+        component: ObjNotesRootComponent,
         children: [
           // { path: '', component: TodosDashboardComponent },
           // { path: 'new', component: TodosNewComponent },
@@ -76,7 +79,7 @@ const routes: Routes = [
       },
       {
         path: 'mindmaps',
-        component: BoardsComponent,
+        component: ObjNotesRootComponent,
         children: [
           // { path: '', component: TodosDashboardComponent },
           // { path: 'new', component: TodosNewComponent },
@@ -86,7 +89,7 @@ const routes: Routes = [
       },
       {
         path: 'calender',
-        component: BoardsComponent,
+        component: ObjNotesRootComponent,
         // children: [{ path: '', component: TodosDashboardComponent }],
         canActivate: [AuthLoginGuard],
       },

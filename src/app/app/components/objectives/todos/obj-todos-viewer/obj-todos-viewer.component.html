@@ -1,9 +1,4 @@
 <objective-viewer [loaderType]="gv.LoaderServices.todo" #viewer>
-  <!-- <div class="" *ngIf="!viewer.loader.isLoading()"> -->
-  <!-- <notes-note-editor
-      mode="edit"
-      [(note)]="viewer.objective"
-    ></notes-note-editor> -->
   <section
     *ngIf="!viewer.loader.isLoading()"
     class="box glass todo-list objective-viewer"
@@ -78,5 +73,4 @@
       <button (click)="removeTodo(todo)">{{ todo?.title }}Delete</button>
     </util-context-menu>
   </section>
-  <!-- </div> -->
 </objective-viewer>

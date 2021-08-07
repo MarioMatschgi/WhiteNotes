@@ -1,0 +1,13 @@
+<objective-dashboard
+  [loaderType]="gv.LoaderServices.board"
+  [routeNewObjective]="gv.URLs.boards_new"
+  #dashboard
+>
+  <st-section
+    class="clickable objective-preview"
+    *ngFor="let board of dashboard.objectives"
+    [routerLink]="router.get_url(gv.URLs.boards_board, [board.id])"
+  >
+    <quill-view [content]="board.description"></quill-view>
+  </st-section>
+</objective-dashboard>

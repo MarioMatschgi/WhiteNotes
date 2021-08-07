@@ -1,28 +1,18 @@
 <h1 class="inset small">Dashboard</h1>
 
-<!-- 
-  TO-DOS
- -->
-<!-- TODO: MAKE GENERIC COMPONENT FOR THAT -->
-<section>
-  <a [routerLink]="router.get_url(gv.URLs.todos)" class="nostyle inset small">
-    <fa [fa]="gv.Icons.todos">
-      <h2>Todos</h2>
-    </fa>
-  </a>
+<div class="container">
+  <!-- 
+    Boards
+   -->
+  <obj-boards-root [fromDashboard]="true"></obj-boards-root>
 
-  <obj-todos-dashboard></obj-todos-dashboard>
-</section>
+  <!-- 
+    TO-DOS
+   -->
+  <obj-todos-root [fromDashboard]="true"></obj-todos-root>
 
-<!-- 
-  NOTES
- -->
-<section>
-  <a [routerLink]="router.get_url(gv.URLs.notes)" class="nostyle inset small">
-    <fa [fa]="gv.Icons.notes">
-      <h2>Notes</h2>
-    </fa>
-  </a>
-
-  <obj-notes-dashboard></obj-notes-dashboard>
-</section>
+  <!-- 
+    NOTES
+   -->
+  <obj-notes-root [fromDashboard]="true"></obj-notes-root>
+</div>

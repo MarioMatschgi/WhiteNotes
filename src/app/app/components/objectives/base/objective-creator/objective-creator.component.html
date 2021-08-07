@@ -1,1 +1,34 @@
-<ng-content select=".objective-creator"></ng-content>
+<load-loader-popover></load-loader-popover>
+
+<form #form="ngForm">
+  <section>
+    <label for="title" class="required">Title</label>
+    <input
+      placeholder="Title"
+      name="title"
+      [(ngModel)]="objective.title"
+      required
+    />
+  </section>
+  <section>
+    <label for="description">Description</label>
+    <quill-editor
+      [(ngModel)]="objective.description"
+      [readOnly]="loader.isLoading()"
+      [modules]="gv.modules"
+      placeholder="Description"
+      name="description"
+      #quill
+    ></quill-editor>
+  </section>
+
+  <ng-content select=".objective-creator"></ng-content>
+</form>
+
+<section fxLayout fxLayoutAlign="center" [fxLayoutGap]="gv.unit_normal">
+  <button (click)="cancel()">Cancel</button>
+
+  <button (click)="add()" [disabled]="loader.isLoading()">
+    Add new {{ displayName }}
+  </button>
+</section>

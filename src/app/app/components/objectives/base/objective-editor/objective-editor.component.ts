@@ -8,7 +8,7 @@ import {
 } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { Encryptable } from 'src/app/app/models/encryptable.model';
+import { ObjectiveModel } from 'src/app/app/models/objectives/objective.model';
 import { DataLoadService } from 'src/app/app/services/data-load.service';
 import { AuthService } from 'src/app/libraries/authentication/services/auth.service';
 import { LoadService } from 'src/app/libraries/loading/services/load.service';
@@ -23,7 +23,9 @@ export type EditorType = 'add' | 'edit';
   templateUrl: './objective-editor.component.html',
   styleUrls: ['./objective-editor.component.scss'],
 })
-export class ObjectiveEditorComponent<T extends Encryptable> implements OnInit {
+export class ObjectiveEditorComponent<T extends ObjectiveModel>
+  implements OnInit
+{
   objective: T;
 
   @Input() loaderType;

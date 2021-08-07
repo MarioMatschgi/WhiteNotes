@@ -1,5 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { TodoItem, TodoListModel } from 'src/app/app/models/todo.model';
+import {
+  TodoItem,
+  TodoListModel,
+} from 'src/app/app/models/objectives/todo.model';
 import { ObjectiveViewerComponent } from '../../base/objective-viewer/objective-viewer.component';
 import {
   CdkDragDrop,

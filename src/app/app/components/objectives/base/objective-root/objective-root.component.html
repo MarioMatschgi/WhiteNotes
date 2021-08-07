@@ -1,6 +1,7 @@
-<span class="inset small">
+<a [routerLink]="router.get_url(url)" class="nostyle inset small">
   <fa [fa]="icon">
-    <h1 class="inset small">{{ title }}</h1>
+    <h1 *ngIf="!fromDashboard" class="inset small">{{ title }}</h1>
+    <h2 *ngIf="fromDashboard" class="inset small">{{ title }}</h2>
   </fa>
-</span>
+</a>
 <router-outlet></router-outlet>

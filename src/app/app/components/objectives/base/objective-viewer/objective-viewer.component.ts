@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Encryptable } from 'src/app/app/models/encryptable.model';
+import { ObjectiveModel } from 'src/app/app/models/objectives/objective.model';
 import { DataLoadService } from 'src/app/app/services/data-load.service';
 import { AuthService } from 'src/app/libraries/authentication/services/auth.service';
 import { LoadService } from 'src/app/libraries/loading/services/load.service';
@@ -10,7 +10,9 @@ import { LoadService } from 'src/app/libraries/loading/services/load.service';
   templateUrl: './objective-viewer.component.html',
   styleUrls: ['./objective-viewer.component.scss'],
 })
-export class ObjectiveViewerComponent<T extends Encryptable> implements OnInit {
+export class ObjectiveViewerComponent<T extends ObjectiveModel>
+  implements OnInit
+{
   objective: T;
 
   @Input() loaderType;

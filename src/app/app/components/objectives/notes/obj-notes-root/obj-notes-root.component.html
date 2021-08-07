@@ -1,1 +1,7 @@
-<objective-root title="Notes" [icon]="gv.Icons.notes"></objective-root>
+<objective-root
+  title="Notes"
+  [icon]="gv.Icons.notes"
+  [url]="gv.URLs.notes"
+  [fromDashboard]="fromDashboard"
+></objective-root>
+<obj-notes-dashboard *ngIf="fromDashboard"></obj-notes-dashboard>

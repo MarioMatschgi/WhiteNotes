@@ -1,1 +1,7 @@
-<objective-root title="Todos" [icon]="gv.Icons.todos"></objective-root>
+<objective-root
+  title="Todos"
+  [icon]="gv.Icons.todos"
+  [url]="gv.URLs.todos"
+  [fromDashboard]="fromDashboard"
+></objective-root>
+<obj-todos-dashboard *ngIf="fromDashboard"></obj-todos-dashboard>
