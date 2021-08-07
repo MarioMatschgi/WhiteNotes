@@ -1,4 +1,15 @@
-<p>obj-boards-viewer works!</p>
 <objective-viewer [loaderType]="gv.LoaderServices.board" #viewer>
-  <div class="objective-viewer"></div>
+  <section class="objective-viewer" *ngIf="!viewer.loader.isLoading()">
+    <div class="drag-grid-container">
+      <div
+        class="box glass draggable"
+        [style.transform]="getTransform(item.position)"
+        [style.width]="getWidth(item.size)"
+        [style.height]="getHeight(item.size)"
+        *ngFor="let item of viewer.objective.items"
+      >
+        <p>{{ item.title }}</p>
+      </div>
+    </div>
+  </section>
 </objective-viewer>
