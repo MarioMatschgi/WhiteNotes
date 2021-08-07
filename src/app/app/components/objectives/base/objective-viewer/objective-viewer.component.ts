@@ -1,5 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { SelectMultipleControlValueAccessor } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { BehaviorSubject } from 'rxjs';
+import { debounceTime } from 'rxjs/operators';
 import { ObjectiveModel } from 'src/app/app/models/objectives/objective.model';
 import { DataLoadService } from 'src/app/app/services/data-load.service';
 import { AuthService } from 'src/app/libraries/authentication/services/auth.service';
@@ -14,6 +17,8 @@ export class ObjectiveViewerComponent<T extends ObjectiveModel>
   implements OnInit
 {
   objective: T;
+
+  wasSaveAborted: boolean;
 
   @Input() loaderType;
 
@@ -39,5 +44,22 @@ export class ObjectiveViewerComponent<T extends ObjectiveModel>
           });
       }
     }, true);
+  }
+
+  async save() {
+    if (this.loader.finished('save')) {
+      this.loader.load('save');
+
+      await this.loadService.updateData(this.objective);
+
+      this.loader.unload('save');
+
+      if (this.wasSaveAborted) {
+        this.save();
+        this.wasSaveAborted = false;
+      }
+    } else {
+      this.wasSaveAborted = true;
+    }
   }
 }

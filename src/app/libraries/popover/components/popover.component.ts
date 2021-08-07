@@ -1,4 +1,5 @@
 import {
+  ChangeDetectorRef,
   Component,
   ElementRef,
   EventEmitter,
@@ -28,7 +29,7 @@ export class PopoverComponent implements OnInit {
   /**
    * Whether the popover is open
    */
-  private _isOpen: boolean;
+  private _isOpen: boolean = false;
   @Input() set isOpen(val: boolean) {
     this.set(val);
   }
@@ -37,6 +38,8 @@ export class PopoverComponent implements OnInit {
   }
 
   @Output() openChange = new EventEmitter<boolean>();
+  @Output() onClose = new EventEmitter();
+  @Output() onOpen = new EventEmitter();
 
   @Input() userCanClose: boolean = true;
 
@@ -55,7 +58,11 @@ export class PopoverComponent implements OnInit {
    */
   @Input() align: 'center' | 'left' | 'right' = 'center';
 
-  constructor(private _elementRef: ElementRef, private router: Router) {
+  constructor(
+    private _elementRef: ElementRef,
+    private router: Router,
+    private changeDetection: ChangeDetectorRef
+  ) {
     router.events.subscribe((evt) => {
       if (evt instanceof NavigationEnd) {
         this.hide_if_open();
@@ -93,22 +100,22 @@ export class PopoverComponent implements OnInit {
 
       const body = document.getElementsByTagName('body')[0];
       if (this._isOpen) {
+        PopoverComponent.popovers = PopoverComponent.popovers.filter(
+          (el) => el != this
+        );
         PopoverComponent.popovers.push(this);
 
         this.pop_container = (
           this._elementRef.nativeElement as HTMLElement
         ).getElementsByClassName('pop_container')[0] as HTMLElement;
 
-        this.pop_container.parentElement.removeChild(this.pop_container);
         body.appendChild(this.pop_container);
       } else {
-        PopoverComponent.popovers.splice(
-          PopoverComponent.popovers.findIndex((e) => e == this),
-          1
+        PopoverComponent.popovers = PopoverComponent.popovers.filter(
+          (el) => el != this
         );
 
         if (this.pop_container) {
-          body.removeChild(this.pop_container);
           (this._elementRef.nativeElement as HTMLElement).appendChild(
             this.pop_container
           );
@@ -116,8 +123,12 @@ export class PopoverComponent implements OnInit {
         }
       }
 
+      this.changeDetection.detectChanges();
+
       this.openChange.emit(isOpen);
-    }, 0);
+      if (isOpen) this.onOpen.emit();
+      else this.onClose.emit();
+    });
   }
 
   /**

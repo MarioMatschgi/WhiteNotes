@@ -28,7 +28,6 @@ import { ObjTodosCreatorComponent } from './components/objectives/todos/obj-todo
 import { ObjectiveRootComponent } from './components/objectives/base/objective-root/objective-root.component';
 import { ObjTodosRootComponent } from './components/objectives/todos/obj-todos-root/obj-todos-root.component';
 import { ObjNotesRootComponent } from './components/objectives/notes/obj-notes-root/obj-notes-root.component';
-import { ObjectiveEditorComponent } from './components/objectives/base/objective-editor/objective-editor.component';
 import { ObjBoardsCreatorComponent } from './components/objectives/boards/obj-boards-creator/obj-boards-creator.component';
 import { ObjBoardsDashboardComponent } from './components/objectives/boards/obj-boards-dashboard/obj-boards-dashboard.component';
 import { ObjBoardsRootComponent } from './components/objectives/boards/obj-boards-root/obj-boards-root.component';
@@ -53,7 +52,6 @@ const components = [
   ObjectiveDashboardComponent,
   ObjectiveViewerComponent,
   ObjectiveCreatorComponent,
-  ObjectiveEditorComponent,
 
   /* BOARDS */
   ObjBoardsRootComponent,

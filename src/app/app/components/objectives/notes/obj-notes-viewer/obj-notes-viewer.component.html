@@ -6,7 +6,7 @@
           [(ngModel)]="viewer.objective.description"
           [readOnly]="viewer.loader.isLoading()"
           [modules]="gv.modules"
-          (ngModelChange)="autosave.next({})"
+          (ngModelChange)="viewer.save()"
           placeholder="Description"
           name="description"
           #quill

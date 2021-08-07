@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import {
   TodoItem,
   TodoListModel,
@@ -11,6 +11,8 @@ import {
 } from '@angular/cdk/drag-drop';
 import { UtilService } from 'src/app/libraries/util/services/util.service';
 import { GlobalVariablesService } from 'src/app/libraries/util/services/global-variables.service';
+import { UIDService } from 'src/app/libraries/util/services/uid.service';
+import { PopoverComponent } from 'src/app/libraries/popover/components/popover.component';
 
 @Component({
   selector: 'obj-todos-viewer',
@@ -20,9 +22,14 @@ import { GlobalVariablesService } from 'src/app/libraries/util/services/global-v
 export class ObjTodosViewerComponent implements OnInit {
   @ViewChild('viewer') viewer: ObjectiveViewerComponent<TodoListModel>;
 
-  viewTodo: TodoItem;
+  viewTodo: TodoItem = null;
 
-  constructor(public util: UtilService, public gv: GlobalVariablesService) {}
+  constructor(
+    public util: UtilService,
+    public gv: GlobalVariablesService,
+    private uid: UIDService,
+    private changeDetection: ChangeDetectorRef
+  ) {}
 
   ngOnInit(): void {}
 
@@ -34,19 +41,11 @@ export class ObjTodosViewerComponent implements OnInit {
 
   addTodo(text: string) {
     this.viewer.objective.items.push({
+      id: this.uid.uid(this.viewer.objective.items.map((el) => el.id)),
       title: text,
     } as TodoItem);
 
-    this.save();
-  }
-
-  save() {
-    if (this.viewTodo) {
-      const idx = this.viewer.objective.items.indexOf(this.viewTodo);
-      this.viewer.objective.items[idx] = this.viewTodo;
-    }
-
-    this.viewer.loadService.updateData(this.viewer.objective);
+    this.viewer.save();
   }
 
   removeTodo(todo: TodoItem) {
@@ -55,12 +54,8 @@ export class ObjTodosViewerComponent implements OnInit {
       this.viewer.objective.items.splice(idx, 1);
 
       this.viewTodo = null;
-      this.save();
+      this.viewer.save();
     });
-  }
-
-  saveTitle() {
-    this.save();
   }
 
   dropItem(event: CdkDragDrop<TodoItem[]>) {
@@ -79,6 +74,22 @@ export class ObjTodosViewerComponent implements OnInit {
       );
     }
 
-    this.save();
+    this.viewer.save();
+  }
+
+  closeTodo() {
+    if (!this.viewTodo) return;
+
+    this.viewTodo = null;
+    this.changeDetection.detectChanges();
+  }
+
+  saveViewTodo() {
+    const idx = this.viewer.objective.items.findIndex(
+      (el) => el.id == this.viewTodo.id
+    );
+    this.viewer.objective.items[idx] = this.viewTodo;
+
+    this.viewer.save();
   }
 }

@@ -4,8 +4,6 @@ export class TodoListModel extends ObjectiveModel {
   items: TodoItem[];
 }
 
-export interface TodoItem {
-  title: string;
-  description: string;
+export interface TodoItem extends ObjectiveModel {
   // TODO: Attatchments
 }
