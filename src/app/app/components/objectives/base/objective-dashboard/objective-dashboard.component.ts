@@ -6,9 +6,9 @@ import {
   DataLoadServiceProvider,
   LoaderServices,
 } from 'src/app/app/services/data-load.service';
-import { Encryptable } from 'src/app/app/models/encryptable.model';
 import { RouterUrls } from 'src/app/libraries/util/models/router.model';
 import { GlobalVariablesService } from 'src/app/libraries/util/services/global-variables.service';
+import { ObjectiveModel } from 'src/app/app/models/objectives/objective.model';
 
 @Component({
   selector: 'objective-dashboard',
@@ -16,7 +16,7 @@ import { GlobalVariablesService } from 'src/app/libraries/util/services/global-v
   styleUrls: ['./objective-dashboard.component.scss'],
   providers: [DataLoadServiceProvider],
 })
-export class ObjectiveDashboardComponent<T extends Encryptable>
+export class ObjectiveDashboardComponent<T extends ObjectiveModel>
   implements OnInit
 {
   objectives: T[];

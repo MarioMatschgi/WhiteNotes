@@ -1,17 +1,16 @@
 import { QuillModule } from 'ngx-quill';
-import { StGridComponent } from './components/structure/grid/grid.component';
-import { StContentComponent } from './components/structure/content/content.component';
+import { StGridComponent } from './components/structure/st-grid/st-grid.component';
+import { StContentComponent } from './components/structure/st-content/st-content.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { StHeaderComponent } from './components/structure/header/header.component';
+import { StHeaderComponent } from './components/structure/st-header/st-header.component';
 import { AppRoutingModule } from '../app-routing.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { AuthenticationModule } from '../libraries/authentication/authentication.module';
 import { UtilModule } from '../libraries/util/util.module';
 import { HomeComponent } from './components/home/home.component';
-import { BoardsComponent } from './components/boards/boards.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { StSectionComponent } from './components/structure/section/section.component';
+import { StSectionComponent } from './components/structure/st-section/st-section.component';
 import { FormsModule } from '@angular/forms';
 import { LoadingModule } from '../libraries/loading/loading.module';
 import { PopoverModule } from '../libraries/popover/popover.module';
@@ -29,9 +28,10 @@ import { ObjTodosCreatorComponent } from './components/objectives/todos/obj-todo
 import { ObjectiveRootComponent } from './components/objectives/base/objective-root/objective-root.component';
 import { ObjTodosRootComponent } from './components/objectives/todos/obj-todos-root/obj-todos-root.component';
 import { ObjNotesRootComponent } from './components/objectives/notes/obj-notes-root/obj-notes-root.component';
-import { ObjTodosEditorComponent } from './components/objectives/todos/obj-todos-editor/obj-todos-editor.component';
-import { ObjectiveEditorComponent } from './components/objectives/base/objective-editor/objective-editor.component';
-import { ObjNotesEditorComponent } from './components/objectives/notes/obj-notes-editor/obj-notes-editor.component';
+import { ObjBoardsCreatorComponent } from './components/objectives/boards/obj-boards-creator/obj-boards-creator.component';
+import { ObjBoardsDashboardComponent } from './components/objectives/boards/obj-boards-dashboard/obj-boards-dashboard.component';
+import { ObjBoardsRootComponent } from './components/objectives/boards/obj-boards-root/obj-boards-root.component';
+import { ObjBoardsViewerComponent } from './components/objectives/boards/obj-boards-viewer/obj-boards-viewer.component';
 
 const components = [
   /* STRUCTURE COMPONENTS */
@@ -43,7 +43,6 @@ const components = [
   /* OTHER COMPONENTS */
   HomeComponent,
   DashboardComponent,
-  BoardsComponent,
 
   /*
     OBJECTIVES
@@ -53,21 +52,24 @@ const components = [
   ObjectiveDashboardComponent,
   ObjectiveViewerComponent,
   ObjectiveCreatorComponent,
-  ObjectiveEditorComponent,
+
+  /* BOARDS */
+  ObjBoardsRootComponent,
+  ObjBoardsDashboardComponent,
+  ObjBoardsViewerComponent,
+  ObjBoardsCreatorComponent,
 
   /* NOTES */
   ObjNotesRootComponent,
   ObjNotesDashboardComponent,
   ObjNotesViewerComponent,
   ObjNotesCreatorComponent,
-  ObjNotesEditorComponent,
 
   /* TO-DOS */
   ObjTodosRootComponent,
   ObjTodosDashboardComponent,
   ObjTodosViewerComponent,
   ObjTodosCreatorComponent,
-  ObjTodosEditorComponent,
 ];
 
 @NgModule({

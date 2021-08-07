@@ -8,6 +8,6 @@
     *ngFor="let note of dashboard.objectives"
     [routerLink]="router.get_url(gv.URLs.notes_note, [note.id])"
   >
-    <quill-view [content]="note.body"></quill-view>
+    <quill-view [content]="note.description"></quill-view>
   </st-section>
 </objective-dashboard>

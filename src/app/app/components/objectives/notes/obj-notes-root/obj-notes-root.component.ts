@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { GlobalVariablesService } from 'src/app/libraries/util/services/global-variables.service';
 
 @Component({
@@ -7,6 +7,8 @@ import { GlobalVariablesService } from 'src/app/libraries/util/services/global-v
   styleUrls: ['./obj-notes-root.component.scss'],
 })
 export class ObjNotesRootComponent implements OnInit {
+  @Input() fromDashboard: boolean;
+
   constructor(public gv: GlobalVariablesService) {}
 
   ngOnInit(): void {}

@@ -1,5 +1,17 @@
 <objective-viewer [loaderType]="gv.LoaderServices.note" #viewer>
-  <div class="objective-viewer">
-    <obj-notes-editor mode="edit"></obj-notes-editor>
+  <div class="objective-viewer" *ngIf="!viewer.loader.isLoading()">
+    <form>
+      <section>
+        <quill-editor
+          [(ngModel)]="viewer.objective.description"
+          [readOnly]="viewer.loader.isLoading()"
+          [modules]="gv.modules"
+          (ngModelChange)="viewer.save()"
+          placeholder="Description"
+          name="description"
+          #quill
+        ></quill-editor>
+      </section>
+    </form>
   </div>
 </objective-viewer>

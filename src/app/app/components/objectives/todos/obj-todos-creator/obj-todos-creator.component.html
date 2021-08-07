@@ -1,5 +1,6 @@
-<objective-creator [loaderType]="gv.LoaderServices.todo" #creator>
-  <div class="objective-creator">
-    <obj-todos-editor mode="add"></obj-todos-editor>
-  </div>
-</objective-creator>
+<objective-creator
+  [loaderType]="gv.LoaderServices.todo"
+  displayName="todo"
+  [routeViewObjective]="gv.URLs.todos_todo"
+  #creator
+></objective-creator>

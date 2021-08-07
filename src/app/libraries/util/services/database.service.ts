@@ -3,9 +3,6 @@ import {
   AngularFirestore,
   AngularFirestoreCollection,
 } from '@angular/fire/firestore';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
-import { NoteModel } from 'src/app/app/models/note.model';
 
 /**
  * Service for Database

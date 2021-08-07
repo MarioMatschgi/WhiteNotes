@@ -1,9 +1,4 @@
 <objective-viewer [loaderType]="gv.LoaderServices.todo" #viewer>
-  <!-- <div class="" *ngIf="!viewer.loader.isLoading()"> -->
-  <!-- <notes-note-editor
-      mode="edit"
-      [(note)]="viewer.objective"
-    ></notes-note-editor> -->
   <section
     *ngIf="!viewer.loader.isLoading()"
     class="box glass todo-list objective-viewer"
@@ -13,7 +8,7 @@
         type="text"
         class="blank"
         [(ngModel)]="viewer.objective.title"
-        (submit)="saveTitle()"
+        (input)="viewer.save()"
         placeholder="New todo"
       />
     </h2>
@@ -26,7 +21,6 @@
     >
       <div
         class="box glass small todo-item"
-        [class.active]="contextMenuOpen"
         *ngFor="let todo of viewer.objective.items"
         cdkDrag
         [cdkDragStartDelay]="util.isTouchDevice ? 100 : null"
@@ -51,24 +45,23 @@
 
     <pop-popover
       [isOpen]="viewTodo != null"
-      (openChange)="$event ? (viewTodo = viewTodo) : (viewTodo = null)"
+      (onClose)="closeTodo()"
       class="view-todo-popover"
     >
-      <div *ngIf="viewTodo">
+      <div *ngIf="viewTodo != null">
         <h2 class="inset small editable-text">
           <input
             type="text"
             class="blank"
             [(ngModel)]="viewTodo.title"
-            (submit)="save()"
+            (ngModelChange)="saveViewTodo()"
             placeholder="New todo"
           />
         </h2>
         <quill-editor
           [(ngModel)]="viewTodo.description"
-          (submit)="save()"
+          (ngModelChange)="saveViewTodo()"
           [modules]="gv.modules"
-          #quill
         ></quill-editor>
       </div>
     </pop-popover>
@@ -78,5 +71,4 @@
       <button (click)="removeTodo(todo)">{{ todo?.title }}Delete</button>
     </util-context-menu>
   </section>
-  <!-- </div> -->
 </objective-viewer>
