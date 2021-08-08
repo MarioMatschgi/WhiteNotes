@@ -32,6 +32,8 @@ import { ObjBoardsCreatorComponent } from './components/objectives/boards/obj-bo
 import { ObjBoardsDashboardComponent } from './components/objectives/boards/obj-boards-dashboard/obj-boards-dashboard.component';
 import { ObjBoardsRootComponent } from './components/objectives/boards/obj-boards-root/obj-boards-root.component';
 import { ObjBoardsViewerComponent } from './components/objectives/boards/obj-boards-viewer/obj-boards-viewer.component';
+import { ObjectiveAddExistingDialogComponent } from './components/objectives/util/objective-add-existing-dialog/objective-add-existing-dialog.component';
+import { ObjectiveCreateNewDialogComponent } from './components/objectives/util/objective-create-new-dialog/objective-create-new-dialog.component';
 
 const components = [
   /* STRUCTURE COMPONENTS */
@@ -47,6 +49,10 @@ const components = [
   /*
     OBJECTIVES
    */
+  /* UTIL */
+  ObjectiveAddExistingDialogComponent,
+  ObjectiveCreateNewDialogComponent,
+
   /* BASE */
   ObjectiveRootComponent,
   ObjectiveDashboardComponent,

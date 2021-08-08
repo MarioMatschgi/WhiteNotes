@@ -1,15 +1,14 @@
-import {
-  CdkDragDrop,
-  moveItemInArray,
-  transferArrayItem,
-} from '@angular/cdk/drag-drop';
+import { CdkDragEnd } from '@angular/cdk/drag-drop';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import {
   BoardItemModel,
   BoardModel,
   BoardSize,
 } from 'src/app/app/models/objectives/board.model';
+import { ObjectiveModel } from 'src/app/app/models/objectives/objective.model';
+import { DataLoadService } from 'src/app/app/services/data-load.service';
 import { GlobalVariablesService } from 'src/app/libraries/util/services/global-variables.service';
+import { UIDService } from 'src/app/libraries/util/services/uid.service';
 import { ObjectiveViewerComponent } from '../../base/objective-viewer/objective-viewer.component';
 
 @Component({
@@ -20,72 +19,81 @@ import { ObjectiveViewerComponent } from '../../base/objective-viewer/objective-
 export class ObjBoardsViewerComponent implements OnInit {
   @ViewChild('viewer') viewer: ObjectiveViewerComponent<BoardModel>;
 
-  cellSize = 10;
+  currentlyDragging: BoardItemModel;
+  itemSize = 10;
+  cellSize = this.itemSize / 3;
   cellSpacing = 1;
 
-  constructor(public gv: GlobalVariablesService) {}
+  addOrCreate: '' | 'add' | 'create' = '';
 
-  ngOnInit(): void {
-    // setTimeout(() => {
-    //   this.viewer.objective.items = [
-    //     {
-    //       title: 'R0 C0',
-    //       position: { row: 0, col: 0 },
-    //       size: { row: 1, col: 4 },
-    //     } as BoardItemModel,
-    //     {
-    //       title: 'R1 C1',
-    //       position: { row: 1, col: 1 },
-    //       size: { row: 1, col: 2 },
-    //     } as BoardItemModel,
-    //     {
-    //       title: 'R2 C2',
-    //       position: { row: 2, col: 2 },
-    //       size: { row: 1, col: 3 },
-    //     } as BoardItemModel,
-    //     {
-    //       title: 'R3 C3',
-    //       position: { row: 3, col: 3 },
-    //       size: { row: 1, col: 1 },
-    //     } as BoardItemModel,
-    //     {
-    //       title: 'R3 C0',
-    //       position: { row: 3, col: 0 },
-    //       size: { row: 1, col: 2 },
-    //     } as BoardItemModel,
-    //   ];
-    //   this.viewer.save();
-    // }, 2000);
+  constructor(
+    public gv: GlobalVariablesService,
+    private uid: UIDService,
+    private loadService: DataLoadService<ObjectiveModel>
+  ) {}
+
+  ngOnInit(): void {}
+
+  viewerLoaded(obj: BoardModel) {
+    for (const item of obj.items) {
+      this.viewer.loader.load();
+      this.loadService.loaderType = item.objLoaderType;
+      this.loadService.getData(item.objPath).subscribe((o) => {
+        const idx = this.viewer.objective.items.findIndex(
+          (el) => (el.id = item.id)
+        );
+        this.viewer.objective.items[idx].objective = o;
+        this.viewer.loader.unload();
+      });
+    }
   }
 
-  dropItem(event: CdkDragDrop<BoardItemModel[]>) {
-    if (event.previousContainer === event.container) {
-      moveItemInArray(
-        event.container.data,
-        event.previousIndex,
-        event.currentIndex
-      );
-    } else {
-      transferArrayItem(
-        event.previousContainer.data,
-        event.container.data,
-        event.previousIndex,
-        event.currentIndex
-      );
-    }
+  dragEnded(evt: CdkDragEnd) {
+    const style = evt.source.element.nativeElement.style;
+
+    const off = style.transform
+      ? style.transform
+          .match(/\(.+?\)/)[0]
+          .slice(1, -6)
+          .replaceAll('px', '')
+          .split(', ')
+      : [0, 0];
+    const pos = [style.left.replace('em', ''), style.top.replace('em', '')];
+
+    const bpos: BoardSize = {
+      row: this.viewToBoardPos(+pos[1] + this.emToPx(+off[1])),
+      col: this.viewToBoardPos(+pos[0] + this.emToPx(+off[0])),
+    };
+
+    evt.source._dragRef.reset();
+
+    // TODO: CHECK IF POSITION IS VALID (NO OVERLAPS)
+    const idx = this.viewer.objective.items.findIndex(
+      (el) => el.id == this.currentlyDragging.id
+    );
+    this.viewer.objective.items[idx].position = bpos;
 
     this.viewer.save();
   }
 
-  getTransform(pos: BoardSize): string {
-    return `translate(
-      ${pos.col * (this.cellSize + this.cellSpacing)}em, 
-      ${pos.row * (this.cellSize + this.cellSpacing)}em)`;
+  emToPx(px): number {
+    var point = (px * 3) / 4;
+    return point / 12;
   }
-  getWidth(size: BoardSize): string {
-    return `${size.col * this.cellSize}em`;
+
+  viewToBoardPos(vPos: number): number {
+    return Math.max(Math.round(vPos / (this.cellSize + this.cellSpacing)), 0);
   }
-  getHeight(size: BoardSize): string {
-    return `${size.row * this.cellSize}em`;
+
+  boardToViewPos(bPos: number): number {
+    return bPos * (this.cellSize + this.cellSpacing);
+  }
+
+  getViewSize(size: number) {
+    return `${size * this.itemSize}em`;
+  }
+
+  getViewPos(pos: number): string {
+    return `${this.boardToViewPos(pos)}em`;
   }
 }

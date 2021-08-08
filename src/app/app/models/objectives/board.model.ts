@@ -1,3 +1,4 @@
+import { LoaderServices } from '../../services/data-load.service';
 import { ObjectiveModel } from './objective.model';
 
 export interface BoardSize {
@@ -12,4 +13,8 @@ export class BoardModel extends ObjectiveModel {
 export class BoardItemModel extends ObjectiveModel {
   position: BoardSize;
   size: BoardSize;
+
+  objLoaderType: LoaderServices;
+  objPath: string;
+  objective: ObjectiveModel;
 }

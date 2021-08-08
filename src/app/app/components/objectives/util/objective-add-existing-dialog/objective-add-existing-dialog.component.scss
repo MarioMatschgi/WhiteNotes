@@ -1,0 +1,9 @@
+@import "/src/app/libraries/util/scss/component.scss";
+
+form {
+  display: flex;
+
+  .search {
+    width: 20em;
+  }
+}

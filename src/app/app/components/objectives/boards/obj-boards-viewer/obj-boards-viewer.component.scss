@@ -1,17 +1,10 @@
 @import "/src/app/libraries/util/scss/component.scss";
 
 .drag-grid-container {
-  overflow: auto;
-}
-
-.drag-grid {
-  display: inline-block;
   position: relative;
 }
 
 .draggable {
   position: absolute;
   box-sizing: border-box;
-  width: 10em;
-  height: 10em;
 }
