@@ -1,6 +1,7 @@
 import { CdkDragEnd } from '@angular/cdk/drag-drop';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import {
+  BoardSizeHelper,
   BoardItemModel,
   BoardModel,
   BoardSize,
@@ -20,9 +21,15 @@ export class ObjBoardsViewerComponent implements OnInit {
   @ViewChild('viewer') viewer: ObjectiveViewerComponent<BoardModel>;
 
   currentlyDragging: BoardItemModel;
+
+  // TODO: Drag drop grid seperate component
+  // TODO: SPACING IN CSS (WRAPPER WITH PADDING)
+  /** Spacing between cells in steps */
+  cellSpacing = 0.5;
+  /** Amount of steps in an item */
+  steps = 2;
+  /** Size of a boart item */
   itemSize = 10;
-  cellSize = this.itemSize / 3;
-  cellSpacing = 1;
 
   addOrCreate: '' | 'add' | 'create' = '';
 
@@ -36,16 +43,17 @@ export class ObjBoardsViewerComponent implements OnInit {
 
   viewerLoaded(obj: BoardModel) {
     for (const item of obj.items) {
-      this.viewer.loader.load();
+      this.viewer.loader.load(`${item.objLoaderType}/${item.id}`);
       this.loadService.loaderType = item.objLoaderType;
       this.loadService.getData(item.objPath).subscribe((o) => {
         const idx = this.viewer.objective.items.findIndex(
-          (el) => (el.id = item.id)
+          (el) => el.id == item.id
         );
         this.viewer.objective.items[idx].objective = o;
-        this.viewer.loader.unload();
+        this.viewer.loader.unload(`${item.objLoaderType}/${item.id}`);
       });
     }
+    this.loadService.loaderType = this.gv.LoaderServices.board;
   }
 
   dragEnded(evt: CdkDragEnd) {
@@ -67,13 +75,19 @@ export class ObjBoardsViewerComponent implements OnInit {
 
     evt.source._dragRef.reset();
 
-    // TODO: CHECK IF POSITION IS VALID (NO OVERLAPS)
     const idx = this.viewer.objective.items.findIndex(
       (el) => el.id == this.currentlyDragging.id
     );
-    this.viewer.objective.items[idx].position = bpos;
+    const b = this.isBoardSlotBlocked(
+      bpos,
+      this.viewer.objective.items[idx].size,
+      this.currentlyDragging.id
+    );
 
-    this.viewer.save();
+    if (!b) {
+      this.viewer.objective.items[idx].position = bpos;
+      this.viewer.save();
+    }
   }
 
   emToPx(px): number {
@@ -82,11 +96,18 @@ export class ObjBoardsViewerComponent implements OnInit {
   }
 
   viewToBoardPos(vPos: number): number {
-    return Math.max(Math.round(vPos / (this.cellSize + this.cellSpacing)), 0);
+    const a =
+      vPos /
+      ((this.itemSize / this.steps) * (1 + this.cellSpacing / this.steps));
+
+    return Math.max(Math.round(a), 0);
   }
 
   boardToViewPos(bPos: number): number {
-    return bPos * (this.cellSize + this.cellSpacing);
+    return (
+      ((bPos * this.itemSize) / this.steps) *
+      (1 + this.cellSpacing / this.steps)
+    );
   }
 
   getViewSize(size: number) {
@@ -95,5 +116,28 @@ export class ObjBoardsViewerComponent implements OnInit {
 
   getViewPos(pos: number): string {
     return `${this.boardToViewPos(pos)}em`;
+  }
+
+  isBoardSlotBlocked(
+    pos: BoardSize,
+    size: BoardSize,
+    ignoreId: string = ''
+  ): boolean {
+    for (const item of this.viewer.objective.items) {
+      if (item.id == ignoreId) continue;
+      if (BoardSizeHelper.overlapRects(pos, size, item.position, item.size))
+        return true;
+    }
+
+    return false;
+  }
+
+  addObjectiveToBoard(obj: BoardItemModel) {
+    this.addOrCreate = '';
+    obj.id = this.uid.uid(this.viewer.objective.items.map((e) => e.id));
+    obj.position = { row: 0, col: 0 } as BoardSize;
+    obj.size = { row: 1, col: 1 } as BoardSize;
+    this.viewer.objective.items.push(obj);
+    this.viewer.save();
   }
 }

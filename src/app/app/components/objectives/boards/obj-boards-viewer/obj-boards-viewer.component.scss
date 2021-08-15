@@ -8,3 +8,6 @@
   position: absolute;
   box-sizing: border-box;
 }
+.cdk-drag-dragging {
+  z-index: 9999999;
+}

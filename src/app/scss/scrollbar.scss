@@ -11,3 +11,22 @@
   background: var(--color-font);
   border-radius: 99999em;
 }
+
+.scroll {
+  overflow: auto;
+  &.horizontal {
+    overflow: hidden;
+    overflow-x: auto;
+  }
+  &.vertical {
+    overflow: hidden;
+    overflow-y: auto;
+  }
+
+  &.left {
+    direction: rtl;
+    > {
+      direction: ltr;
+    }
+  }
+}

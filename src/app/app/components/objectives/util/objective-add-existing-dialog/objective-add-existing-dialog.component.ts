@@ -1,5 +1,5 @@
 import { map, take } from 'rxjs/operators';
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ObjectiveModel } from 'src/app/app/models/objectives/objective.model';
 import { LoaderServices } from 'src/app/app/services/data-load.service';
 import { LoadService } from 'src/app/libraries/loading/services/load.service';
@@ -7,6 +7,7 @@ import { GlobalVariablesService } from 'src/app/libraries/util/services/global-v
 import { DatabaseService } from 'src/app/libraries/util/services/database.service';
 import { AuthService } from 'src/app/libraries/authentication/services/auth.service';
 import { Endecryptor } from 'src/app/app/models/encryptable.model';
+import { BoardItemModel } from 'src/app/app/models/objectives/board.model';
 
 @Component({
   selector: 'objective-add-existing-dialog',
@@ -21,6 +22,9 @@ export class ObjectiveAddExistingDialogComponent implements OnInit {
   searchResult: ObjectiveModel[];
 
   wasSaveAborted: boolean;
+
+  @Output('addObjective') addObjectiveEvent =
+    new EventEmitter<ObjectiveModel>();
 
   constructor(
     public gv: GlobalVariablesService,
@@ -49,17 +53,20 @@ export class ObjectiveAddExistingDialogComponent implements OnInit {
           await this.searchLoaderType(this.loaderType as LoaderServices)
         );
       } else {
-        console.log(this.loaderTypes);
-
         for (const loaderType of this.loaderTypes) {
-          searchResult = searchResult.concat(
-            await this.searchLoaderType(loaderType as LoaderServices)
-          );
+          if (loaderType != LoaderServices.board) {
+            searchResult = searchResult.concat(
+              // TODO: Use subscribe for faster parallel loading
+              await this.searchLoaderType(loaderType as LoaderServices)
+            );
+          }
         }
       }
 
-      this.searchResult = searchResult.filter((obj) =>
-        obj.title.includes(this.searchQuery)
+      this.searchResult = searchResult.filter((obj: BoardItemModel) =>
+        obj.objective.title
+          .toLowerCase()
+          .includes(this.searchQuery.toLowerCase())
       );
 
       this.loader.unload('search');
@@ -80,8 +87,21 @@ export class ObjectiveAddExistingDialogComponent implements OnInit {
       .valueChanges()
       .pipe(
         take(1),
-        map((e) => Endecryptor.decryptAll(e as ObjectiveModel[]))
+        map((e) =>
+          Endecryptor.decryptAll(e as ObjectiveModel[]).map(
+            (obj) =>
+              ({
+                objective: obj,
+                objLoaderType: loaderType,
+                objPath: obj.id,
+              } as BoardItemModel)
+          )
+        )
       )
       .toPromise();
+  }
+
+  addObjective(obj: BoardItemModel) {
+    this.addObjectiveEvent.emit(obj);
   }
 }
