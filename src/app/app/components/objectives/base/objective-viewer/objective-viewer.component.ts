@@ -1,8 +1,12 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { SelectMultipleControlValueAccessor } from '@angular/forms';
+import {
+  AfterViewInit,
+  Component,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { BehaviorSubject } from 'rxjs';
-import { debounceTime } from 'rxjs/operators';
 import { ObjectiveModel } from 'src/app/app/models/objectives/objective.model';
 import { DataLoadService } from 'src/app/app/services/data-load.service';
 import { AuthService } from 'src/app/libraries/authentication/services/auth.service';
@@ -14,13 +18,15 @@ import { LoadService } from 'src/app/libraries/loading/services/load.service';
   styleUrls: ['./objective-viewer.component.scss'],
 })
 export class ObjectiveViewerComponent<T extends ObjectiveModel>
-  implements OnInit
+  implements OnInit, AfterViewInit
 {
   objective: T;
 
   wasSaveAborted: boolean;
 
   @Input() loaderType;
+
+  @Output() finishedLoading = new EventEmitter<T>();
 
   constructor(
     private auth: AuthService,
@@ -31,6 +37,9 @@ export class ObjectiveViewerComponent<T extends ObjectiveModel>
 
   ngOnInit(): void {
     this.loader.load();
+  }
+
+  ngAfterViewInit(): void {
     this.loadService.loaderType = this.loaderType;
 
     this.auth.sub_userData(async (data) => {
@@ -39,6 +48,8 @@ export class ObjectiveViewerComponent<T extends ObjectiveModel>
           .getData(this.route.snapshot.params['oid'])
           .subscribe((objective) => {
             this.objective = objective;
+
+            this.finishedLoading?.emit(objective);
 
             this.loader.unload();
           });

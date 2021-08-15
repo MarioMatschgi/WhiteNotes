@@ -1,1 +1,13 @@
 @import "/src/app/libraries/util/scss/component.scss";
+
+.drag-grid-container {
+  position: relative;
+}
+
+.draggable {
+  position: absolute;
+  box-sizing: border-box;
+}
+.cdk-drag-dragging {
+  z-index: 9999999;
+}

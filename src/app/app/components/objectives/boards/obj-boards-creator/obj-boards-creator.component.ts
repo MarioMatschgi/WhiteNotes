@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { BoardModel } from 'src/app/app/models/objectives/board.model';
 import { GlobalVariablesService } from 'src/app/libraries/util/services/global-variables.service';
 import { ObjectiveCreatorComponent } from '../../base/objective-creator/objective-creator.component';
@@ -8,10 +8,16 @@ import { ObjectiveCreatorComponent } from '../../base/objective-creator/objectiv
   templateUrl: './obj-boards-creator.component.html',
   styleUrls: ['./obj-boards-creator.component.scss'],
 })
-export class ObjBoardsCreatorComponent implements OnInit {
+export class ObjBoardsCreatorComponent implements OnInit, AfterViewInit {
   @ViewChild('creator') creator: ObjectiveCreatorComponent<BoardModel>;
 
   constructor(public gv: GlobalVariablesService) {}
 
   ngOnInit(): void {}
+
+  ngAfterViewInit(): void {
+    this.creator.beforeAddChange.subscribe((todo) => {
+      todo.items = [];
+    });
+  }
 }

@@ -26,7 +26,7 @@ export class Endecryptor {
         } else if (d[key] instanceof Object) {
           d[key] = this.encrypt(d[key]);
         } else {
-          d[key] = this.encryptSingle(d[key]);
+          d[key] = this.encryptSingle(d[key] + '');
         }
       }
     }

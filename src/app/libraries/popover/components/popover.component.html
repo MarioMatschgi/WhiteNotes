@@ -2,7 +2,8 @@
 <div [class]="'pop_container' + ' pop_pos_' + position">
   <div
     [class]="
-      'box blur popover' + (position == 'normal' ? ' pop_al_' + align : '')
+      'box blur popover scroll' +
+      (position == 'normal' ? ' pop_al_' + align : '')
     "
     *ngIf="isOpen"
     (clickOutside)="userClose()"

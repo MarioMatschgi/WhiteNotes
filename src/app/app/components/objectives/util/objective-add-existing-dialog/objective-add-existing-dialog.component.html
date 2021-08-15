@@ -1,0 +1,31 @@
+<section>
+  <form class="flexbox small">
+    <input
+      type="text"
+      [(ngModel)]="searchQuery"
+      (ngModelChange)="search()"
+      placeholder="Type to search..."
+      name="search"
+      class="search"
+    />
+    <select
+      [(ngModel)]="loaderType"
+      (ngModelChange)="search()"
+      name="loaderType"
+    >
+      <option [value]="null">All</option>
+      <option *ngFor="let loaderType of loaderTypes" [value]="loaderType">
+        {{ loaderType }}
+      </option>
+    </select>
+  </form>
+</section>
+
+<section class="flexbox-wrapper search-results">
+  <section *ngFor="let obj of searchResult" class="flexbox small">
+    <p>{{ obj.objective.title }}</p>
+    <button class="no-grow" (click)="addObjective(obj)">
+      <fa [fa]="gv.Icons.add"></fa>
+    </button>
+  </section>
+</section>

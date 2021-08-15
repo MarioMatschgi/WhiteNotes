@@ -1,4 +1,61 @@
-<p>obj-boards-viewer works!</p>
-<objective-viewer [loaderType]="gv.LoaderServices.board" #viewer>
-  <div class="objective-viewer"></div>
+<objective-viewer
+  [loaderType]="gv.LoaderServices.board"
+  (finishedLoading)="viewerLoaded($event)"
+  #viewer
+>
+  <section class="objective-viewer" *ngIf="!viewer.loader.isLoading()">
+    <section>
+      <section class="flexbox equal tiny">
+        <h2 class="inset small editable-text">
+          <input
+            type="text"
+            [(ngModel)]="viewer.objective.title"
+            (input)="viewer.save()"
+            placeholder="New board"
+          />
+        </h2>
+        <button
+          title="Create new objective"
+          class="no-grow"
+          (click)="addOrCreate = 'create'"
+        >
+          <fa [fa]="gv.Icons.add"></fa>
+        </button>
+        <button
+          title="Add existing objective"
+          class="no-grow"
+          (click)="addOrCreate = 'add'"
+        >
+          <fa [fa]="gv.Icons.addExisting"></fa>
+        </button>
+      </section>
+    </section>
+
+    <div class="drag-grid-container">
+      <div
+        class="box glass draggable"
+        [style.width]="getViewSize(item.size.col)"
+        [style.height]="getViewSize(item.size.row)"
+        [style.top]="getViewPos(item.position.row)"
+        [style.left]="getViewPos(item.position.col)"
+        *ngFor="let item of viewer.objective.items"
+        cdkDrag
+        (cdkDragStarted)="currentlyDragging = item"
+        (cdkDragEnded)="dragEnded($event)"
+      >
+        <p>{{ item.objective.title }}</p>
+      </div>
+    </div>
+
+    <pop-popover [isOpen]="addOrCreate != ''" (onClose)="addOrCreate = ''">
+      <div *ngIf="addOrCreate == 'add'">
+        <objective-add-existing-dialog
+          (addObjective)="addObjectiveToBoard($event)"
+        ></objective-add-existing-dialog>
+      </div>
+      <div *ngIf="addOrCreate == 'create'">
+        <objective-create-new-dialog></objective-create-new-dialog>
+      </div>
+    </pop-popover>
+  </section>
 </objective-viewer>

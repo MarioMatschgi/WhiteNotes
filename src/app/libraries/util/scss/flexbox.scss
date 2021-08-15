@@ -34,6 +34,9 @@
       flex: 1 1 0%;
     }
   }
+  > .no-grow {
+    flex-grow: 0;
+  }
 }
 .no-stretch {
   flex-grow: 0 !important;
